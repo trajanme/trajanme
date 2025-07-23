@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>daywizz - 日常をより楽しくする魔法をかける</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#57B5E7',
+secondary: '#FB9F72'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+.gradient-bg {
+background: linear-gradient(135deg, #87CEEB 0%, #FFE4B5 50%, #FFA07A 100%);
+}
+.hero-bg {
+background-image: url('https://readdy.ai/api/search-image?query=serene%20and%20magical%20park%20scene%20with%20cherry%20blossom%20trees%20gentle%20sunlight%20filtering%20through%20leaves%20creating%20natural%20spotlights%20peaceful%20walking%20paths%20and%20benches%20soft%20pastel%20colors%20morning%20atmosphere%20left%20side%20clear%20space%20for%20text%20ethereal%20and%20dreamy&width=1920&height=800&seq=hero002&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+@keyframes sparkle {
+0%, 100% { opacity: 0; transform: scale(0); }
+50% { opacity: 1; transform: scale(1); }
+}
+.sparkle {
+position: absolute;
+width: 4px;
+height: 4px;
+background: white;
+border-radius: 50%;
+box-shadow: 0 0 10px #57B5E7, 0 0 20px #57B5E7, 0 0 30px #57B5E7;
+pointer-events: none;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<header class="bg-white/90 backdrop-blur-sm fixed w-full top-0 z-50 shadow-sm">
+<div class="max-w-7xl mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="font-['Pacifico'] text-2xl text-gray-800">
+daywizz
+</div>
+<nav class="flex space-x-8">
+<a href="#about" class="text-gray-700 hover:text-primary transition-colors duration-200">About</a>
+<a href="#profile" class="text-gray-700 hover:text-primary transition-colors duration-200">Profile</a>
+<a href="#contact" class="text-gray-700 hover:text-primary transition-colors duration-200">Contact</a>
+</nav>
+</div>
+</div>
+</header>
+<section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent"></div>
+<div id="sparkle-container" class="absolute inset-0 pointer-events-none"></div>
+<div class="w-full relative z-10">
+<div class="max-w-7xl mx-auto px-6">
+<div class="max-w-2xl">
+<h1 class="text-5xl font-bold text-gray-800 mb-6">
+日常をより楽しくする<br>
+<span class="text-primary">魔法</span>をかける
+</h1>
+<p class="text-xl text-gray-600 leading-relaxed">
+daywizz は、健康をベースとした日常の質の向上と、<br>
+非日常体験による価値創造を通じて、<br>
+あなたの毎日に特別な魔法をお届けします。
+</p>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-800 mb-4">About daywizz</h2>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+<div>
+<h3 class="text-3xl font-bold text-gray-800 mb-6">コンセプト</h3>
+<div class="space-y-6">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-magic-line text-primary text-xl"></i>
+</div>
+<div>
+<h4 class="text-xl font-semibold text-gray-800 mb-2">day + wizard / with</h4>
+<p class="text-gray-600">日常に魔法をかける魔法使いとして、あなたの毎日をより豊かで楽しいものに変えていきます。</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-heart-line text-secondary text-xl"></i>
+</div>
+<div>
+<h4 class="text-xl font-semibold text-gray-800 mb-2">健康と幸福の両立</h4>
+<p class="text-gray-600">心身の健康を基盤として、日常の中に特別な体験と価値を創造していきます。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=modern%20wizard%20concept%20illustration%20with%20magical%20elements%20books%20crystals%20potions%20soft%20pastel%20colors%20sky%20blue%20and%20warm%20orange%20gradient%20background%20clean%20minimalist%20style%20professional%20magical%20workspace&width=600&height=400&seq=concept001&orientation=landscape"
+alt="daywizz コンセプト"
+class="w-full h-80 object-cover object-top rounded-2xl shadow-lg">
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="relative bg-white p-8 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+<div class="absolute inset-0 z-0">
+<img src="https://readdy.ai/api/search-image?query=energetic%20businessman%20in%20a%20suit%20walking%20confidently%20in%20a%20modern%20urban%20setting%2C%20morning%20sunlight%2C%20clean%20minimalist%20background%2C%20soft%20pastel%20colors%2C%20professional%20lifestyle%2C%20healthy%20work-life%20balance%20concept%2C%20high-key%20lighting%2C%20motion%20blur%20effect%20suggesting%20movement&width=800&height=600&seq=health002&orientation=landscape" alt="健康" class="w-full h-full object-cover opacity-10">
+</div>
+<div class="relative z-10">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary mb-6">必要条件</span>
+<h3 class="text-2xl font-bold text-gray-800 mb-4">健康に日常を過ごせること</h3>
+<p class="text-gray-600 mb-6">
+心身の健康を基盤としたプロダクトを展開を通じて健康管理、ウェルネス、ライフスタイルの改善を促します。</p>
+<ul class="space-y-3 text-gray-600">
+<li class="flex items-center space-x-3 bg-primary/5 p-3 rounded-lg">
+<span>健康管理サポート</span>
+</li>
+<li class="flex items-center space-x-3 bg-primary/5 p-3 rounded-lg">
+<span>健康データの収集・利活用</span>
+</li>
+<li class="flex items-center space-x-3 bg-primary/5 p-3 rounded-lg">
+<span>ライフスタイル改善提案</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="relative bg-white p-8 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+<div class="absolute inset-0 z-0">
+<img src="https://readdy.ai/api/search-image?query=heartwarming%20scene%20of%20a%20young%20Japanese%20girl%20giving%20a%20souvenir%20gift%20to%20her%20grandfather%20in%20a%20bright%20modern%20living%20room%2C%20soft%20natural%20lighting%2C%20gentle%20expressions%2C%20emotional%20family%20moment%2C%20pastel%20color%20palette%2C%20minimalist%20interior%20design%2C%20focus%20on%20the%20interaction%20between%20generations&width=800&height=600&seq=family001&orientation=landscape" alt="非日常" class="w-full h-full object-cover opacity-10">
+</div>
+<div class="relative z-10">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-secondary/10 text-secondary mb-6">十分条件</span>
+<h3 class="text-2xl font-bold text-gray-800 mb-4">非日常でリフレッシュできること</h3>
+<p class="text-gray-600 mb-6">
+旅行や特別な体験を通じて、日常から離れたリフレッシュ、学びの機会を提供します。
+</p>
+<ul class="space-y-3 text-gray-600">
+<li class="flex items-center space-x-3 bg-secondary/5 p-3 rounded-lg">
+<span>旅行におけるおみやげ文化のグローバル化</span>
+</li>
+<li class="flex items-center space-x-3 bg-secondary/5 p-3 rounded-lg">
+<span>旅行の記録を通じた旅行商品のアップデート</span>
+</li>
+<li class="flex items-center space-x-3 bg-secondary/5 p-3 rounded-lg">
+<span>旅行から得られる学びの拡張</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="profile" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-800 mb-4">Profile</h2>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="text-center lg:text-left">
+<img src="https://static.readdy.ai/image/89b4da6a2bfdf306069f3fcf78e1046b/48e747b9d85895e3e6db9adbd6f7b0f7.jfif"
+alt="代表者プロフィール"
+class="w-96 h-[480px] object-cover object-center rounded-2xl shadow-lg mx-auto mb-8">
+</div>
+<div class="space-y-8">
+<div>
+<h3 class="text-3xl font-bold text-gray-800 mb-4">石川 真太郎</h3>
+<p class="text-xl text-gray-600 mb-6">1990年生まれ、東京出身兵庫在住。本業でコンサルタントをする傍らソロプレナ−として活動。3児の父。コーヒーとガジェット、読書が好き。</p>
+</div>
+<div>
+<h4 class="text-xl font-semibold text-gray-800 mb-4">経歴・実績</h4>
+<div class="space-y-3 text-gray-600">
+<div class="flex items-start space-x-3">
+<i class="ri-shopping-bag-line text-primary mt-1"></i>
+<span>訪日観光客向けお土産紹介アプリ「omiya」のリリース</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-xl font-semibold text-gray-800 mb-4">保有資格・スキル</h4>
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_-4px_rgba(251,159,114,0.1)] hover:shadow-[0_4px_20px_-4px_rgba(251,159,114,0.2)] transition-all duration-300 border border-secondary/5">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl">
+<i class="ri-server-line text-secondary text-2xl"></i>
+</div>
+<div>
+<div class="text-base font-semibold text-gray-800">システムアーキテクト</div>
+<div class="text-sm text-gray-500 mt-1">システム設計・構築</div>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_-4px_rgba(251,159,114,0.1)] hover:shadow-[0_4px_20px_-4px_rgba(251,159,114,0.2)] transition-all duration-300 border border-secondary/5">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl">
+<i class="ri-brain-line text-secondary text-2xl"></i>
+</div>
+<div>
+<div class="text-base font-semibold text-gray-800">G検定</div>
+<div class="text-sm text-gray-500 mt-1">AI・機械学習</div>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_-4px_rgba(251,159,114,0.1)] hover:shadow-[0_4px_20px_-4px_rgba(251,159,114,0.2)] transition-all duration-300 border border-secondary/5">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl">
+<i class="ri-code-s-slash-line text-secondary text-2xl"></i>
+</div>
+<div>
+<div class="text-base font-semibold text-gray-800">個人開発</div>
+<div class="text-sm text-gray-500 mt-1">Next.js, Swift</div>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_-4px_rgba(251,159,114,0.1)] hover:shadow-[0_4px_20px_-4px_rgba(251,159,114,0.2)] transition-all duration-300 border border-secondary/5">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl">
+<i class="ri-lightbulb-line text-secondary text-2xl"></i>
+</div>
+<div>
+<div class="text-base font-semibold text-gray-800">ITコンサルティング</div>
+<div class="text-sm text-gray-500 mt-1">戦略立案・実行支援</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-xl font-semibold text-gray-800 mb-4">ビジョン・価値観</h4>
+<p class="text-gray-600 leading-relaxed">みんなの何気ない日常をデジタルの力でより良くして、日本や日本の産業をもっと世界に発信したい。</p>
+</div>
+<div class="flex space-x-4">
+<a href="https://x.com/shintaro_aw" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors duration-200 relative group">
+<i class="ri-twitter-x-line text-primary text-xl"></i>
+<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">X (Twitter)</span>
+</a>
+<a href="https://github.com/trajanme" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors duration-200 relative group">
+<i class="ri-github-line text-primary text-xl"></i>
+<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">GitHub</span>
+</a>
+<a href="https://note.com/shintaro_aw" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors duration-200 relative group">
+<i class="ri-sticky-note-line text-primary text-xl"></i>
+<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">note</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-20 bg-white">
+<div class="max-w-4xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-800 mb-4">Contact</h2>
+</div>
+<div class="grid lg:grid-cols-2 gap-16">
+<div>
+<h3 class="text-2xl font-bold text-gray-800 mb-6">お問い合わせフォーム</h3>
+<form action="mailto:shintaro@daywizz.com" method="POST" enctype="text/plain" class="space-y-6">
+<div>
+<label class="block text-sm font-semibold text-gray-700 mb-2">お名前 <span class="text-red-500">*</span></label>
+<input type="text" name="name" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="山田 太郎" required>
+</div>
+<div>
+<label class="block text-sm font-semibold text-gray-700 mb-2">メールアドレス <span class="text-red-500">*</span></label>
+<input type="email" name="email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="example@email.com" required>
+</div>
+<div>
+<label class="block text-sm font-semibold text-gray-700 mb-2">お問い合わせ内容 <span class="text-red-500">*</span></label>
+<textarea name="message" rows="5" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm resize-none" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+</div>
+<div class="flex items-start space-x-3">
+<input type="checkbox" id="privacy" class="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" required>
+<label for="privacy" class="text-sm text-gray-600">
+<a href="#" class="text-primary hover:underline">プライバシーポリシー</a>に同意します <span class="text-red-500">*</span>
+</label>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-4 !rounded-button font-semibold hover:bg-primary/90 transition-colors duration-200 whitespace-nowrap">
+送信する
+</button>
+</form>
+</div>
+<div class="space-y-8">
+<div>
+<h3 class="text-2xl font-bold text-gray-800 mb-6">その他の連絡方法</h3>
+<div class="space-y-4">
+<div class="flex items-center space-x-4">
+<a href="https://x.com/shintaro_aw" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors duration-200 relative group">
+<i class="ri-twitter-x-line text-primary text-xl"></i>
+<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">X (Twitter)</span>
+</a>
+<div>
+<div class="font-semibold text-gray-800">𝕏</div>
+<div class="text-gray-600">@shintaro_aw</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gradient-to-br from-blue-50 to-orange-50 p-8 rounded-2xl">
+<h4 class="text-xl font-bold text-gray-800 mb-4">お気軽にご相談ください</h4>
+<p class="text-gray-600 mb-6">
+健康管理から特別な体験まで、あなたの日常をより豊かにするお手伝いをいたします。
+小さなご相談でもお気軽にお声がけください。
+</p>
+<div class="flex space-x-4">
+<a href="https://x.com/shintaro_aw" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors duration-200 relative group">
+<i class="ri-twitter-x-line text-primary"></i>
+<span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">X (Twitter)</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-gray-800 text-white py-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<div class="font-['Pacifico'] text-2xl mb-2">daywizz</div>
+<p class="text-gray-400">日常をより楽しくする魔法をかける</p>
+</div>
+<div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+<div class="flex space-x-4">
+<a href="https://x.com/shintaro_aw" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors duration-200 relative group">
+<i class="ri-twitter-x-line"></i>
+<span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">X (Twitter)</span>
+</a>
+<a href="https://github.com/trajanme" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors duration-200 relative group">
+<i class="ri-github-line"></i>
+<span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">GitHub</span>
+</a>
+<a href="https://note.com/shintaro_aw" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors duration-200 relative group">
+<i class="ri-sticky-note-line"></i>
+<span class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">note</span>
+</a>
+</div>
+<div class="flex space-x-6 text-sm">
+<a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">プライバシーポリシー</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">利用規約</a>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+© 2025 daywizz. All rights reserved.
+</div>
+</div>
+</footer>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const links = document.querySelectorAll('a[href^="#"]');
+links.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+const headerHeight = 80;
+const targetPosition = targetElement.offsetTop - headerHeight;
+window.scrollTo({
+top: targetPosition,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="form-validation">
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.querySelector('form');
+const checkbox = document.getElementById('privacy');
+const submitButton = form.querySelector('button[type="submit"]');
+form.addEventListener('submit', function(e) {
+if (!checkbox.checked) {
+e.preventDefault();
+const notification = document.createElement('div');
+notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+notification.textContent = 'プライバシーポリシーに同意してください。';
+document.body.appendChild(notification);
+setTimeout(() => notification.remove(), 3000);
+return;
+}
+submitButton.disabled = true;
+submitButton.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>送信中...';
+const successNotification = document.createElement('div');
+successNotification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+successNotification.textContent = 'お問い合わせを受け付けました。ありがとうございます。';
+document.body.appendChild(successNotification);
+setTimeout(() => {
+successNotification.remove();
+submitButton.disabled = false;
+submitButton.innerHTML = '送信する';
+form.reset();
+}, 3000);
+});
+});
+</script>
+<script id="magic-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const container = document.getElementById('sparkle-container');
+const createSparkle = () => {
+const sparkle = document.createElement('div');
+sparkle.className = 'sparkle';
+sparkle.style.left = Math.random() * 100 + '%';
+sparkle.style.top = Math.random() * 100 + '%';
+sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+sparkle.style.animation = 'sparkle ease-in-out';
+container.appendChild(sparkle);
+setTimeout(() => {
+sparkle.remove();
+}, 3000);
+};
+setInterval(createSparkle, 300);
+});
+</script>
+<script id="header-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const header = document.querySelector('header');
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', function() {
+const currentScrollY = window.scrollY;
+if (currentScrollY > 100) {
+header.classList.add('bg-white/95');
+header.classList.remove('bg-white/90');
+} else {
+header.classList.add('bg-white/90');
+header.classList.remove('bg-white/95');
+}
+lastScrollY = currentScrollY;
+});
+});
+</script>
+</body>
+</html>
