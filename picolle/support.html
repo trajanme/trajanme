@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サポート | picolle.</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background-color: #FAF6F0;
+      color: #2C2C2C;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    header {
+      background-color: #FFFFFF;
+      border-bottom: 1px solid #E8E0D8;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #D4A574;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #2C2C2C;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      border-bottom-color: #D4A574;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #2C2C2C;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #8C8C8C;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #D4A574;
+      color: #2C2C2C;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .app-description {
+      background-color: #FFFFFF;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .app-description .app-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #D4A574;
+      margin-bottom: 8px;
+    }
+
+    .app-description .tagline {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .faq-item {
+      background-color: #FFFFFF;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .faq-question {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2C2C2C;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .faq-question .q-mark {
+      color: #D4A574;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      font-size: 15px;
+      color: #555;
+      padding-left: 24px;
+    }
+
+    .contact-card {
+      background-color: #FFFFFF;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      margin-top: 24px;
+    }
+
+    .contact-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .contact-email {
+      display: inline-block;
+      background-color: #D4A574;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background-color 0.2s;
+    }
+
+    .contact-email:hover {
+      background-color: #C4955A;
+    }
+
+    .version-info {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: #AAAAAA;
+      font-size: 13px;
+    }
+
+    footer {
+      background-color: #FFFFFF;
+      border-top: 1px solid #E8E0D8;
+      padding: 24px 0;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-inner p {
+      font-size: 13px;
+      color: #8C8C8C;
+      margin-bottom: 8px;
+    }
+
+    .footer-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        gap: 16px;
+      }
+
+      .contact-card {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="support.html" class="logo">picolle.</a>
+      <nav>
+        <a href="privacy-policy.html">プライバシーポリシー</a>
+        <a href="terms.html">利用規約</a>
+        <a href="support.html" class="active">サポート</a>
+        <a href="tokushoho.html">特定商取引法に基づく表記</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>サポート</h1>
+    <p class="subtitle">picolle. に関するよくある質問とお問い合わせ</p>
+
+    <div class="app-description">
+      <div class="app-name">picolle.（ピコレ）</div>
+      <p class="tagline">お子さまの作品を、美術館の展示風に。</p>
+      <p>picolle. は、お子さまが作った折り紙、粘土、イラストなどの作品を撮影し、美術館の展示風フレームで特別感を演出しながら保存・共有できるアプリです。個展機能で作品を整理し、家族の思い出として大切に残すことができます。</p>
+    </div>
+
+    <h2>よくある質問（FAQ）</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="q-mark">Q.</span>
+        <span>作品の画質はどのくらいですか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>Freeプランでは長辺2048px（JPEG形式、最大2MB）の画質で保存されます。Premiumプラン（月額500円）にアップグレードすると、長辺4096pxの高画質で保存できます。撮影時はなるべく明るい場所で、作品が画面いっぱいに映るように撮影すると、きれいに仕上がります。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="q-mark">Q.</span>
+        <span>個展（コレクション）はいくつ作れますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>Freeプランでは、初回に3個の個展が利用でき、その後毎月1個ずつ増えます（上限10個）。Premiumプランでは最大50個の個展をすぐにご利用いただけます。各個展には、Freeプランで20作品、Premiumプランで100作品まで登録できます。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="q-mark">Q.</span>
+        <span>アカウントを削除するとどうなりますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>アカウントを削除すると、登録されているすべてのデータ（お子さまの情報、作品、個展、共有設定など）が完全に削除されます。削除後のデータの復元はできませんので、必要な作品はあらかじめ端末に保存してからアカウントを削除してください。アカウントの削除は、アプリ内の「設定」画面から行えます。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="q-mark">Q.</span>
+        <span>機種変更時にデータは引き継げますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>はい、引き継げます。picolle. のデータはクラウド上に保存されているため、新しい端末で同じApple IDを使ってサインインすれば、すべてのデータ（お子さまの情報、作品、個展など）が自動的に引き継がれます。特別な操作やバックアップは不要です。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span class="q-mark">Q.</span>
+        <span>サブスクリプション（Premiumプラン）を解約するとどうなりますか？</span>
+      </div>
+      <div class="faq-answer">
+        <p>Premiumプランを解約すると、現在の課金期間の終了後にFreeプランに戻ります。Freeプランの上限を超えている個展や作品はロックされますが、データが削除されることはありません。再度Premiumプランにご登録いただくと、すべてのデータに再びアクセスできます。サブスクリプションの管理は、iOSの「設定」アプリ > Apple ID > サブスクリプションから行えます。</p>
+      </div>
+    </div>
+
+    <h2>お問い合わせ</h2>
+
+    <p>上記のFAQで解決しない場合は、以下のメールアドレスまでお気軽にお問い合わせください。通常2営業日以内にご返信いたします。</p>
+
+    <div class="contact-card">
+      <h3>メールでのお問い合わせ</h3>
+      <p>ご不明な点やご要望がございましたら、お気軽にご連絡ください。</p>
+      <a href="mailto:support@daywizz.com" class="contact-email">support@daywizz.com</a>
+    </div>
+
+    <p style="margin-top: 24px; font-size: 14px; color: #8C8C8C;">お問い合わせの際は、以下の情報をお伝えいただけるとスムーズです:</p>
+    <ul style="font-size: 14px; color: #8C8C8C;">
+      <li>ご利用の端末（例: iPhone 15）</li>
+      <li>iOSバージョン（例: iOS 18.0）</li>
+      <li>アプリのバージョン</li>
+      <li>問題の詳細な説明</li>
+    </ul>
+
+    <div class="version-info">
+      <p>picolle. バージョン 1.0.0</p>
+      <p>対応OS: iOS 17.0 以上</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2026 picolle. All rights reserved.</p>
+      <p>picolle.運営</p>
+    </div>
+  </footer>
+</body>
+</html>
