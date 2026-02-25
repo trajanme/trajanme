@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PawSteps - かわいい犬と一緒に健康習慣をはじめよう</title>
+<meta property="og:title" content="PawSteps - かわいい犬と一緒に健康習慣をはじめよう">
+<meta property="og:description" content="お気に入りの犬キャラクターと歩数を楽しく記録。Apple Watch対応の健康習慣ウォーキングアプリ。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daywizz.com/pawsteps/">
+<meta name="description" content="PawSteps - かわいい犬のキャラクターと一緒に毎日の歩数を楽しく記録。Apple Watch対応。健康習慣を身につけるウォーキングアプリ。">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#57B5E7',
+        secondary: '#FB9F72',
+        'ps-primary': '#6BBF59',
+        'ps-secondary': '#A67C52',
+        'ps-bg': '#F0F9F0',
+      },
+      fontFamily: {
+        brand: ['Pacifico', 'cursive'],
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '4px',
+        DEFAULT: '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '20px',
+        '2xl': '24px',
+        '3xl': '32px',
+        'full': '9999px',
+        'button': '8px'
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+</style>
+</head>
+<body class="bg-white">
+
+<!-- Header -->
+<header class="bg-white/90 backdrop-blur-sm fixed w-full top-0 z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a href="../index.html" class="font-['Pacifico'] text-2xl text-gray-800 no-underline">daywizz</a>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#features" class="text-gray-700 hover:text-ps-primary transition-colors duration-200">Features</a>
+        <a href="#screenshots" class="text-gray-700 hover:text-ps-primary transition-colors duration-200">Screenshots</a>
+        <a href="#story" class="text-gray-700 hover:text-ps-primary transition-colors duration-200">Story</a>
+        <a href="#download" class="text-gray-700 hover:text-ps-primary transition-colors duration-200">Download</a>
+      </nav>
+      <!-- Mobile Hamburger -->
+      <button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+        <i class="ri-menu-line text-2xl" id="menu-icon"></i>
+      </button>
+    </div>
+    <!-- Mobile Nav -->
+    <nav id="mobile-menu" class="hidden md:hidden pt-4 pb-2 space-y-3">
+      <a href="#features" class="block text-gray-700 hover:text-ps-primary transition-colors duration-200 py-2">Features</a>
+      <a href="#screenshots" class="block text-gray-700 hover:text-ps-primary transition-colors duration-200 py-2">Screenshots</a>
+      <a href="#story" class="block text-gray-700 hover:text-ps-primary transition-colors duration-200 py-2">Story</a>
+      <a href="#download" class="block text-gray-700 hover:text-ps-primary transition-colors duration-200 py-2">Download</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="bg-ps-bg bg-gradient-to-br from-green-50 via-ps-bg to-green-100 min-h-screen flex items-center pt-20">
+  <div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="text-center md:text-left">
+        <!-- App Icon -->
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-[22%] bg-gradient-to-br from-green-400 to-ps-primary shadow-xl mb-8">
+          <i class="ri-footprint-line text-white text-4xl"></i>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-4">PawSteps</h1>
+        <p class="text-2xl md:text-3xl font-bold text-gray-700 mb-6">かわいい犬と一緒に、<br>健康習慣をはじめよう</p>
+        <p class="text-lg text-gray-600 leading-relaxed mb-8">
+          健康のために歩きたいけど、なかなか続かない... そんなあなたに。お気に入りの犬のキャラクターと一緒に、毎日の歩数を楽しく記録しましょう。Apple Watch にも対応。
+        </p>
+        <!-- App Store Badge -->
+        <!-- TODO: Replace with App Store URL -->
+        <a href="#" class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors duration-200">
+          <i class="ri-apple-fill text-xl"></i>
+          <div>
+            <div class="text-[10px] leading-none">Download on the</div>
+            <div class="text-base leading-tight font-semibold">App Store</div>
+          </div>
+        </a>
+      </div>
+      <!-- iPhone Mockup -->
+      <div class="flex justify-center">
+        <div class="bg-gray-900 rounded-[36px] p-3 shadow-2xl">
+          <div class="bg-ps-bg rounded-[28px] w-[260px] md:w-[280px] aspect-[9/19.5] flex items-center justify-center">
+            <div class="text-center">
+              <i class="ri-footprint-line text-ps-primary text-5xl mb-3 block"></i>
+              <span class="text-gray-400 text-sm">App Screenshot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">PawSteps でできること</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Feature 1 -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-green-100 hover:shadow-md transition-shadow duration-300">
+        <div class="w-12 h-12 bg-ps-primary/10 rounded-full flex items-center justify-center mb-4">
+          <i class="ri-bear-smile-line text-ps-primary text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">かわいい犬キャラクター</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">お気に入りの犬のキャラクターを選んで、毎日の散歩のパートナーに。歩くほど絆が深まります。</p>
+      </div>
+      <!-- Feature 2 -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-green-100 hover:shadow-md transition-shadow duration-300">
+        <div class="w-12 h-12 bg-ps-primary/10 rounded-full flex items-center justify-center mb-4">
+          <i class="ri-device-line text-ps-primary text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Apple Watch 対応</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">手首の上でリアルタイムに歩数を確認。犬のキャラクターも Apple Watch で一緒に過ごせます。</p>
+      </div>
+      <!-- Feature 3 -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-green-100 hover:shadow-md transition-shadow duration-300">
+        <div class="w-12 h-12 bg-ps-primary/10 rounded-full flex items-center justify-center mb-4">
+          <i class="ri-walk-line text-ps-primary text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">リアルタイム歩数記録</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">HealthKit と連携し、あなたの歩数をリアルタイムで記録。日々の健康習慣を可視化します。</p>
+      </div>
+      <!-- Feature 4 -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-green-100 hover:shadow-md transition-shadow duration-300">
+        <div class="w-12 h-12 bg-ps-primary/10 rounded-full flex items-center justify-center mb-4">
+          <i class="ri-layout-grid-line text-ps-primary text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">ウィジェット対応</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">ホーム画面のウィジェットで、お気に入りの犬キャラクターをいつでも見られます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshots -->
+<section id="screenshots" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">スクリーンショット</h2>
+    </div>
+    <div class="flex gap-6 overflow-x-auto pb-6 justify-start md:justify-center snap-x snap-mandatory">
+      <!-- Screenshot 1 -->
+      <div class="flex-shrink-0 snap-center">
+        <div class="bg-gray-900 rounded-[28px] p-2 shadow-xl">
+          <div class="bg-ps-bg rounded-[20px] w-[180px] md:w-[220px] aspect-[9/19.5] flex items-center justify-center">
+            <span class="text-gray-400 text-sm">Screenshot 1</span>
+          </div>
+        </div>
+      </div>
+      <!-- Screenshot 2 -->
+      <div class="flex-shrink-0 snap-center">
+        <div class="bg-gray-900 rounded-[28px] p-2 shadow-xl">
+          <div class="bg-ps-bg rounded-[20px] w-[180px] md:w-[220px] aspect-[9/19.5] flex items-center justify-center">
+            <span class="text-gray-400 text-sm">Screenshot 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- Screenshot 3 -->
+      <div class="flex-shrink-0 snap-center">
+        <div class="bg-gray-900 rounded-[28px] p-2 shadow-xl">
+          <div class="bg-ps-bg rounded-[20px] w-[180px] md:w-[220px] aspect-[9/19.5] flex items-center justify-center">
+            <span class="text-gray-400 text-sm">Screenshot 3</span>
+          </div>
+        </div>
+      </div>
+      <!-- Screenshot 4 -->
+      <div class="flex-shrink-0 snap-center">
+        <div class="bg-gray-900 rounded-[28px] p-2 shadow-xl">
+          <div class="bg-ps-bg rounded-[20px] w-[180px] md:w-[220px] aspect-[9/19.5] flex items-center justify-center">
+            <span class="text-gray-400 text-sm">Screenshot 4</span>
+          </div>
+        </div>
+      </div>
+      <!-- Apple Watch -->
+      <div class="flex-shrink-0 snap-center flex items-center">
+        <div class="bg-gray-900 rounded-full w-[120px] h-[120px] p-2 shadow-xl flex items-center justify-center">
+          <div class="bg-ps-bg rounded-full w-full h-full flex items-center justify-center">
+            <span class="text-gray-400 text-[10px]">Apple Watch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Developer Story -->
+<section id="story" class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">PawSteps が生まれた理由</h2>
+    </div>
+    <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-green-100">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-xl font-bold text-gray-600">
+          SI
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-gray-800">石川 真太郎</h3>
+          <p class="text-gray-500">iOS Developer</p>
+        </div>
+      </div>
+      <div class="space-y-6 text-gray-600 leading-relaxed">
+        <p>「健康のために歩こう」と思っても、なかなか続かない。ジムも三日坊主。そんな自分自身の経験から、PawSteps は生まれました。</p>
+        <p>毎日の散歩が、お気に入りの犬と一緒なら楽しくなるはず。ゲーム感覚で歩数を記録して、無理なく健康習慣を身につけられる -- そんなアプリを目指しています。</p>
+        <p>特に忙しい毎日を送る30代の方に、ほんの少しの歩く楽しみを届けたいと思っています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Download CTA -->
+<section id="download" class="py-20 bg-gradient-to-br from-green-50 to-ps-bg">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <!-- App Icon Small -->
+    <div class="inline-flex items-center justify-center w-20 h-20 rounded-[22%] bg-gradient-to-br from-green-400 to-ps-primary shadow-xl mb-8">
+      <i class="ri-footprint-line text-white text-3xl"></i>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">あなたの健康習慣、今日から始めよう。</h2>
+    <p class="text-lg text-gray-600 mb-8">無料でダウンロード</p>
+    <!-- TODO: Replace with App Store URL -->
+    <a href="#" class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors duration-200">
+      <i class="ri-apple-fill text-xl"></i>
+      <div>
+        <div class="text-[10px] leading-none">Download on the</div>
+        <div class="text-base leading-tight font-semibold">App Store</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0 text-center md:text-left">
+        <a href="../index.html" class="font-['Pacifico'] text-2xl text-white no-underline hover:text-gray-300 transition-colors duration-200">daywizz</a>
+        <p class="text-gray-400 mt-2">PawSteps を運営しています</p>
+      </div>
+      <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+        <div class="flex space-x-6 text-sm">
+          <a href="PawStepsTermOfUse.html" class="text-gray-400 hover:text-white transition-colors duration-200">利用規約</a>
+          <a href="PawStepsPrivacyPolicy.html" class="text-gray-400 hover:text-white transition-colors duration-200">プライバシーポリシー</a>
+        </div>
+        <a href="../index.html" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm flex items-center gap-1">
+          <i class="ri-arrow-left-line"></i> daywizz トップ
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+      &copy; 2025 PawSteps. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+// Smooth Scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      e.preventDefault();
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerHeight = 80;
+        const targetPosition = targetElement.offsetTop - headerHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          document.getElementById('menu-icon').classList.replace('ri-close-line', 'ri-menu-line');
+        }
+      }
+    });
+  });
+});
+
+// Hamburger Menu
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+
+  menuToggle.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden');
+    if (mobileMenu.classList.contains('hidden')) {
+      menuIcon.classList.replace('ri-close-line', 'ri-menu-line');
+    } else {
+      menuIcon.classList.replace('ri-menu-line', 'ri-close-line');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

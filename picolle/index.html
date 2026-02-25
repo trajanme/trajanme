@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>picolle. - お子さまの作品を美術館の展示風に</title>
+<meta name="description" content="picolle.（ピコレ）- お子さまの作品を美術館の展示風に保存・共有できるiOSアプリ。個展機能で作品を整理し、家族の思い出として大切に残せます。">
+<meta property="og:title" content="picolle. - お子さまの作品を美術館の展示風に">
+<meta property="og:description" content="折り紙、粘土、イラスト... お子さまの作品を美術館風フレームで特別に保存・共有できるアプリ。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daywizz.com/picolle/">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#57B5E7',
+        secondary: '#FB9F72',
+        'pc-primary': '#D4A574',
+        'pc-bg': '#FAF6F0',
+        'pc-border': '#E8E0D8',
+      },
+      fontFamily: {
+        brand: ['Pacifico', 'cursive'],
+      },
+      borderRadius: {
+        'none': '0px',
+        'sm': '4px',
+        DEFAULT: '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '20px',
+        '2xl': '24px',
+        '3xl': '32px',
+        'full': '9999px',
+        'button': '8px'
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>
+</head>
+<body class="bg-pc-bg text-gray-800">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-pc-border z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="font-brand text-2xl text-gray-800 hover:opacity-80 transition-opacity">daywizz</a>
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#features" class="text-sm text-gray-600 hover:text-pc-primary transition-colors">Features</a>
+      <a href="#plans" class="text-sm text-gray-600 hover:text-pc-primary transition-colors">Plans</a>
+      <a href="#story" class="text-sm text-gray-600 hover:text-pc-primary transition-colors">Story</a>
+      <a href="support.html" class="text-sm text-gray-600 hover:text-pc-primary transition-colors">Support</a>
+    </nav>
+    <!-- Mobile Hamburger -->
+    <button id="menuBtn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="メニュー">
+      <span id="menuLine1" class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+      <span id="menuLine2" class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+      <span id="menuLine3" class="block w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-sm border-t border-pc-border">
+    <nav class="flex flex-col px-6 py-4 gap-4">
+      <a href="#features" class="text-sm text-gray-600 hover:text-pc-primary transition-colors py-2">Features</a>
+      <a href="#plans" class="text-sm text-gray-600 hover:text-pc-primary transition-colors py-2">Plans</a>
+      <a href="#story" class="text-sm text-gray-600 hover:text-pc-primary transition-colors py-2">Story</a>
+      <a href="support.html" class="text-sm text-gray-600 hover:text-pc-primary transition-colors py-2">Support</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-pc-bg via-amber-50/30 to-pc-bg"></div>
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+      <!-- Left: Text Content -->
+      <div class="flex-1 text-center md:text-left">
+        <!-- App Icon -->
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-[22%] bg-gradient-to-br from-amber-300 to-pc-primary shadow-xl mb-8">
+          <i class="ri-gallery-line text-white text-4xl"></i>
+        </div>
+        <!-- App Name -->
+        <h1 class="text-5xl md:text-6xl font-bold text-pc-primary mb-1">picolle.</h1>
+        <p class="text-lg text-gray-500 mb-6">ピコレ</p>
+        <!-- Catchcopy -->
+        <p class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 leading-tight">お子さまの作品を、<br class="hidden sm:inline">美術館の展示風に。</p>
+        <!-- Description -->
+        <p class="text-gray-600 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">折り紙、粘土、イラスト... お子さまが作った大切な作品を撮影し、美術館の展示風フレームで特別感を演出。個展機能で整理して、家族の思い出として大切に残せます。</p>
+        <!-- Coming Soon Badge -->
+        <span class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg text-sm font-semibold">
+          <i class="ri-apple-fill mr-1"></i> Coming Soon
+        </span>
+      </div>
+      <!-- Right: iPhone Mockup -->
+      <div class="flex-shrink-0">
+        <div class="bg-gray-900 rounded-[36px] p-3 shadow-xl w-[260px] md:w-[280px]">
+          <div class="bg-pc-bg rounded-[28px] aspect-[9/19.5] flex flex-col items-center justify-center relative overflow-hidden">
+            <!-- Mockup inner content -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-900 rounded-b-2xl"></div>
+            <div class="flex flex-col items-center gap-4 px-6">
+              <div class="w-16 h-16 rounded-[22%] bg-gradient-to-br from-amber-300 to-pc-primary flex items-center justify-center">
+                <i class="ri-gallery-line text-white text-2xl"></i>
+              </div>
+              <p class="text-pc-primary font-bold text-xl">picolle.</p>
+              <!-- Mini gallery frames -->
+              <div class="grid grid-cols-2 gap-3 mt-2">
+                <div class="border-4 border-amber-100 shadow-md bg-white p-1">
+                  <div class="bg-amber-50 w-16 h-20 flex items-center justify-center">
+                    <i class="ri-brush-line text-pc-primary/40 text-lg"></i>
+                  </div>
+                </div>
+                <div class="border-4 border-amber-100 shadow-md bg-white p-1">
+                  <div class="bg-amber-50 w-16 h-20 flex items-center justify-center">
+                    <i class="ri-palette-line text-pc-primary/40 text-lg"></i>
+                  </div>
+                </div>
+                <div class="border-4 border-amber-100 shadow-md bg-white p-1">
+                  <div class="bg-amber-50 w-16 h-20 flex items-center justify-center">
+                    <i class="ri-scissors-line text-pc-primary/40 text-lg"></i>
+                  </div>
+                </div>
+                <div class="border-4 border-amber-100 shadow-md bg-white p-1">
+                  <div class="bg-amber-50 w-16 h-20 flex items-center justify-center">
+                    <i class="ri-pencil-line text-pc-primary/40 text-lg"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">picolle. でできること</h2>
+    <p class="text-center text-gray-500 mb-12">お子さまの作品を、もっと特別に。</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Feature 1 -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-pc-border">
+        <div class="w-14 h-14 rounded-xl bg-pc-primary/10 flex items-center justify-center mb-6">
+          <i class="ri-image-line text-pc-primary text-3xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-3">美術館の展示風フレーム</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">作品を撮影するだけで、美術館に飾られたような特別な一枚に。お子さまの作品が、より輝いて見えます。</p>
+      </div>
+      <!-- Feature 2 -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-pc-border">
+        <div class="w-14 h-14 rounded-xl bg-pc-primary/10 flex items-center justify-center mb-6">
+          <i class="ri-gallery-view-2-line text-pc-primary text-3xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-3">個展機能</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">作品を個展（コレクション）として整理。お子さまの成長の記録を、テーマごとにまとめて管理できます。</p>
+      </div>
+      <!-- Feature 3 -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-pc-border">
+        <div class="w-14 h-14 rounded-xl bg-pc-primary/10 flex items-center justify-center mb-6">
+          <i class="ri-group-line text-pc-primary text-3xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-3">家族共有</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">おじいちゃん、おばあちゃんにも共有。離れて暮らす家族とも、お子さまの成長を一緒に楽しめます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshots / Gallery Section -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">作品の展示イメージ</h2>
+    <p class="text-center text-gray-500 mb-12">美術館のように、作品を大切に飾ります。</p>
+    <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide justify-start md:justify-center">
+      <!-- Frame 1 -->
+      <div class="flex-shrink-0">
+        <div class="bg-white p-3 shadow-lg border-8 border-amber-100 rounded-sm">
+          <div class="bg-gray-100 aspect-[3/4] w-52 md:w-64 flex flex-col items-center justify-center gap-3">
+            <i class="ri-brush-line text-gray-300 text-4xl"></i>
+            <span class="text-gray-400 text-sm">Screenshot</span>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <p class="text-xs text-gray-400">おりがみのおはな</p>
+        </div>
+      </div>
+      <!-- Frame 2 -->
+      <div class="flex-shrink-0">
+        <div class="bg-white p-3 shadow-lg border-8 border-amber-100 rounded-sm">
+          <div class="bg-gray-100 aspect-[3/4] w-52 md:w-64 flex flex-col items-center justify-center gap-3">
+            <i class="ri-palette-line text-gray-300 text-4xl"></i>
+            <span class="text-gray-400 text-sm">Screenshot</span>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <p class="text-xs text-gray-400">かぞくのえ</p>
+        </div>
+      </div>
+      <!-- Frame 3 -->
+      <div class="flex-shrink-0">
+        <div class="bg-white p-3 shadow-lg border-8 border-amber-100 rounded-sm">
+          <div class="bg-gray-100 aspect-[3/4] w-52 md:w-64 flex flex-col items-center justify-center gap-3">
+            <i class="ri-shape-line text-gray-300 text-4xl"></i>
+            <span class="text-gray-400 text-sm">Screenshot</span>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <p class="text-xs text-gray-400">ねんどのどうぶつ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plans Section -->
+<section id="plans" class="py-16 md:py-24">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">料金プラン</h2>
+    <p class="text-center text-gray-500 mb-12">まずは無料ではじめられます。</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Free Plan -->
+      <div class="bg-white border border-pc-border rounded-2xl p-8">
+        <div class="mb-6">
+          <span class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Free</span>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-4xl font-bold text-gray-800">&yen;0</span>
+          </div>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <i class="ri-check-line text-pc-primary text-lg mt-0.5 flex-shrink-0"></i>
+            <span class="text-gray-600 text-sm">画質 長辺2048px（JPEG, 最大2MB）</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="ri-check-line text-pc-primary text-lg mt-0.5 flex-shrink-0"></i>
+            <span class="text-gray-600 text-sm">個展 最大10個（初回3個、毎月+1）</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="ri-check-line text-pc-primary text-lg mt-0.5 flex-shrink-0"></i>
+            <span class="text-gray-600 text-sm">各個展 20作品まで</span>
+          </li>
+        </ul>
+      </div>
+      <!-- Premium Plan -->
+      <div class="bg-gradient-to-br from-pc-primary/5 to-amber-50 border-2 border-pc-primary rounded-2xl p-8 relative">
+        <span class="absolute -top-3 right-6 bg-pc-primary text-white text-xs font-semibold px-3 py-1 rounded-full">おすすめ</span>
+        <div class="mb-6">
+          <span class="text-sm font-semibold text-pc-primary uppercase tracking-wider">Premium</span>
+          <div class="mt-2 flex items-baseline gap-1">
+            <span class="text-4xl font-bold text-gray-800">&yen;500</span>
+            <span class="text-gray-500 text-sm">/月</span>
+          </div>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <i class="ri-check-line text-pc-primary text-lg mt-0.5 flex-shrink-0"></i>
+            <span class="text-gray-600 text-sm">高画質 長辺4096px</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="ri-check-line text-pc-primary text-lg mt-0.5 flex-shrink-0"></i>
+            <span class="text-gray-600 text-sm">個展 最大50個</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="ri-check-line text-pc-primary text-lg mt-0.5 flex-shrink-0"></i>
+            <span class="text-gray-600 text-sm">各個展 100作品まで</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Developer Story Section -->
+<section id="story" class="py-16 md:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">picolle. が生まれた理由</h2>
+    <div class="bg-pc-bg rounded-2xl p-8 md:p-12 shadow-sm">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center flex-shrink-0">
+          <span class="text-lg font-bold text-gray-600">SI</span>
+        </div>
+        <div>
+          <p class="font-bold text-gray-800">石川 真太郎</p>
+          <p class="text-sm text-gray-500">iOS Developer / 3児の父</p>
+        </div>
+      </div>
+      <div class="space-y-4 text-gray-600 leading-relaxed">
+        <p>3人の子どもを持つ父として、子どもたちが毎日のように持ち帰ってくる作品の数々 &mdash; 折り紙、粘土、お絵描き。どれも世界にひとつだけの宝物です。</p>
+        <p>でも、いつの間にか場所がなくなって、泣く泣く処分してしまうことも...。</p>
+        <p>picolle. は、そんな「捨てられない、でも全部は残せない」というジレンマから生まれました。写真に撮って、美術館のように飾って、家族みんなで楽しめる &mdash; そんなアプリを作りたいと思いました。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 md:py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">よくある質問</h2>
+    <div class="space-y-6">
+      <!-- FAQ 1 -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 border border-pc-border">
+        <h3 class="font-bold text-gray-800 mb-3 flex items-start gap-2">
+          <span class="text-pc-primary flex-shrink-0">Q.</span>
+          作品の画質はどのくらいですか？
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed pl-6">Freeプランでは長辺2048px、Premiumプラン（月額500円）では長辺4096pxの高画質で保存できます。</p>
+      </div>
+      <!-- FAQ 2 -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 border border-pc-border">
+        <h3 class="font-bold text-gray-800 mb-3 flex items-start gap-2">
+          <span class="text-pc-primary flex-shrink-0">Q.</span>
+          機種変更時にデータは引き継げますか？
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed pl-6">はい。データはクラウド上に保存されているため、同じApple IDでサインインすればすべてのデータが自動的に引き継がれます。</p>
+      </div>
+      <!-- FAQ 3 -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 border border-pc-border">
+        <h3 class="font-bold text-gray-800 mb-3 flex items-start gap-2">
+          <span class="text-pc-primary flex-shrink-0">Q.</span>
+          Premiumプランを解約するとどうなりますか？
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed pl-6">Freeプランに戻りますが、データは削除されません。再度Premiumにご登録いただくと、すべてのデータにアクセスできます。</p>
+      </div>
+    </div>
+    <div class="text-center mt-8">
+      <a href="support.html" class="text-pc-primary hover:underline text-sm font-medium">
+        その他のよくある質問はこちら <i class="ri-arrow-right-line"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 md:py-24 bg-gradient-to-br from-pc-primary/10 to-amber-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-[22%] bg-gradient-to-br from-amber-300 to-pc-primary shadow-lg mb-6">
+      <i class="ri-gallery-line text-white text-2xl"></i>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">お子さまの作品を、特別な思い出に。</h2>
+    <p class="text-gray-600 mb-8">picolle. で、世界にひとつだけの美術館を作りましょう。</p>
+    <span class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg text-sm font-semibold">
+      <i class="ri-apple-fill mr-1"></i> Coming Soon
+    </span>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
+      <div>
+        <a href="../index.html" class="font-brand text-2xl text-white hover:opacity-80 transition-opacity">daywizz</a>
+        <p class="text-gray-400 text-sm mt-2">picolle. を運営しています</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">プライバシーポリシー</a>
+        <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">利用規約</a>
+        <a href="support.html" class="text-gray-400 hover:text-white text-sm transition-colors">サポート</a>
+        <a href="tokushoho.html" class="text-gray-400 hover:text-white text-sm transition-colors">特定商取引法</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <a href="../index.html" class="text-gray-400 hover:text-white text-sm transition-colors">
+        <i class="ri-arrow-left-line mr-1"></i> daywizz トップ
+      </a>
+      <p class="text-gray-500 text-xs">&copy; 2026 picolle. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+// Hamburger menu toggle
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuLine1 = document.getElementById('menuLine1');
+const menuLine2 = document.getElementById('menuLine2');
+const menuLine3 = document.getElementById('menuLine3');
+let menuOpen = false;
+
+menuBtn.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileMenu.classList.toggle('hidden');
+  if (menuOpen) {
+    menuLine1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+    menuLine2.style.opacity = '0';
+    menuLine3.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+  } else {
+    menuLine1.style.transform = '';
+    menuLine2.style.opacity = '1';
+    menuLine3.style.transform = '';
+  }
+});
+
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    menuOpen = false;
+    mobileMenu.classList.add('hidden');
+    menuLine1.style.transform = '';
+    menuLine2.style.opacity = '1';
+    menuLine3.style.transform = '';
+  });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      const headerHeight = 64;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
