@@ -2,61 +2,41 @@
 import LegalLayout from '../../../layouts/LegalLayout.astro';
 ---
 
-<LegalLayout title="特定商取引法に基づく表記" appId="picolle" lastUpdated="2026年3月1日">
-  <table class="w-full text-sm border-collapse">
+<LegalLayout title="特定商取引法に基づく表記" appId="picolle" lastUpdated="2026年2月20日">
+  <table>
     <tbody>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top w-1/3">販売業者</th>
-        <td class="py-3 text-gray-600">石川 真太郎（個人事業主）</td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">運営責任者</th>
-        <td class="py-3 text-gray-600">石川 真太郎</td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">所在地</th>
-        <td class="py-3 text-gray-600">
-          請求があった場合には遅滞なく開示いたします。<br />
-          お問い合わせ先: support@daywizz.com
-        </td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">連絡先</th>
-        <td class="py-3 text-gray-600">
-          メール: <a href="mailto:support@daywizz.com" class="text-primary underline">support@daywizz.com</a><br />
-          電話番号: 請求があった場合には遅滞なく開示いたします。
-        </td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">販売価格</th>
-        <td class="py-3 text-gray-600">
-          Premium プラン: 月額500円（税込）<br />
-          ※ App Store の価格に準じます
-        </td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">支払方法</th>
-        <td class="py-3 text-gray-600">Apple ID に登録された支払方法による決済（App 内課金）</td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">支払時期</th>
-        <td class="py-3 text-gray-600">購入手続き完了時に課金されます。自動更新型のサブスクリプションです。</td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">商品の引渡時期</th>
-        <td class="py-3 text-gray-600">購入手続き完了後、即時ご利用いただけます。</td>
-      </tr>
-      <tr class="border-b border-gray-200">
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">返品・キャンセル</th>
-        <td class="py-3 text-gray-600">
-          デジタルコンテンツの性質上、購入後の返品・返金はお受けできません。<br />
-          解約は iOS の「設定」アプリ &gt; Apple ID &gt; サブスクリプション から行えます。
-        </td>
+      <tr>
+        <th>販売業者</th>
+        <td>picolle.運営（個人開発者）</td>
       </tr>
       <tr>
-        <th class="py-3 pr-4 text-left font-medium text-gray-700 align-top">動作環境</th>
-        <td class="py-3 text-gray-600">iOS 17.0 以上</td>
+        <th>連絡先</th>
+        <td><a href="mailto:support@daywizz.com">support@daywizz.com</a></td>
+      </tr>
+      <tr>
+        <th>販売価格</th>
+        <td>Premium プラン: &yen;500 / 月（税込）</td>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <td>Apple App内課金（In-App Purchase）</td>
+      </tr>
+      <tr>
+        <th>商品の引渡し時期</th>
+        <td>購入後即時</td>
+      </tr>
+      <tr>
+        <th>返品・キャンセル</th>
+        <td>Apple のサブスクリプション管理（iOS「設定」アプリ &gt; Apple ID &gt; サブスクリプション）から解約できます。日割り返金はありません。現在の課金期間の終了後にFreeプランに戻ります。</td>
+      </tr>
+      <tr>
+        <th>動作環境</th>
+        <td>iOS 17.0 以上</td>
       </tr>
     </tbody>
   </table>
+
+  <div class="bg-amber-50 border-l-4 border-picolle p-4 rounded-r-lg text-sm my-6">
+    サブスクリプションは、現在の期間の終了日の24時間前までにキャンセルしない限り、自動的に更新されます。料金の請求および管理は Apple が行います。
+  </div>
 </LegalLayout>
