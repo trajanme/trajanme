@@ -1,0 +1,71 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import { apps } from '../../../data/apps';
+
+const app = apps.picolle;
+
+const faqItems = [
+  {
+    question: '作品の画質はどのくらいですか？',
+    answer: 'Freeプランでは長辺2048px（JPEG形式、最大2MB）の画質で保存されます。Premiumプラン（月額500円）にアップグレードすると、長辺4096pxの高画質で保存できます。撮影時はなるべく明るい場所で、作品が画面いっぱいに映るように撮影すると、きれいに仕上がります。',
+  },
+  {
+    question: '個展（コレクション）はいくつ作れますか？',
+    answer: 'Freeプランでは、初回に3個の個展が利用でき、その後毎月1個ずつ増えます（上限10個）。Premiumプランでは最大50個の個展をすぐにご利用いただけます。各個展には、Freeプランで20作品、Premiumプランで100作品まで登録できます。',
+  },
+  {
+    question: 'アカウントを削除するとどうなりますか？',
+    answer: 'アカウントを削除すると、登録されているすべてのデータ（お子さまの情報、作品、個展、共有設定など）が完全に削除されます。削除後のデータの復元はできませんので、必要な作品はあらかじめ端末に保存してからアカウントを削除してください。アカウントの削除は、アプリ内の「設定」画面から行えます。',
+  },
+  {
+    question: '機種変更時にデータは引き継げますか？',
+    answer: 'はい、引き継げます。picolle. のデータはクラウド上に保存されているため、新しい端末で同じApple IDを使ってサインインすれば、すべてのデータ（お子さまの情報、作品、個展など）が自動的に引き継がれます。特別な操作やバックアップは不要です。',
+  },
+  {
+    question: 'サブスクリプション（Premiumプラン）を解約するとどうなりますか？',
+    answer: 'Premiumプランを解約すると、現在の課金期間の終了後にFreeプランに戻ります。Freeプランの上限を超えている個展や作品はロックされますが、データが削除されることはありません。再度Premiumプランにご登録いただくと、すべてのデータに再びアクセスできます。サブスクリプションの管理は、iOSの「設定」アプリ > Apple ID > サブスクリプションから行えます。',
+  },
+];
+---
+
+<AppLayout appId="picolle">
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-2xl font-bold text-gray-900">サポート</h1>
+      <p class="mt-2 text-gray-500">picolle. に関するよくある質問とお問い合わせ</p>
+
+      <!-- アプリ概要カード -->
+      <div class="mt-8 rounded-xl bg-white border border-gray-100 shadow-sm p-6">
+        <h2 class="text-lg font-bold text-picolle">{app.name}（ピコレ）</h2>
+        <p class="mt-1 text-sm text-gray-500">{app.tagline}</p>
+        <p class="mt-3 text-sm text-gray-600 leading-relaxed">{app.description}</p>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">よくある質問（FAQ）</h2>
+        <FaqSection items={faqItems} />
+      </div>
+
+      <!-- お問い合わせ -->
+      <div class="mt-10 rounded-xl bg-white border border-gray-100 shadow-sm p-8 text-center">
+        <h2 class="text-lg font-bold text-gray-900">お問い合わせ</h2>
+        <p class="mt-2 text-sm text-gray-500">
+          上記のFAQで解決しない場合は、以下のメールアドレスまでお気軽にお問い合わせください。<br />
+          通常2営業日以内にご返信いたします。
+        </p>
+        <a
+          href={`mailto:${app.contactEmail}`}
+          class="inline-flex items-center gap-2 mt-4 px-6 py-2.5 bg-picolle text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
+        >
+          <i class="ri-mail-line"></i>
+          {app.contactEmail}
+        </a>
+        <p class="mt-4 text-xs text-gray-400">
+          お問い合わせの際は、ご利用端末・iOSバージョン・アプリバージョン・問題の詳細をお伝えください。
+        </p>
+      </div>
+    </div>
+  </section>
+</AppLayout>

@@ -1,0 +1,53 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { apps } from '../data/apps';
+
+interface Props {
+  appId: string;
+}
+
+const { appId } = Astro.props;
+const app = apps[appId];
+
+if (!app) {
+  return Astro.redirect('/404/');
+}
+
+const basePath = `/apps/${appId}`;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'トップ', href: `${basePath}/` },
+  ...(app.pages.support ? [{ label: 'サポート', href: `${basePath}/support/` }] : []),
+  ...(app.pages.privacy ? [{ label: 'プライバシーポリシー', href: `${basePath}/privacy/` }] : []),
+  ...(app.pages.terms ? [{ label: '利用規約', href: `${basePath}/terms/` }] : []),
+  ...(app.pages.tokushoho ? [{ label: '特定商取引法に基づく表記', href: `${basePath}/tokushoho/` }] : []),
+];
+---
+
+<BaseLayout title={`${app.name} - daywizz`} description={app.description}>
+  <div style={`--app-color: var(--color-${app.color}); --app-bg: var(--color-${app.bgColor});`}>
+    <!-- アプリ用サブナビゲーション -->
+    <nav class="border-b border-gray-200 bg-[var(--app-bg)]">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="flex items-center gap-1 overflow-x-auto py-3 text-sm">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'whitespace-nowrap px-3 py-1.5 rounded-full transition-colors',
+                currentPath === item.href
+                  ? 'bg-[var(--app-color)] text-white font-medium'
+                  : 'text-gray-600 hover:bg-gray-100',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+  </div>
+</BaseLayout>

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #57B5E7;
+  --color-secondary: #FB9F72;
+  --color-picolle: #D4A574;
+  --color-picolle-bg: #FAF6F0;
+  --color-pawsteps: #4CAF50;
+  --color-pawsteps-bg: #F0FAF0;
+  --color-omiya: #E74C3C;
+  --color-omiya-bg: #FFF5F5;
+
+  --font-brand: 'Pacifico', cursive;
+  --font-sans: '-apple-system', 'BlinkMacSystemFont', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+}

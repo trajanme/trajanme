@@ -1,0 +1,52 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import { apps } from '../../../data/apps';
+
+const app = apps.pawsteps;
+
+const faqItems = [
+  {
+    question: '散歩記録のGPS精度はどのくらいですか？',
+    answer: 'PawSteps は端末のGPS機能を利用して散歩ルートを記録します。精度は端末や周囲の環境（建物の密集地、天候など）によって異なりますが、通常は数メートル程度の誤差で記録されます。より正確に記録するために、散歩開始前にGPSの受信状態が安定していることをご確認ください。',
+  },
+  {
+    question: 'ペットの情報は複数登録できますか？',
+    answer: 'はい、複数のペットの情報を登録できます。散歩記録や健康管理の情報は、それぞれのペットごとに分けて管理されます。',
+  },
+  {
+    question: 'データのバックアップはどうなっていますか？',
+    answer: 'PawSteps のデータはクラウド上に安全に保存されています。機種変更時も、同じアカウントでサインインすればデータが引き継がれます。',
+  },
+];
+---
+
+<AppLayout appId="pawsteps">
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-2xl font-bold text-gray-900">サポート</h1>
+      <p class="mt-2 text-gray-500">PawSteps に関するよくある質問とお問い合わせ</p>
+
+      <!-- FAQ -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">よくある質問（FAQ）</h2>
+        <FaqSection items={faqItems} />
+      </div>
+
+      <!-- お問い合わせ -->
+      <div class="mt-10 rounded-xl bg-white border border-gray-100 shadow-sm p-8 text-center">
+        <h2 class="text-lg font-bold text-gray-900">お問い合わせ</h2>
+        <p class="mt-2 text-sm text-gray-500">
+          上記のFAQで解決しない場合は、以下のメールアドレスまでお気軽にお問い合わせください。
+        </p>
+        <a
+          href={`mailto:${app.contactEmail}`}
+          class="inline-flex items-center gap-2 mt-4 px-6 py-2.5 bg-pawsteps text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
+        >
+          <i class="ri-mail-line"></i>
+          {app.contactEmail}
+        </a>
+      </div>
+    </div>
+  </section>
+</AppLayout>

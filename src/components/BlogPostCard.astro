@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  tags: string[];
+  slug: string;
+  excerpt: string;
+}
+
+const { title, date, tags, slug, excerpt } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+}).replace(/\//g, '.');
+---
+
+<a href={`/blog/${slug}/`} class="group block">
+  <article class="flex gap-4 py-5 border-b border-gray-100">
+    <!-- サムネイルプレースホルダー -->
+    <div class="w-24 h-24 sm:w-32 sm:h-20 rounded-lg bg-gray-100 shrink-0" />
+
+    <div class="min-w-0 flex-1">
+      <!-- 日付 + タグ -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <time datetime={date.toISOString()} class="text-xs text-gray-400 tabular-nums">
+          {formattedDate}
+        </time>
+        {tags.map((tag) => (
+          <span class="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <!-- タイトル -->
+      <h3 class="mt-1 text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2">
+        {title}
+      </h3>
+
+      <!-- 抜粋（PC のみ表示） -->
+      <p class="hidden sm:block mt-1 text-xs text-gray-400 line-clamp-1">{excerpt}</p>
+    </div>
+  </article>
+</a>

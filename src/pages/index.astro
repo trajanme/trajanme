@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import AppCard from '../components/AppCard.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+import { releasedApps } from '../data/apps';
+import { getCollection } from 'astro:content';
+
+// ブログ記事を取得（下書きを除外、日付降順、最新3件）
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="daywizz - 日常をより楽しくする魔法をかける">
+  <!-- ヒーロー -->
+  <HeroSection
+    title="日常をより楽しくする魔法をかける"
+    subtitle="daywizz は「day（日常）」と「wizard（魔法使い）」。何気ない毎日にちょっとした魔法をかけて、より楽しく、より豊かにするプロダクトを作っています。"
+    ctaText="アプリを見る"
+    ctaHref="#apps"
+  />
+
+  <!-- About 要約 -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold text-gray-900">About daywizz</h2>
+      <p class="mt-4 text-gray-500 leading-relaxed">
+        daywizz（デイウィズ）は、日常の中にある小さな幸せに着目し、
+        デジタルの力でそれをもっと楽しく、もっと豊かにすることを目指しています。
+        健康、子育て、暮らし。身近なテーマからアプリを開発し、
+        みんなの何気ない日常をより良くしていきます。
+      </p>
+      <a
+        href="/about/"
+        class="inline-flex items-center gap-1 mt-6 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
+      >
+        詳しく見る
+        <i class="ri-arrow-right-line"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- アプリ一覧 -->
+  <section id="apps" class="py-16 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center">Apps</h2>
+      <p class="mt-2 text-center text-gray-500">daywizz が開発したアプリ</p>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {releasedApps.map((app) => (
+          <AppCard
+            name={app.name}
+            tagline={app.tagline}
+            color={app.color}
+            href={`/apps/${app.id}/`}
+            platforms={app.platforms}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新ブログ記事 -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center">Blog</h2>
+      <p class="mt-2 text-center text-gray-500">最新の記事</p>
+
+      <div class="mt-8 flex flex-col">
+        {latestPosts.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            date={post.data.pubDate}
+            tags={post.data.tags}
+            slug={post.id}
+            excerpt={post.data.description}
+          />
+        ))}
+      </div>
+
+      <div class="mt-8 text-center">
+        <a
+          href="/blog/"
+          class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
+        >
+          すべての記事を見る
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold text-gray-900">Contact</h2>
+      <p class="mt-4 text-gray-500">
+        ご質問・ご要望・お仕事のご相談など、お気軽にお問い合わせください。
+      </p>
+      <a
+        href="/contact/"
+        class="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-sm"
+      >
+        お問い合わせ
+        <i class="ri-mail-line"></i>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+interface Props {
+  items: Array<{ question: string; answer: string }>;
+}
+
+const { items } = Astro.props;
+---
+
+<div class="divide-y divide-gray-200">
+  {items.map((item, index) => (
+    <div class="faq-item">
+      <button
+        type="button"
+        class="faq-trigger w-full flex items-center justify-between py-4 text-left"
+        aria-expanded="false"
+        aria-controls={`faq-answer-${index}`}
+      >
+        <span class="text-sm font-medium text-gray-900 pr-4">{item.question}</span>
+        <i class="ri-add-line text-lg text-gray-400 shrink-0 faq-icon transition-transform"></i>
+      </button>
+      <div
+        id={`faq-answer-${index}`}
+        class="faq-answer hidden pb-4"
+      >
+        <p class="text-sm text-gray-600 leading-relaxed">{item.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.faq-item');
+      const answer = item?.querySelector('.faq-answer');
+      const icon = trigger.querySelector('.faq-icon');
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+      answer?.classList.toggle('hidden');
+      icon?.classList.toggle('rotate-45');
+    });
+  });
+</script>
