@@ -25,7 +25,7 @@ export interface AppInfo {
 export const apps: Record<string, AppInfo> = {
   picolle: {
     id: 'picolle',
-    name: 'picolle.',
+    name: 'Picolle.',
     tagline: 'お子さまの作品を、美術館の展示風に。',
     description: 'お子さまが作った折り紙、粘土、イラストなどの作品を撮影し、美術館の展示風フレームで特別感を演出しながら保存・共有できるアプリです。',
     color: 'picolle',
