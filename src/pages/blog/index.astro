@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import { getCollection } from 'astro:content';
+
+// 全記事取得（下書き除外、日付降順）
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// 全タグを抽出（重複なし）
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title="ブログ - daywizz" description="daywizz のブログ記事一覧">
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="text-2xl font-bold text-gray-900 text-center">Blog</h1>
+      <p class="mt-2 text-center text-gray-500">daywizz の最新情報をお届けします</p>
+
+      <!-- タグフィルター -->
+      <div class="mt-8 flex flex-wrap gap-2 justify-center" id="tag-filter">
+        <button
+          type="button"
+          class="tag-btn active px-3 py-1 text-sm rounded-full border border-gray-200 bg-primary text-white transition-colors"
+          data-tag="all"
+        >
+          すべて
+        </button>
+        {allTags.map((tag) => (
+          <button
+            type="button"
+            class="tag-btn px-3 py-1 text-sm rounded-full border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary transition-colors"
+            data-tag={tag}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
+      <!-- 記事一覧 -->
+      <div class="mt-8 flex flex-col" id="post-list">
+        {posts.map((post) => (
+          <div class="post-item" data-tags={post.data.tags.join(',')}>
+            <BlogPostCard
+              title={post.data.title}
+              date={post.data.pubDate}
+              tags={post.data.tags}
+              slug={post.id}
+              excerpt={post.data.description}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+  const items = document.querySelectorAll<HTMLElement>('.post-item');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag;
+
+      // ボタンのアクティブ状態を更新
+      buttons.forEach((b) => {
+        b.classList.remove('active', 'bg-primary', 'text-white');
+        b.classList.add('bg-white', 'text-gray-600');
+      });
+      btn.classList.add('active', 'bg-primary', 'text-white');
+      btn.classList.remove('bg-white', 'text-gray-600');
+
+      // 記事の表示/非表示
+      items.forEach((item) => {
+        if (tag === 'all') {
+          item.style.display = '';
+        } else {
+          const itemTags = item.dataset.tags?.split(',') ?? [];
+          item.style.display = itemTags.includes(tag!) ? '' : 'none';
+        }
+      });
+    });
+  });
+</script>

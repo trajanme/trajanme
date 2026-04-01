@@ -1,0 +1,93 @@
+---
+import { releasedApps } from '../data/apps';
+---
+
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+  <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+    <!-- ロゴ -->
+    <a href="/" class="font-brand text-2xl text-primary hover:opacity-80 transition-opacity">
+      daywizz
+    </a>
+
+    <!-- デスクトップナビ -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <a href="/about/" class="hover:text-primary transition-colors">About</a>
+
+      <!-- Apps ドロップダウン -->
+      <div class="relative group">
+        <button
+          type="button"
+          class="flex items-center gap-1 hover:text-primary transition-colors"
+        >
+          Apps
+          <i class="ri-arrow-down-s-line text-base"></i>
+        </button>
+        <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-2 min-w-48">
+            {releasedApps.map((app) => (
+              <a
+                href={`/apps/${app.id}/`}
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+              >
+                {app.name}
+                <span class="block text-xs text-gray-400">{app.tagline}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <a href="/blog/" class="hover:text-primary transition-colors">Blog</a>
+      <a href="/contact/" class="hover:text-primary transition-colors">Contact</a>
+    </nav>
+
+    <!-- モバイルハンバーガー -->
+    <button
+      type="button"
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-gray-600 hover:text-primary transition-colors"
+      aria-label="メニューを開く"
+    >
+      <i class="ri-menu-line text-xl" id="menu-icon"></i>
+    </button>
+  </div>
+
+  <!-- モバイルメニュー -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <nav class="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-3 text-sm font-medium text-gray-600">
+      <a href="/" class="py-1 hover:text-primary transition-colors">Home</a>
+      <a href="/about/" class="py-1 hover:text-primary transition-colors">About</a>
+
+      <div class="py-1">
+        <span class="text-gray-400 text-xs uppercase tracking-wider">Apps</span>
+        <div class="mt-1 ml-3 flex flex-col gap-2">
+          {releasedApps.map((app) => (
+            <a
+              href={`/apps/${app.id}/`}
+              class="hover:text-primary transition-colors"
+            >
+              {app.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href="/blog/" class="py-1 hover:text-primary transition-colors">Blog</a>
+      <a href="/contact/" class="py-1 hover:text-primary transition-colors">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('menu-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    icon?.classList.toggle('ri-menu-line', isOpen);
+    icon?.classList.toggle('ri-close-line', !isOpen);
+  });
+</script>

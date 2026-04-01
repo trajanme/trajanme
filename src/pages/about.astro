@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About - daywizz" description="daywizz 代表 石川真太郎のプロフィール">
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <!-- プロフィールヘッダー -->
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+        <!-- プロフィール画像プレースホルダー -->
+        <img src="/images/profile.jpg" alt="石川 真太郎" class="w-32 h-32 rounded-full object-cover shrink-0" />
+
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">石川 真太郎</h1>
+          <p class="mt-1 text-sm text-gray-500">Shintaro Ishikawa</p>
+          <p class="mt-2 text-sm text-gray-500">daywizz 代表 / コンサルタント / ソロプレナー</p>
+        </div>
+      </div>
+
+      <!-- 経歴 -->
+      <div class="mt-12">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">経歴</h2>
+        <p class="text-gray-600 leading-relaxed">
+          1990年生まれ、東京出身、兵庫県在住。ITコンサルタントとして企業のデジタル変革を支援する傍ら、
+          ソロプレナーとして個人開発に取り組んでいます。3児の父として、日々の子育てや暮らしの中から
+          アプリのアイデアを見つけ、形にしています。
+        </p>
+      </div>
+
+      <!-- 実績 -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">実績</h2>
+        <ul class="space-y-3 text-gray-600">
+          <li class="flex items-start gap-2">
+            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
+            <span>omiya - 訪日観光客向けお土産紹介アプリのリリース</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
+            <span>picolle. - お子さまの作品を美術館風に保存できるアプリのリリース</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
+            <span>PawSteps - ペットの散歩記録・健康管理アプリのリリース</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- スキル -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">スキル</h2>
+        <div class="flex flex-wrap gap-2">
+          {[
+            'システムアーキテクト',
+            'G検定',
+            'Next.js',
+            'Swift / SwiftUI',
+            'TypeScript',
+            'Supabase',
+            'ITコンサルティング',
+            '個人開発',
+          ].map((skill) => (
+            <span class="inline-block px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- ビジョン -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">ビジョン</h2>
+        <p class="text-gray-600 leading-relaxed">
+          みんなの何気ない日常をデジタルの力でより良くしていきたい。
+          大きなイノベーションではなく、毎日の暮らしの中にある小さな不便や「もっとこうだったらいいのに」を
+          一つずつ解決していく。そんなプロダクトづくりを通じて、多くの人の日常に小さな魔法をかけていきます。
+        </p>
+      </div>
+
+      <!-- SNS -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">SNS</h2>
+        <div class="flex gap-4">
+          <a
+            href="https://x.com/shin_daywizz"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+          >
+            <i class="ri-twitter-x-line text-xl"></i>
+            <span class="text-sm">X (Twitter)</span>
+          </a>
+          <a
+            href="https://github.com/trajanme"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+          >
+            <i class="ri-github-line text-xl"></i>
+            <span class="text-sm">GitHub</span>
+          </a>
+          <a
+            href="https://note.com/shin_daywizz"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+          >
+            <i class="ri-file-text-line text-xl"></i>
+            <span class="text-sm">note</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

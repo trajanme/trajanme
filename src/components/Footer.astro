@@ -1,0 +1,65 @@
+---
+const socialLinks = [
+  { icon: 'ri-twitter-x-line', href: 'https://x.com/shin_daywizz', label: 'X' },
+  { icon: 'ri-github-line', href: 'https://github.com/trajanme', label: 'GitHub' },
+  { icon: 'ri-file-text-line', href: 'https://note.com/shin_daywizz', label: 'note' },
+];
+
+const siteLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Apps', href: '/apps/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+
+<footer class="bg-gray-50 border-t border-gray-200">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- ブランド -->
+      <div>
+        <a href="/" class="font-brand text-2xl text-primary">daywizz</a>
+        <p class="mt-2 text-sm text-gray-500">
+          日常をより楽しくする魔法をかける
+        </p>
+      </div>
+
+      <!-- サイトナビ -->
+      <div>
+        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Links</h3>
+        <ul class="flex flex-col gap-2">
+          {siteLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-gray-500 hover:text-primary transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- SNS -->
+      <div>
+        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Social</h3>
+        <div class="flex gap-4">
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-primary transition-colors text-xl"
+              aria-label={link.label}
+            >
+              <i class={link.icon}></i>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-gray-200 text-center text-xs text-gray-400">
+      &copy; 2025 daywizz. All rights reserved.
+    </div>
+  </div>
+</footer>

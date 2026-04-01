@@ -1,0 +1,62 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import { apps } from '../../../data/apps';
+
+const app = apps.pawsteps;
+
+const features = [
+  {
+    icon: 'ri-walk-line',
+    title: '散歩記録',
+    description: 'GPSで散歩ルートを自動記録。距離・時間・消費カロリーを確認できます。',
+  },
+  {
+    icon: 'ri-heart-pulse-line',
+    title: '健康管理',
+    description: '体重・食事・ワクチン接種などの健康情報を一元管理。獣医さんへの共有も簡単。',
+  },
+  {
+    icon: 'ri-map-pin-line',
+    title: 'マップ機能',
+    description: 'お気に入りの散歩コースをブックマーク。過去の散歩履歴をマップで振り返れます。',
+  },
+];
+---
+
+<AppLayout appId="pawsteps">
+  <!-- ヒーロー -->
+  <section class="py-16 md:py-24 bg-[var(--app-bg)]">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <!-- アプリアイコンプレースホルダー -->
+      <div class="w-24 h-24 rounded-2xl bg-pawsteps mx-auto shadow-lg" />
+
+      <h1 class="mt-6 text-3xl md:text-4xl font-bold text-gray-900">{app.name}</h1>
+      <p class="mt-3 text-lg text-gray-500">{app.tagline}</p>
+      <p class="mt-4 text-gray-600 max-w-xl mx-auto">{app.description}</p>
+
+      <!-- App Store ボタンプレースホルダー -->
+      <div class="mt-8">
+        <div class="inline-block w-40 h-12 bg-gray-900 rounded-lg" title="App Store からダウンロード" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 機能紹介 -->
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center">特徴</h2>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="text-center p-6 rounded-xl border border-gray-100 bg-white shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-pawsteps/10 flex items-center justify-center mx-auto">
+              <i class={`${feature.icon} text-xl text-pawsteps`}></i>
+            </div>
+            <h3 class="mt-4 font-bold text-gray-900">{feature.title}</h3>
+            <p class="mt-2 text-sm text-gray-500">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</AppLayout>
