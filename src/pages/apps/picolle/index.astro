@@ -1,8 +1,16 @@
 ---
 import AppLayout from '../../../layouts/AppLayout.astro';
 import { apps } from '../../../data/apps';
+import { getCollection } from 'astro:content';
 
 const app = apps.picolle;
+
+const screenshots = [
+  { src: '/images/picolle-ss-1.png', alt: 'Picolle. スクリーンショット 1' },
+  { src: '/images/picolle-ss-2.png', alt: 'Picolle. スクリーンショット 2' },
+  { src: '/images/picolle-ss-3.png', alt: 'Picolle. スクリーンショット 3' },
+  { src: '/images/picolle-ss-4.png', alt: 'Picolle. スクリーンショット 4' },
+];
 
 const features = [
   {
@@ -20,6 +28,19 @@ const features = [
     title: '個展機能',
     description: '作品をテーマごとにまとめて整理。家族の思い出として大切に残し、共有できます。',
   },
+];
+
+const steps = [
+  { num: '1', title: '撮る', description: 'お子さまの作品をカメラで撮影', icon: 'ri-camera-line' },
+  { num: '2', title: '飾る', description: '美術館風フレームで特別な一枚に', icon: 'ri-image-line' },
+  { num: '3', title: '残す', description: '個展にまとめて家族で共有', icon: 'ri-heart-line' },
+];
+
+const targetUsers = [
+  'お子さまの作品が増えてきて保管に困っている方',
+  '作品を捨てるのは忍びないけど、場所が足りない方',
+  'おじいちゃん・おばあちゃんに作品を見せたい方',
+  '成長記録として作品を残しておきたい方',
 ];
 
 const plans = [
@@ -45,21 +66,25 @@ const plans = [
     recommended: true,
   },
 ];
+
+// 関連ブログ記事
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.app === 'picolle');
+const relatedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
 ---
 
 <AppLayout appId="picolle">
   <!-- ヒーロー -->
   <section class="py-16 md:py-24 bg-[var(--app-bg)]">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <!-- アプリアイコンプレースホルダー -->
       <img src={app.icon} alt={app.name} class="w-24 h-24 rounded-2xl mx-auto shadow-lg" />
 
       <h1 class="mt-6 text-3xl md:text-4xl font-bold text-gray-900">{app.name}</h1>
       {app.version && <p class="mt-1 text-xs text-gray-400">{app.version}</p>}
-      <p class="mt-3 text-lg text-gray-500">{app.tagline}</p>
-      <p class="mt-4 text-gray-600 max-w-xl mx-auto">{app.description}</p>
+      <p class="mt-4 text-xl md:text-2xl font-bold text-gray-800">
+        冷蔵庫に貼るだけじゃ、もったいない。
+      </p>
+      <p class="mt-3 text-gray-500 max-w-xl mx-auto">{app.description}</p>
 
-      <!-- App Store ボタン -->
       {app.appStoreUrl && (
         <div class="mt-8">
           <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity">
@@ -74,7 +99,44 @@ const plans = [
     </div>
   </section>
 
-  <!-- 機能紹介 -->
+  <!-- スクリーンショットギャラリー -->
+  <section class="py-12 bg-white overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+        {screenshots.map((ss) => (
+          <div class="snap-center shrink-0 first:ml-auto last:mr-auto">
+            <img
+              src={ss.src}
+              alt={ss.alt}
+              class="h-[480px] sm:h-[540px] w-auto rounded-2xl shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 使い方3ステップ -->
+  <section class="py-16 bg-[var(--app-bg)]">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center">かんたん3ステップ</h2>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((step) => (
+          <div class="text-center">
+            <div class="w-14 h-14 rounded-full bg-picolle text-white flex items-center justify-center mx-auto text-xl font-bold">
+              {step.num}
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-gray-900">{step.title}</h3>
+            <p class="mt-2 text-sm text-gray-500">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 特徴 -->
   <section class="py-16">
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-gray-900 text-center">特徴</h2>
@@ -93,8 +155,24 @@ const plans = [
     </div>
   </section>
 
+  <!-- こんな人におすすめ -->
+  <section class="py-16 bg-[var(--app-bg)]">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center">こんな方におすすめ</h2>
+
+      <ul class="mt-8 space-y-4 max-w-lg mx-auto">
+        {targetUsers.map((text) => (
+          <li class="flex items-start gap-3">
+            <i class="ri-checkbox-circle-fill text-picolle text-lg mt-0.5 shrink-0"></i>
+            <span class="text-gray-700">{text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <!-- プラン比較 -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16">
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-gray-900 text-center">プラン</h2>
 
@@ -126,4 +204,55 @@ const plans = [
       </div>
     </div>
   </section>
+
+  <!-- 最新情報 -->
+  {relatedPosts.length > 0 && (
+    <section class="py-16 bg-[var(--app-bg)]">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-2xl font-bold text-gray-900 text-center">最新情報</h2>
+        <div class="mt-8 space-y-3">
+          {relatedPosts.map((post) => (
+            <a href={`/blog/${post.id}/`} class="block rounded-lg bg-white border border-gray-100 p-4 hover:shadow-sm transition-shadow">
+              <div class="flex items-center gap-3">
+                <time datetime={post.data.pubDate.toISOString()} class="text-xs text-gray-400 shrink-0">
+                  {post.data.pubDate.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')}
+                </time>
+                <span class="text-sm font-medium text-gray-800">{post.data.title}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA（ページ下部） -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <p class="text-xl font-bold text-gray-900">お子さまの作品を、特別な思い出に。</p>
+      <p class="mt-2 text-sm text-gray-500">無料ではじめられます</p>
+
+      {app.appStoreUrl && (
+        <div class="mt-6">
+          <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity">
+            <img
+              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83"
+              alt="Download on the App Store"
+              class="h-11"
+            />
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
 </AppLayout>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
