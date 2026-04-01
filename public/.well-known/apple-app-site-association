@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["A7Y8TPM66T.com.daywizz.zukan"],
+        "paths": ["/picolle/invite/*"],
+        "components": [
+          {
+            "/": "/picolle/invite/*",
+            "comment": "招待リンク"
+          }
+        ]
+      }
+    ]
+  }
+}
