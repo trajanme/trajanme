@@ -7,6 +7,7 @@ export interface AppInfo {
   description: string;
   color: string;
   bgColor: string;
+  icon: string;
   contactEmail: string;
   platforms: Platform[];
   appStoreUrl?: string;
@@ -28,6 +29,7 @@ export const apps: Record<string, AppInfo> = {
     description: 'お子さまが作った折り紙、粘土、イラストなどの作品を撮影し、美術館の展示風フレームで特別感を演出しながら保存・共有できるアプリです。',
     color: 'picolle',
     bgColor: 'picolle-bg',
+    icon: '/images/picolle-icon.png',
     contactEmail: 'support@daywizz.com',
     platforms: ['iOS'],
     pages: { support: true, privacy: true, terms: true, tokushoho: true },
@@ -40,6 +42,7 @@ export const apps: Record<string, AppInfo> = {
     description: 'ペットとの散歩を記録し、健康管理に役立てるアプリです。',
     color: 'pawsteps',
     bgColor: 'pawsteps-bg',
+    icon: '/images/pawsteps-icon.png',
     contactEmail: 'support@daywizz.com',
     platforms: ['iOS'],
     pages: { support: true, privacy: true, terms: true, tokushoho: false },
@@ -52,6 +55,7 @@ export const apps: Record<string, AppInfo> = {
     description: '訪日観光客向けのお土産紹介アプリです。',
     color: 'omiya',
     bgColor: 'omiya-bg',
+    icon: '',
     contactEmail: 'shintaro@daywizz.com',
     platforms: ['iOS', 'Android'],
     pages: { support: false, privacy: false, terms: false, tokushoho: false },

@@ -13,36 +13,140 @@ const { title, lastUpdated, appId } = Astro.props;
 
 {appId ? (
   <AppLayout appId={appId}>
-    <div class="max-w-3xl mx-auto px-4 py-12">
-      <header class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">{title}</h1>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      <header class="mb-8 sm:mb-10">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">{title}</h1>
         {lastUpdated && (
-          <p class="mt-2 text-sm text-gray-500">
+          <p class="mt-2 text-xs sm:text-sm text-gray-400">
             <i class="ri-calendar-line mr-1"></i>
-            最終更新日: {lastUpdated}
+            施行日: {lastUpdated}
           </p>
         )}
       </header>
-      <div class="prose prose-gray max-w-none">
+      <article class="legal-content prose prose-gray prose-sm sm:prose-base max-w-none">
         <slot />
-      </div>
+      </article>
     </div>
   </AppLayout>
 ) : (
   <BaseLayout title={`${title} - daywizz`}>
-    <div class="max-w-3xl mx-auto px-4 py-12">
-      <header class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">{title}</h1>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      <header class="mb-8 sm:mb-10">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">{title}</h1>
         {lastUpdated && (
-          <p class="mt-2 text-sm text-gray-500">
+          <p class="mt-2 text-xs sm:text-sm text-gray-400">
             <i class="ri-calendar-line mr-1"></i>
-            最終更新日: {lastUpdated}
+            施行日: {lastUpdated}
           </p>
         )}
       </header>
-      <div class="prose prose-gray max-w-none">
+      <article class="legal-content prose prose-gray prose-sm sm:prose-base max-w-none">
         <slot />
-      </div>
+      </article>
     </div>
   </BaseLayout>
 )}
+
+<style is:global>
+  .legal-content h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  @media (min-width: 640px) {
+    .legal-content h2 {
+      font-size: 1.35rem;
+    }
+  }
+
+  .legal-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .legal-content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: #4b5563;
+  }
+
+  .legal-content ul,
+  .legal-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .legal-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+    color: #4b5563;
+  }
+
+  .legal-content ol > li {
+    list-style-type: decimal;
+  }
+
+  .legal-content ul > li {
+    list-style-type: disc;
+  }
+
+  .legal-content ol > li > ul > li {
+    list-style-type: circle;
+  }
+
+  .legal-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .legal-content a:hover {
+    opacity: 0.8;
+  }
+
+  .legal-content strong {
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+  }
+
+  .legal-content th {
+    text-align: left;
+    padding: 0.75rem;
+    background-color: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: #374151;
+  }
+
+  .legal-content td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: #4b5563;
+  }
+
+  @media (max-width: 639px) {
+    .legal-content table {
+      font-size: 0.8125rem;
+    }
+
+    .legal-content th,
+    .legal-content td {
+      padding: 0.5rem;
+    }
+  }
+</style>
