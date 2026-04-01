@@ -8,9 +8,10 @@ interface Props {
   href: string;
   platforms: Platform[];
   icon: string;
+  version?: string;
 }
 
-const { name, tagline, color, href, platforms, icon } = Astro.props;
+const { name, tagline, color, href, platforms, icon, version } = Astro.props;
 
 const platformIcons: Record<Platform, { icon: string; label: string }> = {
   iOS: { icon: 'ri-apple-line', label: 'iOS' },
@@ -40,8 +41,8 @@ const platformIcons: Record<Platform, { icon: string; label: string }> = {
       </h3>
       <p class="mt-1 text-sm text-gray-500">{tagline}</p>
 
-      <!-- プラットフォームバッジ -->
-      {platforms.length > 0 && (
+      <!-- プラットフォームバッジ + バージョン -->
+      {(platforms.length > 0 || version) && (
         <div class="mt-2 flex flex-wrap gap-1.5">
           {platforms.map((p) => (
             <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
@@ -49,6 +50,11 @@ const platformIcons: Record<Platform, { icon: string; label: string }> = {
               {platformIcons[p].label}
             </span>
           ))}
+          {version && (
+            <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+              {version}
+            </span>
+          )}
         </div>
       )}
     </div>

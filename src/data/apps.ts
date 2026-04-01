@@ -10,6 +10,7 @@ export interface AppInfo {
   icon: string;
   contactEmail: string;
   platforms: Platform[];
+  version?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
   pages: {
@@ -32,6 +33,7 @@ export const apps: Record<string, AppInfo> = {
     icon: '/images/picolle-icon.png',
     contactEmail: 'support@daywizz.com',
     platforms: ['iOS'],
+    version: 'v1.1.0',
     pages: { support: true, privacy: true, terms: true, tokushoho: true },
     released: true,
   },
@@ -45,6 +47,7 @@ export const apps: Record<string, AppInfo> = {
     icon: '/images/pawsteps-icon.png',
     contactEmail: 'support@daywizz.com',
     platforms: ['iOS'],
+    version: 'v1.1.0',
     pages: { support: true, privacy: true, terms: true, tokushoho: false },
     released: true,
   },
