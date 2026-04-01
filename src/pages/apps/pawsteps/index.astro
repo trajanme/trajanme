@@ -38,12 +38,12 @@ const features = [
       <!-- App Store ボタン -->
       {app.appStoreUrl && (
         <div class="mt-8">
-          <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
-            <i class="ri-apple-fill text-xl"></i>
-            <div class="text-left">
-              <div class="text-[10px] leading-tight">Download on the</div>
-              <div class="text-sm font-semibold leading-tight">App Store</div>
-            </div>
+          <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity">
+            <img
+              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83"
+              alt="Download on the App Store"
+              class="h-11"
+            />
           </a>
         </div>
       )}
