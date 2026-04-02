@@ -65,6 +65,7 @@ const latestPosts = allPosts
   </section>
 
   <!-- 最新ブログ記事 -->
+  {latestPosts.length > 0 && (
   <section class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-gray-900 text-center">Blog</h2>
@@ -93,6 +94,7 @@ const latestPosts = allPosts
       </div>
     </div>
   </section>
+  )}
 
   <!-- Contact CTA -->
   <section class="py-16 bg-gray-50">
