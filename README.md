@@ -1,43 +1,48 @@
-# Astro Starter Kit: Minimal
+# daywizz website
+
+daywizzと公開アプリ（PawSteps / Picolle.）を紹介するAstro製のWebサイトです。`main`へのpushでGitHub Pagesへデプロイされます。
+
+## ローカル確認
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci
+npm run dev
+npm run build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## アプリ情報の更新
 
-## 🚀 Project Structure
+アプリの公開バージョンと公開日は [`src/data/app-store.json`](src/data/app-store.json) で一元管理し、アプリカードと詳細ページの両方から参照します。紹介文・機能・App Store URLなどは [`src/data/apps.ts`](src/data/apps.ts)、詳細な訴求内容は各アプリページで管理します。
 
-Inside of your Astro project, you'll see the following folders and files:
+1. App Storeの差分を確認する
+
+   ```sh
+   npm run check:app-store
+   ```
+
+2. リリースノートをもとに、該当する詳細ページと画像を更新する
+
+   - PawSteps: `src/pages/apps/pawsteps/index.astro`
+   - Picolle.: `src/pages/apps/picolle/index.astro`
+
+3. 公開バージョンのスナップショットを同期する
+
+   ```sh
+   npm run check:app-store -- --sync
+   npm run build
+   ```
+
+`check-app-store.yml` が毎週月曜9:00（日本時間）にApp Store Lookup APIを確認します。新バージョンが見つかると、公開バージョン・リリース日・リリースノートを含むGitHub Issueを作成または追記します。
+
+バージョン番号だけは機械的に検出し、紹介文や機能説明は内容を確認して更新する半自動方式です。誤った訴求を自動公開しないため、Issueを更新作業の開始点にしています。
+
+## 主な構成
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/data/                  アプリの共通メタデータ
+src/pages/apps/            アプリ詳細・サポート・規約ページ
+src/content/blog/          ブログ記事
+public/images/             公開画像
+scripts/                   更新チェックなどの運用スクリプト
+.github/workflows/         デプロイ・定期チェック
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -1,0 +1,65 @@
+name: Check App Store updates
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Compare published versions
+        id: compare
+        continue-on-error: true
+        run: npm run check:app-store -- --report "$RUNNER_TEMP/app-store-report.md"
+
+      - name: Create or update notification issue
+        if: steps.compare.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const title = 'App Storeの更新をWebサイトへ反映する';
+            const body = fs.readFileSync(`${process.env.RUNNER_TEMP}/app-store-report.md`, 'utf8');
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+              });
+            }
+
+      - name: Fail on lookup errors
+        if: steps.compare.outcome == 'failure'
+        run: |
+          if grep -q "更新候補が見つかりました" "$RUNNER_TEMP/app-store-report.md"; then
+            exit 0
+          fi
+          exit 1

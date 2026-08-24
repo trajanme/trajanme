@@ -5,67 +5,95 @@ import { apps } from '../../../data/apps';
 const app = apps.pawsteps;
 
 const features = [
-  {
-    icon: 'ri-walk-line',
-    title: '散歩記録',
-    description: 'GPSで散歩ルートを自動記録。距離・時間・消費カロリーを確認できます。',
-  },
-  {
-    icon: 'ri-heart-pulse-line',
-    title: '健康管理',
-    description: '体重・食事・ワクチン接種などの健康情報を一元管理。獣医さんへの共有も簡単。',
-  },
-  {
-    icon: 'ri-map-pin-line',
-    title: 'マップ機能',
-    description: 'お気に入りの散歩コースをブックマーク。過去の散歩履歴をマップで振り返れます。',
-  },
+  { icon: 'ri-footprint-line', title: '歩くほど、毎日が進む', description: 'iPhoneのヘルスケアと連携して歩数を自動記録。午前・午後・1日のミッションや8,000歩のゴールが、散歩のきっかけになります。' },
+  { icon: 'ri-bear-smile-line', title: '10犬種、みんな無料', description: '柴犬、コーギー、フレンチブルドッグなど10犬種から相棒を選べます。歩数や時間帯、ごはん回数に合わせて反応やセリフも変化します。' },
+  { icon: 'ri-heart-3-line', title: 'つづけたくなる仕掛け', description: 'ミッションでもらったごはんをあげたり、連続達成を伸ばしたり。数字だけでは終わらない、小さなコミュニケーションがあります。' },
+  { icon: 'ri-apple-line', title: 'Apple Watchでも一緒', description: '今日の歩数と連続達成日数を手元で確認。3種類の文字盤コンプリケーションにも対応し、選んだ犬がWatchにもついてきます。' },
+  { icon: 'ri-layout-grid-line', title: 'ホーム画面ウィジェット', description: 'アプリを開かなくても、歩数・目標までの進み具合・犬からのひとことを確認できます。小・中サイズに対応しています。' },
+  { icon: 'ri-shield-check-line', title: '登録なしですぐ使える', description: 'アカウント作成もサブスクリプションも不要。歩数データはHealthKitと端末内で扱い、気軽に始められます。' },
 ];
+
+const breeds = ['柴犬', 'ミニチュアダックス', 'ボストンテリア', 'ゴールデンレトリバー', 'ポメラニアン', 'トイプードル', 'チワワ', 'シベリアンハスキー', 'フレンチブルドッグ', 'ウェルシュ・コーギー'];
 ---
 
 <AppLayout appId="pawsteps">
-  <!-- ヒーロー -->
-  <section class="py-16 md:py-24 bg-[var(--app-bg)]">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <!-- アプリアイコン -->
-      <img src={app.icon} alt={app.name} class="w-24 h-24 rounded-2xl mx-auto shadow-lg" />
-
-      <h1 class="mt-6 text-3xl md:text-4xl font-bold text-gray-900">{app.name}</h1>
-      {app.version && <p class="mt-1 text-xs text-gray-400">{app.version}</p>}
-      <p class="mt-3 text-lg text-gray-500">{app.tagline}</p>
-      <p class="mt-4 text-gray-600 max-w-xl mx-auto">{app.description}</p>
-
-      <!-- App Store ボタン -->
-      {app.appStoreUrl && (
-        <div class="mt-8">
-          <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity">
-            <img
-              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83"
-              alt="Download on the App Store"
-              class="h-11"
-            />
-          </a>
+  <section class="relative overflow-hidden bg-[var(--app-bg)] py-16 md:py-24">
+    <div class="absolute -left-20 top-10 h-64 w-64 rounded-full bg-pawsteps/10 blur-3xl"></div>
+    <div class="absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-amber-200/30 blur-3xl"></div>
+    <div class="relative mx-auto grid max-w-5xl items-center gap-12 px-4 md:grid-cols-2">
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center gap-3 md:justify-start">
+          <img src={app.icon} alt="PawSteps アプリアイコン" class="h-16 w-16 rounded-2xl shadow-lg" />
+          <div class="text-left">
+            <p class="text-sm font-bold tracking-wide text-pawsteps">歩数計 × 犬キャラクター</p>
+            <p class="text-xs text-gray-400">{app.version} · iPhone / Apple Watch</p>
+          </div>
         </div>
-      )}
+        <h1 class="mt-7 text-4xl font-bold leading-tight text-gray-900 md:text-5xl">今日も一緒に、<br />歩きにいこう。</h1>
+        <p class="mx-auto mt-5 max-w-xl leading-relaxed text-gray-600 md:mx-0">{app.description}</p>
+        {app.appStoreUrl && (
+          <div class="mt-8 flex justify-center md:justify-start">
+            <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-block transition-opacity hover:opacity-80">
+              <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83" alt="App Storeからダウンロード" class="h-11" />
+            </a>
+          </div>
+        )}
+      </div>
+
+      <div class="relative mx-auto h-[330px] w-full max-w-md" aria-label="PawStepsの犬キャラクター">
+        <div class="absolute inset-x-10 bottom-2 h-24 rounded-[50%] bg-pawsteps/15 blur-xl"></div>
+        <img src="/images/pawsteps-french-bulldog.png" alt="フレンチブルドッグ" class="absolute left-0 top-20 w-40 -rotate-6 drop-shadow-xl sm:w-48" />
+        <img src="/images/pawsteps-shiba.png" alt="柴犬" class="absolute left-1/2 top-0 z-10 w-48 -translate-x-1/2 drop-shadow-2xl sm:w-56" />
+        <img src="/images/pawsteps-corgi.png" alt="ウェルシュ・コーギー" class="absolute right-0 top-24 w-40 rotate-6 drop-shadow-xl sm:w-48" />
+        <div class="absolute bottom-1 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/90 px-5 py-2 text-sm font-bold text-gray-700 shadow-md backdrop-blur">全10犬種から選べます</div>
+      </div>
     </div>
   </section>
 
-  <!-- 機能紹介 -->
-  <section class="py-16">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 text-center">特徴</h2>
-
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="text-center">
+        <p class="text-sm font-bold tracking-wider text-pawsteps">WHY PAWSTEPS</p>
+        <h2 class="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">歩数を見るだけじゃない歩数計</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-gray-500">相棒の犬と触れ合ううちに、いつもの一歩が楽しみへ変わっていきます。</p>
+      </div>
+      <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
-          <div class="text-center p-6 rounded-xl border border-gray-100 bg-white shadow-sm">
-            <div class="w-12 h-12 rounded-full bg-pawsteps/10 flex items-center justify-center mx-auto">
-              <i class={`${feature.icon} text-xl text-pawsteps`}></i>
-            </div>
+          <article class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pawsteps/10"><i class={`${feature.icon} text-xl text-pawsteps`}></i></div>
             <h3 class="mt-4 font-bold text-gray-900">{feature.title}</h3>
-            <p class="mt-2 text-sm text-gray-500">{feature.description}</p>
-          </div>
+            <p class="mt-2 text-sm leading-relaxed text-gray-500">{feature.description}</p>
+          </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--app-bg)] py-16">
+    <div class="mx-auto grid max-w-5xl items-center gap-10 px-4 md:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <p class="text-sm font-bold tracking-wider text-pawsteps">iPHONE + APPLE WATCH</p>
+        <h2 class="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">歩数も相棒も、いつでも目の前に</h2>
+        <p class="mt-4 leading-relaxed text-gray-600">iPhoneのホーム画面ウィジェットでは、現在の歩数と犬からのひとことを表示。Apple Watchアプリと文字盤では、iPhoneが手元になくても今日の歩数や連続達成を確認できます。</p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {['HealthKit連携', '小・中ウィジェット', 'Watchアプリ', '3種のコンプリケーション'].map((label) => <span class="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-gray-600 shadow-sm">{label}</span>)}
+        </div>
+      </div>
+      <img src="/images/pawsteps-widget.png" alt="PawStepsのホーム画面ウィジェット" class="w-full rounded-3xl shadow-xl" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <p class="text-sm font-bold tracking-wider text-pawsteps">NEW IN {app.version}</p>
+      <h2 class="mt-2 text-2xl font-bold text-gray-900">もっと賑やかに、もっとその子らしく</h2>
+      <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-gray-600">フレンチブルドッグとウェルシュ・コーギーが仲間入り。時間帯、今日の歩数、ごはん回数、8,000歩を一緒に達成した回数に応じて、犬ごとのセリフを楽しめるようになりました。</p>
+      <ul class="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2" aria-label="選べる犬種">
+        {breeds.map((breed) => <li class="rounded-full border border-pawsteps/20 bg-pawsteps/5 px-3 py-1.5 text-xs text-gray-600">{breed}</li>)}
+      </ul>
+      {app.appStoreUrl && (
+        <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="mt-10 inline-flex items-center gap-2 rounded-full bg-pawsteps px-6 py-3 font-medium text-white shadow-sm transition-opacity hover:opacity-90">App Storeで見る <i class="ri-arrow-right-up-line"></i></a>
+      )}
     </div>
   </section>
 </AppLayout>
