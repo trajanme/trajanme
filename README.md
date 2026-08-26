@@ -1,48 +1,54 @@
-# daywizz website
+# Hi, I'm Shintaro 👋
 
-daywizzと公開アプリ（PawSteps / Picolle.）を紹介するAstro製のWebサイトです。`main`へのpushでGitHub Pagesへデプロイされます。
+ITコンサルタントとして企業のデジタル変革を支援しながら、**daywizz**という名前で個人開発に取り組んでいます。
 
-## ローカル確認
+3児の父として、子育てや健康、暮らしの中で感じた「もっとこうだったらいいのに」を、小さなプロダクトとして形にしています。
 
-```sh
-npm ci
-npm run dev
-npm run build
-```
+> 日常をより楽しくする魔法をかける。
 
-## アプリ情報の更新
+大きな変化を押しつけるのではなく、何気ない毎日を少し楽しく、少し豊かにする。そんなアプリを丁寧に育てていきたいと思っています。
 
-アプリの公開バージョンと公開日は [`src/data/app-store.json`](src/data/app-store.json) で一元管理し、アプリカードと詳細ページの両方から参照します。紹介文・機能・App Store URLなどは [`src/data/apps.ts`](src/data/apps.ts)、詳細な訴求内容は各アプリページで管理します。
+## Products
 
-1. App Storeの差分を確認する
+### 🐕 PawSteps
 
-   ```sh
-   npm run check:app-store
-   ```
+**かわいい犬と歩く、習慣がつづく歩数計**
 
-2. リリースノートをもとに、該当する詳細ページと画像を更新する
+10犬種のキャラクターと一緒に歩き、ミッションやごはん、日々変わるセリフを楽しみながら、健康習慣を育てるiOSアプリです。HealthKit、ホーム画面ウィジェット、Apple Watchに対応しています。
 
-   - PawSteps: `src/pages/apps/pawsteps/index.astro`
-   - Picolle.: `src/pages/apps/picolle/index.astro`
+[Webサイト](https://daywizz.com/apps/pawsteps/) ・ [App Store](https://apps.apple.com/jp/app/id6747422609)
 
-3. 公開バージョンのスナップショットを同期する
+### 🎨 Picolle.
 
-   ```sh
-   npm run check:app-store -- --sync
-   npm run build
-   ```
+**お子さまの作品を、美術館の展示風に。**
 
-`check-app-store.yml` が毎週月曜9:00（日本時間）にApp Store Lookup APIを確認します。新バージョンが見つかると、公開バージョン・リリース日・リリースノートを含むGitHub Issueを作成または追記します。
+絵や工作を撮影して「個展」として残せるiOSアプリです。AI学芸員ルゥのメモ、制作時の年齢記録、家族共有を通じて、小さな芸術家の成長を家族みんなで楽しめます。
 
-バージョン番号だけは機械的に検出し、紹介文や機能説明は内容を確認して更新する半自動方式です。誤った訴求を自動公開しないため、Issueを更新作業の開始点にしています。
+[Webサイト](https://daywizz.com/apps/picolle/) ・ [App Store](https://apps.apple.com/jp/app/id6758279279)
 
-## 主な構成
+## What I care about
 
-```text
-src/data/                  アプリの共通メタデータ
-src/pages/apps/            アプリ詳細・サポート・規約ページ
-src/content/blog/          ブログ記事
-public/images/             公開画像
-scripts/                   更新チェックなどの運用スクリプト
-.github/workflows/         デプロイ・定期チェック
-```
+- 自分や家族が本当に困っていることから始める
+- 機能の多さより、毎日自然に使いたくなる体験を考える
+- 作って終わりにせず、リリース後も反応を見ながら改善する
+- AIを開発の相棒にしつつ、最後の判断と品質には責任を持つ
+
+## Tech & Interests
+
+`Swift` `SwiftUI` `HealthKit` `WidgetKit` `watchOS` `TypeScript` `Next.js` `Astro` `Supabase` `AI-assisted Development`
+
+プロダクト設計、アプリ開発、Web開発、ストア運用まで、個人開発に必要な工程を一貫して行っています。
+
+## Writing
+
+開発の背景や試行錯誤、個人開発を通じて考えたことを発信しています。
+
+- [daywizz Blog](https://daywizz.com/blog/)
+- [note](https://note.com/shintaro_aw)
+- [数字だけじゃ続かなかった運動、犬キャラとなら続いた話](https://note.com/shintaro_aw/n/n75681d9e4e6d)
+
+## Links
+
+- [daywizz](https://daywizz.com/)
+- [GitHub](https://github.com/trajanme)
+- [X](https://x.com/shintaro_aw)
