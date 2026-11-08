@@ -77,4 +77,7 @@ export const apps: Record<string, AppInfo> = {
 };
 
 export const appList = Object.values(apps);
-export const releasedApps = appList.filter(app => app.released);
+// Most recently updated first (ISO dates compare correctly as strings)
+export const releasedApps = appList
+  .filter(app => app.released)
+  .sort((a, b) => (b.releaseDate ?? '').localeCompare(a.releaseDate ?? ''));
