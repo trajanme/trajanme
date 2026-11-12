@@ -1,16 +1,78 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@theme {
-  --color-primary: #57B5E7;
-  --color-secondary: #FB9F72;
-  --color-picolle: #D4A574;
+/*
+ * Color tokens
+ * - `*-light` は ブランドガイドの原色（装飾・面・アイコン背景用）
+ * - 無印（primary / pawsteps / picolle）は白背景で 4.5:1 以上を満たす「文字・ボタン用」の濃色
+ */
+@theme static {
+  --color-primary: #1A6E9E;
+  --color-primary-light: #57B5E7;
+  --color-primary-bg: #EAF6FC;
+  --color-secondary: #B4501E;
+  --color-secondary-light: #FB9F72;
+  --color-secondary-bg: #FFF3EC;
+
+  --color-picolle: #8A5A2B;
+  --color-picolle-light: #D4A574;
   --color-picolle-bg: #FAF6F0;
-  --color-pawsteps: #4CAF50;
-  --color-pawsteps-bg: #F0FAF0;
+  --color-pawsteps: #2E6B26;
+  --color-pawsteps-light: #6BBF59;
+  --color-pawsteps-bg: #EEF8EC;
   --color-omiya: #E74C3C;
   --color-omiya-bg: #FFF5F5;
 
   --font-brand: 'Pacifico', cursive;
-  --font-sans: '-apple-system', 'BlinkMacSystemFont', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white text-gray-800 antialiased;
+    line-height: 1.75;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  h1, h2, h3 {
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    word-break: auto-phrase;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .eyebrow {
+    @apply text-xs font-bold tracking-[0.12em];
+  }
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 md:text-3xl;
+  }
+  .card {
+    @apply rounded-2xl border border-gray-100 bg-white shadow-sm;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-gray-700 shadow-sm ring-1 ring-black/5;
+  }
+  .link-arrow {
+    @apply inline-flex min-h-11 items-center gap-1 text-sm font-bold underline-offset-4 hover:underline;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

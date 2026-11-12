@@ -1,0 +1,48 @@
+---
+import FaqSection from './FaqSection.astro';
+import AppIcon from './AppIcon.astro';
+import type { AppInfo } from '../data/apps';
+import type { FaqItem } from '../data/faq';
+
+interface Props {
+  app: AppInfo;
+  items: FaqItem[];
+}
+
+const { app, items } = Astro.props;
+---
+
+<section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
+  <div class="flex items-center gap-4">
+    <AppIcon app={app} size={56} decorative />
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900 md:text-3xl">{app.name} サポート</h1>
+      <p class="text-sm text-gray-600">よくある質問とお問い合わせ{app.reading && `（${app.name}＝${app.reading}）`}</p>
+    </div>
+  </div>
+
+  <nav aria-label="質問の一覧" class="mt-8 rounded-2xl p-5" style="background: var(--app-bg)">
+    <p class="text-sm font-bold text-gray-900">質問の一覧</p>
+    <ul class="mt-2 grid gap-x-6 sm:grid-cols-2">
+      {items.map((q) => (
+        <li><a href={`#${q.id}`} class="flex min-h-10 items-center gap-2 text-sm text-gray-800 hover:underline"><i class="ri-arrow-down-s-line text-gray-500" aria-hidden="true"></i>{q.question}</a></li>
+      ))}
+    </ul>
+  </nav>
+
+  <h2 class="mt-10 text-xl font-bold text-gray-900">よくある質問</h2>
+  <div class="mt-4">
+    <FaqSection items={items} />
+  </div>
+
+  <div class="mt-12 rounded-2xl border border-gray-200 p-6 sm:p-8">
+    <h2 class="text-lg font-bold text-gray-900">解決しないときは</h2>
+    <p class="mt-2 text-sm leading-relaxed text-gray-600">
+      以下のメールアドレスまでお気軽にお問い合わせください。通常2営業日以内にお返事します。<br />
+      ご利用端末・iOSのバージョン・アプリのバージョン・症状を添えていただくとスムーズです。
+    </p>
+    <a href={`mailto:${app.contactEmail}?subject=${encodeURIComponent(`${app.name} について`)}`} class="mt-5 inline-flex min-h-12 items-center gap-2 rounded-full px-6 font-bold text-white hover:opacity-90" style="background: var(--app-color)">
+      <i class="ri-mail-line" aria-hidden="true"></i>{app.contactEmail}
+    </a>
+  </div>
+</section>

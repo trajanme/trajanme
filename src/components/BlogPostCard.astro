@@ -1,13 +1,19 @@
 ---
+import { apps } from '../data/apps';
+
 interface Props {
   title: string;
   date: Date;
   tags: string[];
   slug: string;
   excerpt: string;
+  app?: string;
+  /** カード型（トップ等）か、リスト型（一覧）か */
+  variant?: 'card' | 'row';
 }
 
-const { title, date, tags, slug, excerpt } = Astro.props;
+const { title, date, tags, slug, excerpt, app, variant = 'row' } = Astro.props;
+const appInfo = app ? apps[app] : undefined;
 
 const formattedDate = date.toLocaleDateString('ja-JP', {
   year: 'numeric',
@@ -16,31 +22,38 @@ const formattedDate = date.toLocaleDateString('ja-JP', {
 }).replace(/\//g, '.');
 ---
 
-<a href={`/blog/${slug}/`} class="group block">
-  <article class="flex gap-4 py-5 border-b border-gray-100">
-    <!-- サムネイルプレースホルダー -->
-    <div class="w-24 h-24 sm:w-32 sm:h-20 rounded-lg bg-gray-100 shrink-0" />
-
-    <div class="min-w-0 flex-1">
-      <!-- 日付 + タグ -->
-      <div class="flex items-center gap-2 flex-wrap">
-        <time datetime={date.toISOString()} class="text-xs text-gray-400 tabular-nums">
-          {formattedDate}
-        </time>
-        {tags.map((tag) => (
-          <span class="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500">
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <!-- タイトル -->
-      <h3 class="mt-1 text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2">
-        {title}
-      </h3>
-
-      <!-- 抜粋（PC のみ表示） -->
-      <p class="hidden sm:block mt-1 text-xs text-gray-400 line-clamp-1">{excerpt}</p>
+{variant === 'card' ? (
+  <a href={`/blog/${slug}/`} class="card group flex h-full flex-col gap-3 p-5 transition-shadow hover:shadow-md">
+    <div class="flex items-center gap-2 text-xs text-gray-600">
+      <time datetime={date.toISOString()} class="tabular-nums">{formattedDate}</time>
+      {appInfo && <span class="rounded-full bg-gray-100 px-2 py-0.5">{appInfo.name}</span>}
     </div>
-  </article>
-</a>
+    <h3 class="font-bold leading-relaxed text-gray-900 group-hover:underline">{title}</h3>
+    <p class="line-clamp-2 text-sm text-gray-600">{excerpt}</p>
+  </a>
+) : (
+  <a href={`/blog/${slug}/`} class="group block">
+    <article class="flex gap-4 border-b border-gray-100 py-5">
+      {appInfo ? (
+        <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl" style={`background: var(--color-${appInfo.bgColor})`}>
+          <img src={appInfo.icon} alt="" width="48" height="48" class="h-12 w-12 rounded-[22%]" loading="lazy" />
+        </div>
+      ) : (
+        <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-primary-bg">
+          <span class="font-brand text-lg text-gray-800" aria-hidden="true">dw</span>
+        </div>
+      )}
+
+      <div class="min-w-0 flex-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <time datetime={date.toISOString()} class="text-xs tabular-nums text-gray-600">{formattedDate}</time>
+          {tags.map((tag) => (
+            <span class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600">{tag}</span>
+          ))}
+        </div>
+        <h3 class="mt-1 line-clamp-2 font-bold text-gray-900 group-hover:underline">{title}</h3>
+        <p class="mt-1 hidden line-clamp-1 text-sm text-gray-600 sm:block">{excerpt}</p>
+      </div>
+    </article>
+  </a>
+)}

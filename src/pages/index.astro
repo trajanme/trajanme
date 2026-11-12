@@ -1,115 +1,242 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import AppCard from '../components/AppCard.astro';
+import AppIcon from '../components/AppIcon.astro';
+import AppStoreBadge from '../components/AppStoreBadge.astro';
 import BlogPostCard from '../components/BlogPostCard.astro';
-import { releasedApps } from '../data/apps';
+import { apps, releasedApps } from '../data/apps';
+import { faq } from '../data/faq';
+import { dogImage } from '../data/pawsteps';
 import { getCollection } from 'astro:content';
 
-// ブログ記事を取得（下書きを除外、日付降順、最新3件）
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
+
+const picolle = apps.picolle;
+const pawsteps = apps.pawsteps;
+
+const routes = [
+  { icon: 'ri-apps-2-line', title: 'アプリを探している', body: '画面・料金・できることを比べる', href: '/apps/' },
+  { icon: 'ri-question-line', title: '使い方・困りごと', body: 'よくある質問、解約・機種変更、データの扱い', href: '/support/' },
+  { icon: 'ri-quill-pen-line', title: '開発の話を読む', body: 'アプリが生まれた理由と更新のお知らせ', href: '/blog/' },
+  { icon: 'ri-mail-line', title: 'お仕事・取材のご相談', body: '運営者情報とお問い合わせ', href: '/contact/' },
+];
+
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'daywizz',
+  url: 'https://daywizz.com/',
+  logo: 'https://daywizz.com/images/og/site.png',
+  founder: { '@type': 'Person', name: 'Shintaro Ishikawa' },
+  sameAs: ['https://x.com/shin_daywizz', 'https://note.com/shin_daywizz', 'https://github.com/trajanme'],
+};
 ---
 
-<BaseLayout title="daywizz - 日常をより楽しくする魔法をかける">
-  <!-- ヒーロー -->
-  <HeroSection
-    title="日常をより楽しくする魔法をかける"
-    subtitle="daywizz は「day（日常）」と「wizard（魔法使い）」。何気ない毎日にちょっとした魔法をかけて、より楽しく、より豊かにするプロダクトを作っています。"
-    ctaText="アプリを見る"
-    ctaHref="#apps"
-  />
+<BaseLayout title="daywizz - 子育て・健康・暮らしのiPhoneアプリ" jsonLd={siteLd}>
+  <!-- ヒーロー: アプリと入手導線をファーストビューに -->
+  <section class="bg-primary-bg">
+    <div class="container-site grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+      <div>
+        <p class="eyebrow text-primary">子育て・健康・暮らしの iPhoneアプリ</p>
+        <h1 class="mt-4 text-4xl font-bold text-gray-900 md:text-5xl md:leading-tight">毎日に、<br />小さな魔法を。</h1>
+        <p class="mt-5 max-w-lg text-gray-700">
+          3児の父でもある個人開発者が、家族の暮らしの中で見つけた「もっとこうだったら」をアプリにしています。どれも無料ではじめられます。
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2" aria-label="daywizz について">
+          <li class="chip"><i class="ri-user-heart-line text-primary" aria-hidden="true"></i>個人開発スタジオ</li>
+          <li class="chip"><i class="ri-apple-line text-primary" aria-hidden="true"></i>iPhone / Apple Watch</li>
+          <li class="chip"><i class="ri-map-pin-line text-primary" aria-hidden="true"></i>兵庫県から</li>
+        </ul>
+      </div>
 
-  <!-- About 要約 -->
-  <section class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-gray-900">About daywizz</h2>
-      <p class="mt-4 text-gray-500 leading-relaxed">
-        daywizz（デイウィズ）は、日常の中にある小さな幸せに着目し、
-        デジタルの力でそれをもっと楽しく、もっと豊かにすることを目指しています。
-        健康、子育て、暮らし。身近なテーマからアプリを開発し、
-        みんなの何気ない日常をより良くしていきます。
-      </p>
-      <a
-        href="/about/"
-        class="inline-flex items-center gap-1 mt-6 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
-      >
-        詳しく見る
-        <i class="ri-arrow-right-line"></i>
-      </a>
-    </div>
-  </section>
-
-  <!-- アプリ一覧 -->
-  <section id="apps" class="py-16 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 text-center">Apps</h2>
-      <p class="mt-2 text-center text-gray-500">daywizz が開発したアプリ</p>
-
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <ul class="flex flex-col gap-4" aria-label="アプリ">
         {releasedApps.map((app) => (
-          <AppCard
-            name={app.name}
-            tagline={app.tagline}
-            color={app.color}
-            href={`/apps/${app.id}/`}
-            platforms={app.platforms}
-            icon={app.icon}
-            version={app.version}
-          />
+          <li class="card flex flex-wrap items-center gap-x-5 gap-y-4 p-5 shadow-md sm:flex-nowrap">
+            <AppIcon app={app} size={72} />
+            <div class="min-w-0 flex-1 basis-48">
+              <h2 class="text-lg font-bold text-gray-900">
+                <a href={`/apps/${app.id}/`} class="hover:underline">{app.name}</a>
+              </h2>
+              <p class="text-sm leading-relaxed text-gray-700">{app.tagline}</p>
+              <p class="mt-1 text-xs font-medium" style={`color: var(--color-${app.color})`}>{app.priceLabel}</p>
+            </div>
+            <div class="flex w-full items-center gap-3 sm:w-auto sm:flex-col sm:items-end sm:gap-1">
+              <AppStoreBadge app={app} campaign="home_hero" size="sm" />
+              <a href={`/apps/${app.id}/`} class="link-arrow text-primary" aria-label={`${app.name} の詳細`}>詳しく<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+            </div>
+          </li>
         ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 目的から探す -->
+  <section aria-labelledby="routes-h" class="container-site py-14 md:py-16">
+    <h2 id="routes-h" class="section-title">目的から探す</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {routes.map((r) => (
+        <li>
+          <a href={r.href} class="group flex h-full items-start gap-4 rounded-2xl border border-gray-200 p-5 transition-colors hover:border-gray-400 hover:bg-gray-50">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-bg text-xl text-primary"><i class={r.icon} aria-hidden="true"></i></span>
+            <span class="min-w-0">
+              <span class="block font-bold text-gray-900">{r.title}</span>
+              <span class="mt-1 block text-sm leading-relaxed text-gray-600">{r.body}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- アプリ紹介 -->
+  <section id="apps" aria-labelledby="apps-h" class="border-t border-gray-100 py-14 md:py-20">
+    <div class="container-site">
+      <h2 id="apps-h" class="section-title">アプリ</h2>
+
+      <!-- Picolle. -->
+      <article class="mt-10 grid items-center gap-10 rounded-3xl bg-picolle-bg p-6 sm:p-10 lg:grid-cols-2">
+        <div class="order-2 lg:order-1">
+          <p class="eyebrow text-picolle">{picolle.category}</p>
+          <h3 class="mt-3 text-2xl font-bold text-gray-900 md:text-3xl">冷蔵庫に貼るだけじゃ、<br />もったいない。</h3>
+          <div class="mt-4 flex items-center gap-3">
+            <AppIcon app={picolle} size={44} decorative />
+            <p class="font-bold text-gray-900">{picolle.name} <span class="text-sm font-normal text-gray-600">— {picolle.tagline}</span></p>
+          </div>
+          <ul class="mt-5 space-y-2">
+            {picolle.highlights.map((h) => (
+              <li class="flex items-start gap-2 text-gray-700"><i class="ri-check-line mt-1 shrink-0 text-picolle" aria-hidden="true"></i>{h}</li>
+            ))}
+          </ul>
+          <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <AppStoreBadge app={picolle} campaign="home_apps" />
+            <a href="/apps/picolle/" class="link-arrow text-picolle">機能と料金を見る<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="scrollbar-hide order-1 -mx-6 flex snap-x gap-3 overflow-x-auto px-6 sm:mx-0 sm:px-0 lg:order-2">
+          {[1, 2, 3].map((n) => (
+            <img
+              src={`/images/picolle/ss-${n}.webp`}
+              alt={['こどもの作品を小さな美術館に。作品が額縁つきで表示された画面', '素敵な作品を写真アプリに埋もれさせない。個展の作品一覧画面', 'AI学芸員ルゥが作品の素晴らしさを見つけてほめる画面'][n - 1]}
+              width="640"
+              height="1385"
+              class="h-[320px] w-auto shrink-0 snap-center rounded-2xl shadow-md ring-1 ring-black/5 sm:h-[360px] lg:h-[300px] xl:h-[340px]"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      </article>
+
+      <!-- PawSteps -->
+      <article class="mt-8 grid items-center gap-10 rounded-3xl bg-pawsteps-bg p-6 sm:p-10 lg:grid-cols-2">
+        <div class="relative mx-auto h-[280px] w-full max-w-md sm:h-[320px]">
+          <img src={dogImage('frenchBulldog', 'walk')} alt="" width="320" height="320" class="absolute bottom-4 left-0 w-36 sm:w-44" loading="lazy" />
+          <img src={dogImage('shiba', 'fun')} alt="手を振る柴犬" width="320" height="320" class="absolute left-1/2 top-0 w-44 -translate-x-1/2 sm:w-52" loading="lazy" />
+          <img src={dogImage('pembrokeWelshCorgi', 'walk')} alt="" width="320" height="320" class="absolute bottom-4 right-0 w-36 sm:w-44" loading="lazy" />
+          <p class="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-4 py-1.5 text-sm font-bold text-gray-800 shadow-sm">全10犬種、みんな無料</p>
+        </div>
+        <div>
+          <p class="eyebrow text-pawsteps">{pawsteps.category}</p>
+          <h3 class="mt-3 text-2xl font-bold text-gray-900 md:text-3xl">数字だけの歩数計が、<br class="hidden sm:inline" />続かなかった人へ。</h3>
+          <div class="mt-4 flex items-center gap-3">
+            <AppIcon app={pawsteps} size={44} decorative />
+            <p class="font-bold text-gray-900">{pawsteps.name} <span class="text-sm font-normal text-gray-600">— {pawsteps.tagline}</span></p>
+          </div>
+          <ul class="mt-5 space-y-2">
+            {pawsteps.highlights.map((h) => (
+              <li class="flex items-start gap-2 text-gray-700"><i class="ri-check-line mt-1 shrink-0 text-pawsteps" aria-hidden="true"></i>{h}</li>
+            ))}
+          </ul>
+          <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <AppStoreBadge app={pawsteps} campaign="home_apps" />
+            <a href="/apps/pawsteps/" class="link-arrow text-pawsteps">10犬種と機能を見る<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- サポート -->
+  <section id="support" aria-labelledby="support-h" class="bg-gray-50 py-14 md:py-20">
+    <div class="container-site">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 id="support-h" class="section-title">サポート</h2>
+          <p class="mt-2 text-gray-600">お使いのアプリのよくある質問から探せます。</p>
+        </div>
+        <a href="/support/" class="link-arrow text-primary">サポートトップへ<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      </div>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {releasedApps.map((app) => (
+          <div class="card p-6">
+            <h3 class="flex items-center gap-3 font-bold text-gray-900">
+              <AppIcon app={app} size={32} decorative />
+              {app.name} のヘルプ
+            </h3>
+            <ul class="mt-4 space-y-1">
+              {faq[app.id].slice(0, 3).map((q) => (
+                <li>
+                  <a href={`/apps/${app.id}/support/#${q.id}`} class="flex min-h-11 items-center gap-2 text-[15px] text-gray-800 hover:underline">
+                    <i class="ri-question-line shrink-0 text-gray-500" aria-hidden="true"></i>{q.question}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href={`/apps/${app.id}/support/`} class="link-arrow mt-2" style={`color: var(--color-${app.color})`}>すべての質問<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+          </div>
+        ))}
+        <div class="flex flex-col rounded-2xl bg-gray-900 p-6 text-white">
+          <h3 class="font-bold">解決しないときは</h3>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-gray-300">
+            アプリ名・iOSのバージョン・症状を添えてメールでご連絡ください。通常2営業日以内にお返事します。
+          </p>
+          <a href={`mailto:${picolle.contactEmail}`} class="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-bold text-gray-900 hover:bg-gray-100">
+            <i class="ri-mail-line" aria-hidden="true"></i>{picolle.contactEmail}
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 最新ブログ記事 -->
-  {latestPosts.length > 0 && (
-  <section class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 text-center">Blog</h2>
-      <p class="mt-2 text-center text-gray-500">最新の記事</p>
-
-      <div class="mt-8 flex flex-col">
-        {latestPosts.map((post) => (
-          <BlogPostCard
-            title={post.data.title}
-            date={post.data.pubDate}
-            tags={post.data.tags}
-            slug={post.id}
-            excerpt={post.data.description}
-          />
-        ))}
-      </div>
-
-      <div class="mt-8 text-center">
-        <a
-          href="/blog/"
-          class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
-        >
-          すべての記事を見る
-          <i class="ri-arrow-right-line"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-  )}
-
-  <!-- Contact CTA -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-gray-900">Contact</h2>
-      <p class="mt-4 text-gray-500">
-        ご質問・ご要望・お仕事のご相談など、お気軽にお問い合わせください。
+  <!-- 作っている人 -->
+  <section aria-labelledby="maker-h" class="container-site grid items-center gap-8 py-14 md:grid-cols-[auto_1fr] md:gap-12 md:py-20">
+    <img src="/images/profile.webp" alt="石川 真太郎" width="400" height="400" class="mx-auto h-36 w-36 rounded-full object-cover md:h-44 md:w-44" loading="lazy" />
+    <div>
+      <h2 id="maker-h" class="section-title">作っている人</h2>
+      <p class="mt-4 max-w-2xl text-gray-700">
+        daywizz（デイウィズ）は、石川 真太郎がひとりで運営するアプリスタジオです。3児の父として、子育てや暮らしの中で見つけた小さな不便や「もっとこうだったらいいのに」を、ひとつずつアプリにしています。開発の裏側や数字も、ブログやSNSでオープンに発信しています。
       </p>
-      <a
-        href="/contact/"
-        class="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-sm"
-      >
-        お問い合わせ
-        <i class="ri-mail-line"></i>
-      </a>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <a href="/about/" class="inline-flex min-h-11 items-center gap-1 rounded-full border border-gray-300 px-5 text-sm font-medium text-gray-800 hover:border-gray-800">運営者情報</a>
+        <a href="https://x.com/shin_daywizz" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-gray-300 px-5 text-sm font-medium text-gray-800 hover:border-gray-800"><i class="ri-twitter-x-line" aria-hidden="true"></i>@shin_daywizz</a>
+        <a href="https://note.com/shin_daywizz" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-gray-300 px-5 text-sm font-medium text-gray-800 hover:border-gray-800"><i class="ri-file-text-line" aria-hidden="true"></i>note</a>
+      </div>
     </div>
   </section>
+
+  <!-- ブログ -->
+  {latestPosts.length > 0 && (
+    <section aria-labelledby="blog-h" class="border-t border-gray-100 py-14 md:py-20">
+      <div class="container-site">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <h2 id="blog-h" class="section-title">開発ストーリーとお知らせ</h2>
+          <a href="/blog/" class="link-arrow text-primary">すべての記事<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          {latestPosts.map((post) => (
+            <BlogPostCard
+              variant="card"
+              title={post.data.title}
+              date={post.data.pubDate}
+              tags={post.data.tags}
+              slug={post.id}
+              excerpt={post.data.description}
+              app={post.data.app}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>

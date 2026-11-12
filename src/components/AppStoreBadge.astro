@@ -1,0 +1,37 @@
+---
+import { appStoreLink, type AppInfo } from '../data/apps';
+
+interface Props {
+  app: AppInfo;
+  /** App Analytics のキャンペーン名（ct） */
+  campaign: string;
+  size?: 'sm' | 'md' | 'lg';
+  /** 暗い背景用（白バッジ） */
+  inverse?: boolean;
+  class?: string;
+}
+
+const { app, campaign, size = 'md', inverse = false, class: className } = Astro.props;
+const href = appStoreLink(app, campaign);
+const heights = { sm: 'h-10', md: 'h-12', lg: 'h-14' };
+const color = inverse ? 'white' : 'black';
+---
+
+{href && (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener"
+    class:list={['inline-flex shrink-0 transition-opacity hover:opacity-80', className]}
+    data-campaign={campaign}
+  >
+    <img
+      src={`https://tools.applemediaservices.com/api/badges/download-on-the-app-store/${color}/ja-jp?size=250x83`}
+      alt={`${app.name} を App Store からダウンロード`}
+      width="150"
+      height="50"
+      class:list={[heights[size], 'w-auto']}
+      loading="lazy"
+    />
+  </a>
+)}

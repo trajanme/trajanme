@@ -6,40 +6,70 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  /** OGP 画像（/images/og/*.png） */
+  ogImage?: string;
+  /** 指定すると Safari に Smart App Banner を表示 */
+  appStoreId?: string;
+  /** 構造化データ（JSON-LD）。配列で複数可 */
+  jsonLd?: object | object[];
+  /** ページ種別（og:type） */
+  ogType?: 'website' | 'article';
 }
 
-const { title, description = 'daywizz - 日常をより楽しくする魔法をかける' } = Astro.props;
+const {
+  title,
+  description = '子育て・健康・暮らしのiPhoneアプリを作る個人開発スタジオ daywizz。子どもの作品を美術館風に残す Picolle.、犬と歩く歩数計 PawSteps を開発しています。',
+  ogImage = '/images/og/site.png',
+  appStoreId,
+  jsonLd,
+  ogType = 'website',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+const ldList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Google Fonts -->
+    {appStoreId && <meta name="apple-itunes-app" content={`app-id=${appStoreId}`} />}
+
+    <!-- OGP -->
+    <meta property="og:site_name" content="daywizz" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@shin_daywizz" />
+
+    <!-- ロゴ用 Pacifico のみ読み込み（本文はシステムフォント） -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap&text=daywizz" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
-    <!-- Remix Icon -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-
-    <title>{title}</title>
+    {ldList.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   </head>
-  <body class="font-sans text-gray-800 min-h-screen flex flex-col">
+  <body class="flex min-h-screen flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow">本文へスキップ</a>
     <Header />
-    <main class="flex-1 pt-16">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />

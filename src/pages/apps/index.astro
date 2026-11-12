@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AppIcon from '../../components/AppIcon.astro';
+import AppStoreBadge from '../../components/AppStoreBadge.astro';
+import { releasedApps } from '../../data/apps';
+---
+
+<BaseLayout title="アプリ一覧 - daywizz" description="daywizz が開発・運営している iPhoneアプリの一覧です。子どもの作品を美術館風に残す Picolle.、犬と歩く歩数計 PawSteps。">
+  <section class="container-site py-12 md:py-16">
+    <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">アプリ</h1>
+    <p class="mt-3 text-gray-600">daywizz が開発・運営している iPhoneアプリです。どれも無料ではじめられます。</p>
+
+    <ul class="mt-10 grid gap-6 md:grid-cols-2">
+      {releasedApps.map((app) => (
+        <li class="card flex flex-col overflow-hidden">
+          <div class="flex items-center gap-5 p-6" style={`background: var(--color-${app.bgColor})`}>
+            <AppIcon app={app} size={88} />
+            <div class="min-w-0">
+              <p class="eyebrow" style={`color: var(--color-${app.color})`}>{app.category}</p>
+              <h2 class="mt-1 text-2xl font-bold text-gray-900">{app.name}</h2>
+              <p class="text-sm text-gray-700">{app.tagline}</p>
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <p class="text-[15px] leading-relaxed text-gray-700">{app.description}</p>
+            <ul class="mt-4 space-y-1.5">
+              {app.highlights.map((h) => (
+                <li class="flex items-start gap-2 text-sm text-gray-700"><i class="ri-check-line mt-0.5 shrink-0" style={`color: var(--color-${app.color})`} aria-hidden="true"></i>{h}</li>
+              ))}
+            </ul>
+            <dl class="mt-5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+              <dt class="text-gray-600">料金</dt><dd class="text-gray-900">{app.priceLabel}</dd>
+              <dt class="text-gray-600">対応</dt><dd class="text-gray-900">{app.devices}</dd>
+              <dt class="text-gray-600">バージョン</dt><dd class="text-gray-900">{app.version}</dd>
+            </dl>
+            <div class="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
+              <AppStoreBadge app={app} campaign="apps_index" />
+              <a href={`/apps/${app.id}/`} class="link-arrow" style={`color: var(--color-${app.color})`}>詳しく見る<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

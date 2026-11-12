@@ -1,44 +1,34 @@
 ---
+import type { FaqItem } from '../data/faq';
+
 interface Props {
-  items: Array<{ question: string; answer: string }>;
+  items: FaqItem[];
+  /** 最初の項目を開いた状態で表示 */
+  openFirst?: boolean;
 }
 
-const { items } = Astro.props;
+const { items, openFirst = false } = Astro.props;
 ---
 
-<div class="divide-y divide-gray-200">
+<div class="divide-y divide-gray-200 border-y border-gray-200">
   {items.map((item, index) => (
-    <div class="faq-item">
-      <button
-        type="button"
-        class="faq-trigger w-full flex items-center justify-between py-4 text-left"
-        aria-expanded="false"
-        aria-controls={`faq-answer-${index}`}
-      >
-        <span class="text-sm font-medium text-gray-900 pr-4">{item.question}</span>
-        <i class="ri-add-line text-lg text-gray-400 shrink-0 faq-icon transition-transform"></i>
-      </button>
-      <div
-        id={`faq-answer-${index}`}
-        class="faq-answer hidden pb-4"
-      >
-        <p class="text-sm text-gray-600 leading-relaxed">{item.answer}</p>
-      </div>
-    </div>
+    <details id={item.id} class="group scroll-mt-24" open={openFirst && index === 0}>
+      <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-left font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
+        <span>{item.question}</span>
+        <i class="ri-add-line shrink-0 text-xl text-gray-500 transition-transform group-open:rotate-45" aria-hidden="true"></i>
+      </summary>
+      <p class="pb-5 pr-8 text-[15px] leading-relaxed text-gray-600">{item.answer}</p>
+    </details>
   ))}
 </div>
 
 <script>
-  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
-    trigger.addEventListener('click', () => {
-      const item = trigger.closest('.faq-item');
-      const answer = item?.querySelector('.faq-answer');
-      const icon = trigger.querySelector('.faq-icon');
-      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-
-      trigger.setAttribute('aria-expanded', String(!isOpen));
-      answer?.classList.toggle('hidden');
-      icon?.classList.toggle('rotate-45');
-    });
-  });
+  // /support/#id で来たら該当の質問を開く
+  const open = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id ? document.getElementById(id) : null;
+    if (el instanceof HTMLDetailsElement) el.open = true;
+  };
+  open();
+  window.addEventListener('hashchange', open);
 </script>

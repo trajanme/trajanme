@@ -2,107 +2,33 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="お問い合わせ - daywizz" description="daywizz へのお問い合わせ">
-  <section class="py-16">
-    <div class="max-w-2xl mx-auto px-4">
-      <h1 class="text-2xl font-bold text-gray-900 text-center">お問い合わせ</h1>
-      <p class="mt-2 text-center text-gray-500">
-        ご質問・ご要望・お仕事のご相談など、お気軽にどうぞ。
-      </p>
+<BaseLayout title="お問い合わせ - daywizz" description="daywizz へのお問い合わせ。アプリのご質問はサポートへ、お仕事・取材のご相談はメールまたは X でご連絡ください。">
+  <section class="mx-auto max-w-3xl px-4 py-14 md:py-16">
+    <h1 class="text-3xl font-bold text-gray-900">お問い合わせ</h1>
+    <p class="mt-3 text-gray-600">内容にあわせて、いちばん早く解決できる窓口をお選びください。</p>
 
-      <!-- フォーム -->
-      <form
-        action="mailto:shintaro@daywizz.com"
-        method="post"
-        enctype="text/plain"
-        class="mt-10 space-y-6"
-      >
-        <!-- 名前 -->
-        <div>
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-            お名前 <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
-            placeholder="山田 太郎"
-          />
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      <div class="card flex flex-col p-6">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-bg text-xl text-primary"><i class="ri-question-line" aria-hidden="true"></i></span>
+        <h2 class="mt-4 text-lg font-bold text-gray-900">アプリの使い方・不具合</h2>
+        <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600">よくある質問で解決することが多いです。解決しない場合はサポート窓口へメールでご連絡ください（通常2営業日以内にお返事します）。</p>
+        <div class="mt-5 flex flex-col gap-2">
+          <a href="/support/" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-white hover:opacity-90">よくある質問を見る</a>
+          <a href="mailto:support@daywizz.com" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-gray-300 px-5 text-sm font-medium text-gray-800 hover:border-gray-800"><i class="ri-mail-line" aria-hidden="true"></i>support@daywizz.com</a>
         </div>
+      </div>
 
-        <!-- メール -->
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-            メールアドレス <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
-            placeholder="example@mail.com"
-          />
+      <div class="card flex flex-col p-6">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary-bg text-xl text-secondary"><i class="ri-briefcase-line" aria-hidden="true"></i></span>
+        <h2 class="mt-4 text-lg font-bold text-gray-900">お仕事・取材・その他</h2>
+        <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600">協業・取材・ご感想など、アプリのサポート以外のご連絡はこちらへ。X の DM でも受け付けています。</p>
+        <div class="mt-5 flex flex-col gap-2">
+          <a href="mailto:shintaro@daywizz.com" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gray-900 px-5 text-sm font-bold text-white hover:bg-gray-700"><i class="ri-mail-line" aria-hidden="true"></i>shintaro@daywizz.com</a>
+          <a href="https://x.com/shin_daywizz" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-gray-300 px-5 text-sm font-medium text-gray-800 hover:border-gray-800"><i class="ri-twitter-x-line" aria-hidden="true"></i>@shin_daywizz</a>
         </div>
-
-        <!-- 内容 -->
-        <div>
-          <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
-            お問い合わせ内容 <span class="text-red-500">*</span>
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="6"
-            required
-            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-y"
-            placeholder="お問い合わせ内容をご記入ください"
-          ></textarea>
-        </div>
-
-        <!-- プライバシー同意 -->
-        <div class="flex items-start gap-2">
-          <input
-            type="checkbox"
-            id="privacy"
-            name="privacy"
-            required
-            class="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary/30"
-          />
-          <label for="privacy" class="text-sm text-gray-600">
-            <a href="/apps/picolle/privacy/" class="text-primary underline hover:opacity-80">プライバシーポリシー</a>に同意します
-          </label>
-        </div>
-
-        <!-- 送信 -->
-        <div class="text-center">
-          <button
-            type="submit"
-            class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-sm"
-          >
-            送信する
-            <i class="ri-send-plane-line"></i>
-          </button>
-        </div>
-      </form>
-
-      <!-- X での連絡 -->
-      <div class="mt-12 rounded-xl border border-gray-100 bg-gray-50 p-6 text-center">
-        <p class="text-sm text-gray-600 mb-3">
-          X（旧 Twitter）でもお気軽にご連絡ください
-        </p>
-        <a
-          href="https://x.com/shin_daywizz"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
-        >
-          <i class="ri-twitter-x-line text-lg"></i>
-          @shin_daywizz
-        </a>
       </div>
     </div>
+
+    <p class="mt-8 text-xs text-gray-600">お預かりした個人情報は、お問い合わせへの回答のみに利用します。</p>
   </section>
 </BaseLayout>

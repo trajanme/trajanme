@@ -1,12 +1,18 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { apps } from '../data/apps';
+import { apps, appStoreLink } from '../data/apps';
 
 interface Props {
   appId: string;
+  /** 省略時は「{アプリ名} - {tagline} | daywizz」 */
+  title?: string;
+  description?: string;
+  /** LP のみ true（SoftwareApplication 構造化データを出す） */
+  landing?: boolean;
+  jsonLd?: object | object[];
 }
 
-const { appId } = Astro.props;
+const { appId, title, description, landing = false, jsonLd } = Astro.props;
 const app = apps[appId];
 
 if (!app) {
@@ -17,34 +23,72 @@ const basePath = `/apps/${appId}`;
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { label: 'トップ', href: `${basePath}/` },
+  { label: '概要', href: `${basePath}/` },
   ...(app.pages.support ? [{ label: 'サポート', href: `${basePath}/support/` }] : []),
-  ...(app.pages.privacy ? [{ label: 'プライバシーポリシー', href: `${basePath}/privacy/` }] : []),
+  ...(app.pages.privacy ? [{ label: 'プライバシー', href: `${basePath}/privacy/` }] : []),
   ...(app.pages.terms ? [{ label: '利用規約', href: `${basePath}/terms/` }] : []),
-  ...(app.pages.tokushoho ? [{ label: '特定商取引法に基づく表記', href: `${basePath}/tokushoho/` }] : []),
+  ...(app.pages.tokushoho ? [{ label: '特商法表記', href: `${basePath}/tokushoho/` }] : []),
 ];
+
+const softwareLd = landing && app.appStoreUrl ? {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: app.name,
+  description: app.description,
+  operatingSystem: 'iOS',
+  applicationCategory: appId === 'pawsteps' ? 'HealthApplication' : 'LifestyleApplication',
+  url: new URL(`${basePath}/`, Astro.site).toString(),
+  image: new URL(app.iconPng, Astro.site).toString(),
+  installUrl: app.appStoreUrl,
+  softwareVersion: app.version?.replace(/^v/, ''),
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY' },
+  author: { '@type': 'Person', name: 'Shintaro Ishikawa', url: new URL('/about/', Astro.site).toString() },
+} : undefined;
+
+const ld = [softwareLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])].filter(Boolean) as object[];
+const pageTitle = title ?? `${app.name} - ${app.tagline} | daywizz`;
 ---
 
-<BaseLayout title={`${app.name} - daywizz`} description={app.description}>
-  <div style={`--app-color: var(--color-${app.color}); --app-bg: var(--color-${app.bgColor});`}>
-    <!-- アプリ用サブナビゲーション -->
-    <nav class="border-b border-gray-200 bg-[var(--app-bg)]">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="flex items-center gap-1 overflow-x-auto py-3 text-sm">
+<BaseLayout
+  title={pageTitle}
+  description={description ?? app.description}
+  ogImage={app.ogImage}
+  appStoreId={app.appStoreId}
+  jsonLd={ld}
+>
+  <div style={`--app-color: var(--color-${app.color}); --app-light: var(--color-${app.color}-light); --app-bg: var(--color-${app.bgColor});`}>
+    <nav aria-label={`${app.name} のページ`} class="sticky top-16 z-40 border-b border-gray-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
+      <div class="container-site flex h-14 items-center gap-3">
+        <a href={`${basePath}/`} class="flex shrink-0 items-center gap-2 font-bold text-gray-900">
+          <img src={app.icon} alt="" width="28" height="28" class="h-7 w-7 rounded-[22%] ring-1 ring-black/5" />
+          <span class="hidden sm:inline">{app.name}</span>
+        </a>
+        <ul class="scrollbar-hide -mx-1 flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto text-sm">
           {navItems.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                'whitespace-nowrap px-3 py-1.5 rounded-full transition-colors',
-                currentPath === item.href
-                  ? 'bg-[var(--app-color)] text-white font-medium'
-                  : 'text-gray-600 hover:bg-gray-100',
-              ]}
-            >
-              {item.label}
-            </a>
+            <li>
+              <a
+                href={item.href}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+                class:list={[
+                  'inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-3 transition-colors',
+                  currentPath === item.href ? 'bg-[var(--app-bg)] font-bold text-[var(--app-color)]' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
+        {app.appStoreUrl && (
+          <a
+            href={appStoreLink(app, 'lp_sticky')}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full bg-[var(--app-color)] px-4 text-sm font-bold text-white transition-opacity hover:opacity-90"
+          >
+            <i class="ri-apple-fill" aria-hidden="true"></i>無料で入手
+          </a>
+        )}
       </div>
     </nav>
 

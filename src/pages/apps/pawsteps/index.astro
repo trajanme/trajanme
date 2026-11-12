@@ -1,99 +1,192 @@
 ---
 import AppLayout from '../../../layouts/AppLayout.astro';
+import AppIcon from '../../../components/AppIcon.astro';
+import AppStoreBadge from '../../../components/AppStoreBadge.astro';
+import QrBlock from '../../../components/QrBlock.astro';
+import FaqSection from '../../../components/FaqSection.astro';
+import BlogPostCard from '../../../components/BlogPostCard.astro';
 import { apps } from '../../../data/apps';
+import { faq, faqJsonLd } from '../../../data/faq';
+import { breeds, dogImage } from '../../../data/pawsteps';
+import { getCollection } from 'astro:content';
 
 const app = apps.pawsteps;
 
-const features = [
-  { icon: 'ri-footprint-line', title: '歩くほど、毎日が進む', description: 'iPhoneのヘルスケアと連携して歩数を自動記録。午前・午後・1日のミッションや8,000歩のゴールが、散歩のきっかけになります。' },
-  { icon: 'ri-bear-smile-line', title: '10犬種、みんな無料', description: '柴犬、コーギー、フレンチブルドッグなど10犬種から相棒を選べます。歩数や時間帯、ごはん回数に合わせて反応やセリフも変化します。' },
-  { icon: 'ri-heart-3-line', title: 'つづけたくなる仕掛け', description: 'ミッションでもらったごはんをあげたり、連続達成を伸ばしたり。数字だけでは終わらない、小さなコミュニケーションがあります。' },
-  { icon: 'ri-apple-line', title: 'Apple Watchでも一緒', description: '今日の歩数と連続達成日数を手元で確認。3種類の文字盤コンプリケーションにも対応し、選んだ犬がWatchにもついてきます。' },
-  { icon: 'ri-layout-grid-line', title: 'ホーム画面ウィジェット', description: 'アプリを開かなくても、歩数・目標までの進み具合・犬からのひとことを確認できます。小・中サイズに対応しています。' },
-  { icon: 'ri-shield-check-line', title: '登録なしですぐ使える', description: 'アカウント作成もサブスクリプションも不要。歩数データはHealthKitと端末内で扱い、気軽に始められます。' },
+const audiences = [
+  { icon: 'ri-bar-chart-line', title: '歩数計アプリが続かなかった', body: '数字を見るだけでなく、犬の反応やミッションが「今日も歩こう」のきっかけになります。', dog: dogImage('miniatureDachshund', 'walk') },
+  { icon: 'ri-heart-3-line', title: '犬が好き、でも今は飼えない', body: '柴犬やコーギーなど10犬種から、毎日一緒に歩く相棒を選べます。', dog: dogImage('pomeranian', 'fun') },
+  { icon: 'ri-shield-check-line', title: '手軽に、安心して使いたい', body: 'アカウント作成もサブスクも不要。歩数はヘルスケアと端末内で扱います。', dog: dogImage('goldenRetriever') },
 ];
 
-const breeds = ['柴犬', 'ミニチュアダックス', 'ボストンテリア', 'ゴールデンレトリバー', 'ポメラニアン', 'トイプードル', 'チワワ', 'シベリアンハスキー', 'フレンチブルドッグ', 'ウェルシュ・コーギー'];
+const features = [
+  { icon: 'ri-footprint-line', title: '歩くほど、毎日が進む', description: 'iPhoneのヘルスケアと連携して歩数を自動記録。午前・午後・1日のミッションや8,000歩のゴールが、散歩のきっかけになります。' },
+  { icon: 'ri-chat-smile-2-line', title: '10犬種、みんな無料', description: '柴犬、コーギー、フレンチブルドッグなど10犬種から相棒を選べます。歩数や時間帯、ごはん回数に合わせて反応やセリフも変化します。' },
+  { icon: 'ri-bowl-line', title: 'つづけたくなる仕掛け', description: 'ミッションでもらったごはんをあげたり、連続達成を伸ばしたり。数字だけでは終わらない、小さなコミュニケーションがあります。' },
+  { icon: 'ri-apple-line', title: 'Apple Watchでも一緒', description: '今日の歩数と連続達成日数を手元で確認。3種類の文字盤コンプリケーションにも対応し、選んだ犬がWatchにもついてきます。' },
+  { icon: 'ri-layout-grid-line', title: 'ホーム画面ウィジェット', description: 'アプリを開かなくても、歩数・目標までの進み具合・犬からのひとことを確認できます。小・中サイズに対応しています。' },
+  { icon: 'ri-user-unfollow-line', title: '登録なしですぐ使える', description: 'アカウント作成もサブスクリプションも不要。歩数データはHealthKitと端末内で扱い、気軽に始められます。' },
+];
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.app === 'pawsteps'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<AppLayout appId="pawsteps">
-  <section class="relative overflow-hidden bg-[var(--app-bg)] py-16 md:py-24">
-    <div class="absolute -left-20 top-10 h-64 w-64 rounded-full bg-pawsteps/10 blur-3xl"></div>
-    <div class="absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-amber-200/30 blur-3xl"></div>
-    <div class="relative mx-auto grid max-w-5xl items-center gap-12 px-4 md:grid-cols-2">
-      <div class="text-center md:text-left">
-        <div class="flex items-center justify-center gap-3 md:justify-start">
-          <img src={app.icon} alt="PawSteps アプリアイコン" class="h-16 w-16 rounded-2xl shadow-lg" />
-          <div class="text-left">
-            <p class="text-sm font-bold tracking-wide text-pawsteps">歩数計 × 犬キャラクター</p>
-            <p class="text-xs text-gray-400">{app.version} · iPhone / Apple Watch</p>
+<AppLayout
+  appId="pawsteps"
+  landing
+  title="PawSteps - 犬と歩く、つづく歩数計（無料・Apple Watch対応） | daywizz"
+  description="PawSteps は10犬種のキャラクターと一緒に歩く無料の歩数計アプリ。ミッションやごはんで散歩が習慣に。Apple Watch・ウィジェット対応、アカウント登録不要。"
+  jsonLd={faqJsonLd(faq.pawsteps)}
+>
+  <!-- ヒーロー -->
+  <section class="overflow-hidden bg-pawsteps-bg">
+    <div class="container-site grid items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_1fr]">
+      <div>
+        <div class="flex items-center gap-3">
+          <AppIcon app={app} size={60} />
+          <div>
+            <p class="text-sm font-bold text-pawsteps">歩数計 × 犬キャラクター</p>
+            <p class="text-xs text-gray-600">{app.version} ・ {app.devices}</p>
           </div>
         </div>
-        <h1 class="mt-7 text-4xl font-bold leading-tight text-gray-900 md:text-5xl">今日も一緒に、<br />歩きにいこう。</h1>
-        <p class="mx-auto mt-5 max-w-xl leading-relaxed text-gray-600 md:mx-0">{app.description}</p>
-        {app.appStoreUrl && (
-          <div class="mt-8 flex justify-center md:justify-start">
-            <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="inline-block transition-opacity hover:opacity-80">
-              <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83" alt="App Storeからダウンロード" class="h-11" />
-            </a>
-          </div>
-        )}
+        <h1 class="mt-6 text-4xl font-bold text-gray-900 md:text-5xl md:leading-tight">今日も一緒に、<br />歩きにいこう。</h1>
+        <p class="mt-5 max-w-xl text-gray-700">
+          PawSteps は、10犬種の相棒と一緒に歩く歩数計アプリ。ミッションやごはん、日々変わるセリフで、数字だけでは続かなかった散歩が習慣になります。
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2" aria-label="特長">
+          <li class="chip"><i class="ri-price-tag-3-line text-pawsteps" aria-hidden="true"></i>完全無料</li>
+          <li class="chip"><i class="ri-user-unfollow-line text-pawsteps" aria-hidden="true"></i>登録不要</li>
+          <li class="chip"><i class="ri-apple-line text-pawsteps" aria-hidden="true"></i>Apple Watch対応</li>
+          <li class="chip"><i class="ri-layout-grid-line text-pawsteps" aria-hidden="true"></i>ウィジェット対応</li>
+        </ul>
+        <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <AppStoreBadge app={app} campaign="lp_hero" size="lg" />
+          <QrBlock app={app} />
+        </div>
       </div>
 
-      <div class="relative mx-auto h-[330px] w-full max-w-md" aria-label="PawStepsの犬キャラクター">
-        <div class="absolute inset-x-10 bottom-2 h-24 rounded-[50%] bg-pawsteps/15 blur-xl"></div>
-        <img src="/images/pawsteps-french-bulldog.png" alt="フレンチブルドッグ" class="absolute left-0 top-20 w-40 -rotate-6 drop-shadow-xl sm:w-48" />
-        <img src="/images/pawsteps-shiba.png" alt="柴犬" class="absolute left-1/2 top-0 z-10 w-48 -translate-x-1/2 drop-shadow-2xl sm:w-56" />
-        <img src="/images/pawsteps-corgi.png" alt="ウェルシュ・コーギー" class="absolute right-0 top-24 w-40 rotate-6 drop-shadow-xl sm:w-48" />
-        <div class="absolute bottom-1 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/90 px-5 py-2 text-sm font-bold text-gray-700 shadow-md backdrop-blur">全10犬種から選べます</div>
+      <div class="relative mx-auto h-[300px] w-full max-w-lg sm:h-[380px]" role="img" aria-label="フレンチブルドッグ、柴犬、ウェルシュ・コーギーのキャラクター">
+        <div class="absolute inset-x-6 bottom-6 h-20 rounded-[50%] bg-pawsteps-light/25 blur-2xl" aria-hidden="true"></div>
+        <img src={dogImage('frenchBulldog', 'walk')} alt="" width="320" height="320" class="absolute bottom-8 left-0 w-40 sm:w-52" />
+        <img src={dogImage('shiba', 'fun')} alt="" width="320" height="320" class="absolute left-1/2 top-0 w-48 -translate-x-1/2 sm:w-60" fetchpriority="high" />
+        <img src={dogImage('pembrokeWelshCorgi', 'walk')} alt="" width="320" height="320" class="absolute bottom-8 right-0 w-40 sm:w-52" />
       </div>
     </div>
   </section>
 
-  <section class="bg-white py-16">
-    <div class="mx-auto max-w-5xl px-4">
-      <div class="text-center">
-        <p class="text-sm font-bold tracking-wider text-pawsteps">WHY PAWSTEPS</p>
-        <h2 class="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">歩数を見るだけじゃない歩数計</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-gray-500">相棒の犬と触れ合ううちに、いつもの一歩が楽しみへ変わっていきます。</p>
-      </div>
-      <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {features.map((feature) => (
-          <article class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pawsteps/10"><i class={`${feature.icon} text-xl text-pawsteps`}></i></div>
-            <h3 class="mt-4 font-bold text-gray-900">{feature.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-gray-500">{feature.description}</p>
-          </article>
+  <!-- こんな方に -->
+  <section aria-labelledby="who-h" class="container-site py-14 md:py-20">
+    <h2 id="who-h" class="section-title">こんな方におすすめ</h2>
+    <ul class="mt-8 grid gap-4 md:grid-cols-3">
+      {audiences.map((a) => (
+        <li class="card relative overflow-hidden p-6 pr-24">
+          <h3 class="font-bold text-gray-900">{a.title}</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-gray-600">{a.body}</p>
+          <img src={a.dog} alt="" width="320" height="320" class="absolute -bottom-2 -right-3 w-24" loading="lazy" />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 機能 -->
+  <section aria-labelledby="feat-h" class="border-t border-gray-100 py-14 md:py-20">
+    <div class="container-site">
+      <p class="eyebrow text-pawsteps">WHY PAWSTEPS</p>
+      <h2 id="feat-h" class="section-title mt-2">歩数を見るだけじゃない歩数計</h2>
+      <div class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        {features.map((f) => (
+          <div>
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pawsteps-bg text-xl text-pawsteps"><i class={f.icon} aria-hidden="true"></i></span>
+            <h3 class="mt-4 font-bold text-gray-900">{f.title}</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-gray-600">{f.description}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="bg-[var(--app-bg)] py-16">
-    <div class="mx-auto grid max-w-5xl items-center gap-10 px-4 md:grid-cols-[1.1fr_0.9fr]">
+  <!-- iPhone + Watch -->
+  <section class="bg-pawsteps-bg py-14 md:py-20">
+    <div class="container-site grid items-center gap-10 md:grid-cols-[1fr_1.1fr]">
       <div>
-        <p class="text-sm font-bold tracking-wider text-pawsteps">iPHONE + APPLE WATCH</p>
-        <h2 class="mt-2 text-2xl font-bold text-gray-900 md:text-3xl">歩数も相棒も、いつでも目の前に</h2>
-        <p class="mt-4 leading-relaxed text-gray-600">iPhoneのホーム画面ウィジェットでは、現在の歩数と犬からのひとことを表示。Apple Watchアプリと文字盤では、iPhoneが手元になくても今日の歩数や連続達成を確認できます。</p>
-        <div class="mt-6 flex flex-wrap gap-2">
-          {['HealthKit連携', '小・中ウィジェット', 'Watchアプリ', '3種のコンプリケーション'].map((label) => <span class="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-gray-600 shadow-sm">{label}</span>)}
-        </div>
+        <p class="eyebrow text-pawsteps">iPHONE + APPLE WATCH</p>
+        <h2 class="section-title mt-2">歩数も相棒も、いつでも目の前に</h2>
+        <p class="mt-4 text-gray-700">ホーム画面ウィジェットに、今日の歩数と犬からのひとことを表示。Apple Watchアプリと文字盤のコンプリケーションでは、iPhoneが手元になくても今日の歩数や連続達成を確認できます。</p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {['HealthKit連携', '小・中ウィジェット', 'Watchアプリ', '3種のコンプリケーション'].map((label) => <li class="chip">{label}</li>)}
+        </ul>
       </div>
-      <img src="/images/pawsteps-widget.png" alt="PawStepsのホーム画面ウィジェット" class="w-full rounded-3xl shadow-xl" loading="lazy" />
+      <img src="/images/pawsteps/widget.webp" alt="ホーム画面ウィジェットに歩数1,673歩とポメラニアンが表示されている様子" width="900" height="633" class="w-full rounded-3xl shadow-lg" loading="lazy" />
     </div>
   </section>
 
-  <section class="bg-white py-16">
-    <div class="mx-auto max-w-4xl px-4 text-center">
-      <p class="text-sm font-bold tracking-wider text-pawsteps">NEW IN {app.version}</p>
-      <h2 class="mt-2 text-2xl font-bold text-gray-900">もっと賑やかに、もっとその子らしく</h2>
-      <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-gray-600">フレンチブルドッグとウェルシュ・コーギーが仲間入り。時間帯、今日の歩数、ごはん回数、8,000歩を一緒に達成した回数に応じて、犬ごとのセリフを楽しめるようになりました。</p>
-      <ul class="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2" aria-label="選べる犬種">
-        {breeds.map((breed) => <li class="rounded-full border border-pawsteps/20 bg-pawsteps/5 px-3 py-1.5 text-xs text-gray-600">{breed}</li>)}
-      </ul>
-      {app.appStoreUrl && (
-        <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" class="mt-10 inline-flex items-center gap-2 rounded-full bg-pawsteps px-6 py-3 font-medium text-white shadow-sm transition-opacity hover:opacity-90">App Storeで見る <i class="ri-arrow-right-up-line"></i></a>
-      )}
+  <!-- 10犬種 -->
+  <section aria-labelledby="dogs-h" class="container-site py-14 md:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2 id="dogs-h" class="section-title">相棒は10犬種から</h2>
+        <p class="mt-2 text-gray-600">みんな無料。時間帯や歩数、ごはんの回数で反応やセリフが変わります。</p>
+      </div>
+    </div>
+    <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+      {breeds.map((b) => (
+        <li class="flex flex-col items-center rounded-2xl bg-gray-50 px-2 pb-4 pt-3">
+          <img src={dogImage(b.id)} alt={b.name} width="320" height="320" class="aspect-square w-full max-w-36" loading="lazy" />
+          <span class="mt-1 text-center text-sm font-bold text-gray-800">{b.name}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 最近のアップデート -->
+  <section class="container-site pb-14 md:pb-20">
+    <div class="rounded-3xl border border-gray-200 p-6 sm:p-10">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="rounded-full bg-pawsteps px-3 py-1 text-xs font-bold text-white">UPDATE</span>
+        <span class="text-sm text-gray-600">最新バージョン {app.version}</span>
+      </div>
+      <h2 class="mt-4 text-xl font-bold text-gray-900 md:text-2xl">もっと賑やかに、もっとその子らしく</h2>
+      <p class="mt-3 max-w-3xl text-gray-700">フレンチブルドッグとウェルシュ・コーギーが仲間入り。時間帯、今日の歩数、ごはん回数、8,000歩を一緒に達成した回数に応じて、犬ごとのセリフを楽しめるようになりました。</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section aria-labelledby="faq-h" class="border-t border-gray-100 py-14 md:py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <h2 id="faq-h" class="section-title">よくある質問</h2>
+      <div class="mt-6">
+        <FaqSection items={faq.pawsteps} openFirst />
+      </div>
+      <a href="/apps/pawsteps/support/" class="link-arrow mt-4 text-pawsteps">サポート・お問い合わせ<i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section aria-labelledby="posts-h" class="container-site pb-14 md:pb-20">
+      <h2 id="posts-h" class="text-xl font-bold text-gray-900">PawSteps の開発ストーリー</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        {posts.map((post) => (
+          <BlogPostCard variant="card" title={post.data.title} date={post.data.pubDate} tags={post.data.tags} slug={post.id} excerpt={post.data.description} app={post.data.app} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- 最後の CTA -->
+  <section class="bg-pawsteps text-white">
+    <div class="container-site grid items-center gap-8 py-14 md:grid-cols-[1fr_auto]">
+      <div class="flex items-center gap-5">
+        <img src={dogImage('toyPoodle', 'fun')} alt="" width="320" height="320" class="hidden w-28 sm:block" loading="lazy" />
+        <div>
+          <h2 class="text-2xl font-bold md:text-3xl">今日も一緒に、歩きにいこう。</h2>
+          <p class="mt-2 text-white/85">無料・登録不要。いますぐ相棒を選べます。</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+        <AppStoreBadge app={app} campaign="lp_bottom" size="lg" inverse />
+        <QrBlock app={app} inverse />
+      </div>
     </div>
   </section>
 </AppLayout>
