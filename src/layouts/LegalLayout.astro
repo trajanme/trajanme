@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import AppLayout from './AppLayout.astro';
+import { apps } from '../data/apps';
 
 interface Props {
   title: string;
@@ -12,13 +13,13 @@ const { title, lastUpdated, appId } = Astro.props;
 ---
 
 {appId ? (
-  <AppLayout appId={appId}>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+  <AppLayout appId={appId} title={`${title} | ${apps[appId]?.name ?? ''} - daywizz`} description={`${apps[appId]?.name ?? ''} の${title}です。`}>
+    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
       <header class="mb-8 sm:mb-10">
         <h1 class="text-xl sm:text-2xl font-bold text-gray-900">{title}</h1>
         {lastUpdated && (
-          <p class="mt-2 text-xs sm:text-sm text-gray-400">
-            <i class="ri-calendar-line mr-1"></i>
+          <p class="mt-2 text-xs text-gray-600 sm:text-sm">
+            <i class="ri-calendar-line mr-1" aria-hidden="true"></i>
             施行日: {lastUpdated}
           </p>
         )}
@@ -30,12 +31,12 @@ const { title, lastUpdated, appId } = Astro.props;
   </AppLayout>
 ) : (
   <BaseLayout title={`${title} - daywizz`}>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
       <header class="mb-8 sm:mb-10">
         <h1 class="text-xl sm:text-2xl font-bold text-gray-900">{title}</h1>
         {lastUpdated && (
-          <p class="mt-2 text-xs sm:text-sm text-gray-400">
-            <i class="ri-calendar-line mr-1"></i>
+          <p class="mt-2 text-xs text-gray-600 sm:text-sm">
+            <i class="ri-calendar-line mr-1" aria-hidden="true"></i>
             施行日: {lastUpdated}
           </p>
         )}

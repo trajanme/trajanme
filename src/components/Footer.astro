@@ -1,65 +1,69 @@
 ---
+import { releasedApps, appPageKeys, type AppPageKey } from '../data/apps';
+
 const socialLinks = [
   { icon: 'ri-twitter-x-line', href: 'https://x.com/shin_daywizz', label: 'X' },
-  { icon: 'ri-github-line', href: 'https://github.com/trajanme', label: 'GitHub' },
   { icon: 'ri-file-text-line', href: 'https://note.com/shin_daywizz', label: 'note' },
+  { icon: 'ri-github-line', href: 'https://github.com/trajanme', label: 'GitHub' },
 ];
 
-const siteLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Apps', href: '/apps/' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Contact', href: '/contact/' },
-];
+const legalLabels: Record<AppPageKey, string> = {
+  support: 'サポート・よくある質問',
+  privacy: 'プライバシーポリシー',
+  terms: '利用規約',
+  tokushoho: '特定商取引法に基づく表記',
+};
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-50 border-t border-gray-200">
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- ブランド -->
-      <div>
-        <a href="/" class="font-brand text-2xl text-primary">daywizz</a>
-        <p class="mt-2 text-sm text-gray-500">
-          日常をより楽しくする魔法をかける
-        </p>
-      </div>
-
-      <!-- サイトナビ -->
-      <div>
-        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Links</h3>
-        <ul class="flex flex-col gap-2">
-          {siteLinks.map((link) => (
-            <li>
-              <a href={link.href} class="text-sm text-gray-500 hover:text-primary transition-colors">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- SNS -->
-      <div>
-        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Social</h3>
-        <div class="flex gap-4">
-          {socialLinks.map((link) => (
+<footer class="mt-auto bg-gray-900 text-gray-300">
+  <div class="container-site grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <a href="/" class="font-brand text-2xl text-white">daywizz</a>
+      <p class="mt-3 text-sm leading-relaxed">日常をより楽しくする魔法をかける。<br />子育て・健康・暮らしのiPhoneアプリを作っています。</p>
+      <ul class="mt-5 flex gap-2" aria-label="SNS">
+        {socialLinks.map((link) => (
+          <li>
             <a
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-400 hover:text-primary transition-colors text-xl"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-lg text-white transition-colors hover:bg-white/20"
               aria-label={link.label}
             >
-              <i class={link.icon}></i>
+              <i class={link.icon} aria-hidden="true"></i>
             </a>
-          ))}
-        </div>
-      </div>
+          </li>
+        ))}
+      </ul>
     </div>
 
-    <div class="mt-10 pt-6 border-t border-gray-200 text-center text-xs text-gray-400">
-      &copy; 2025 daywizz. All rights reserved.
+    {releasedApps.map((app) => (
+      <div>
+        <h2 class="text-sm font-bold text-white">
+          <a href={`/apps/${app.id}/`} class="hover:underline">{app.name}</a>
+        </h2>
+        <ul class="mt-3 space-y-1 text-sm">
+          {appPageKeys(app).map((key) => (
+              <li><a href={`/apps/${app.id}/${key}/`} class="inline-block py-1 hover:text-white hover:underline">{legalLabels[key]}</a></li>
+            ))}
+        </ul>
+      </div>
+    ))}
+
+    <div>
+      <h2 class="text-sm font-bold text-white">daywizz</h2>
+      <ul class="mt-3 space-y-1 text-sm">
+        <li><a href="/apps/" class="inline-block py-1 hover:text-white hover:underline">アプリ一覧</a></li>
+        <li><a href="/support/" class="inline-block py-1 hover:text-white hover:underline">サポート</a></li>
+        <li><a href="/blog/" class="inline-block py-1 hover:text-white hover:underline">ブログ</a></li>
+        <li><a href="/about/" class="inline-block py-1 hover:text-white hover:underline">運営者情報</a></li>
+        <li><a href="/contact/" class="inline-block py-1 hover:text-white hover:underline">お問い合わせ</a></li>
+      </ul>
     </div>
+  </div>
+  <div class="border-t border-white/10">
+    <p class="container-site py-6 text-xs text-gray-400">&copy; {year} daywizz</p>
   </div>
 </footer>

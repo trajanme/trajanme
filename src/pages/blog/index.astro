@@ -11,17 +11,18 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
-<BaseLayout title="ブログ - daywizz" description="daywizz のブログ記事一覧">
-  <section class="py-16">
+<BaseLayout title="ブログ - daywizz" description="daywizz のアプリ開発ストーリー、アップデートのお知らせ、個人開発の裏側。">
+  <section class="py-14 md:py-16">
     <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-2xl font-bold text-gray-900 text-center">Blog</h1>
-      <p class="mt-2 text-center text-gray-500">daywizz の最新情報をお届けします</p>
+      <h1 class="text-3xl font-bold text-gray-900">ブログ</h1>
+      <p class="mt-3 text-gray-600">開発ストーリーとアップデートのお知らせ</p>
 
       <!-- タグフィルター -->
-      <div class="mt-8 flex flex-wrap gap-2 justify-center" id="tag-filter">
+      <div class="mt-8 flex flex-wrap gap-2" id="tag-filter" role="group" aria-label="タグで絞り込み">
         <button
           type="button"
-          class="tag-btn active px-3 py-1 text-sm rounded-full border border-gray-200 bg-primary text-white transition-colors"
+          aria-pressed="true"
+          class="tag-btn active min-h-10 px-4 py-1 text-sm rounded-full border border-gray-200 bg-primary text-white transition-colors"
           data-tag="all"
         >
           すべて
@@ -29,7 +30,8 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
         {allTags.map((tag) => (
           <button
             type="button"
-            class="tag-btn px-3 py-1 text-sm rounded-full border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary transition-colors"
+            aria-pressed="false"
+            class="tag-btn min-h-10 px-4 py-1 text-sm rounded-full border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary transition-colors"
             data-tag={tag}
           >
             {tag}
@@ -47,6 +49,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
               tags={post.data.tags}
               slug={post.id}
               excerpt={post.data.description}
+              app={post.data.app}
             />
           </div>
         ))}
@@ -65,9 +68,11 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 
       // ボタンのアクティブ状態を更新
       buttons.forEach((b) => {
+        b.setAttribute('aria-pressed', 'false');
         b.classList.remove('active', 'bg-primary', 'text-white');
         b.classList.add('bg-white', 'text-gray-600');
       });
+      btn.setAttribute('aria-pressed', 'true');
       btn.classList.add('active', 'bg-primary', 'text-white');
       btn.classList.remove('bg-white', 'text-gray-600');
 

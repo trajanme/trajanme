@@ -1,60 +1,18 @@
 ---
 import AppLayout from '../../../layouts/AppLayout.astro';
-import FaqSection from '../../../components/FaqSection.astro';
+import AppSupport from '../../../components/AppSupport.astro';
 import { apps } from '../../../data/apps';
+import { faq, faqJsonLd } from '../../../data/faq';
 
 const app = apps.pawsteps;
-
-const faqItems = [
-  {
-    question: '歩数はどのように記録されますか？',
-    answer: 'PawSteps はiPhoneのヘルスケア（HealthKit）に記録された歩数を読み取り、今日の歩数や時間帯別の進み具合を表示します。初回利用時にヘルスケアへのアクセスを許可してください。GPSによる散歩ルートの記録は行いません。',
-  },
-  {
-    question: 'Apple Watchがなくても使えますか？',
-    answer: 'はい。PawStepsはiPhoneだけでご利用いただけます。Apple Watchをお持ちの場合は、Watchアプリや文字盤のコンプリケーションでも今日の歩数と連続達成日数を確認できます。',
-  },
-  {
-    question: '犬キャラクターは有料ですか？',
-    answer: 'いいえ。現在の10犬種はすべて無料で選べます。キャラクターを変更しても、アプリ全体の歩数やミッションの記録はそのまま引き継がれます。',
-  },
-  {
-    question: 'アカウント登録や料金は必要ですか？',
-    answer: 'アカウント登録は不要で、サブスクリプションやアプリ内課金もありません。App Storeからダウンロード後、ヘルスケア連携を許可すれば始められます。',
-  },
-  {
-    question: '機種変更や再インストール時にデータは引き継がれますか？',
-    answer: 'PawStepsのアプリ内データは現在、端末内に保存されます。アプリを削除すると、ミッション・連続達成・ごはん回数などの記録は復元できません。ヘルスケアに保存済みの歩数は、ヘルスケア側の移行状況に応じて再取得されます。',
-  },
-];
+const items = faq.pawsteps;
 ---
 
-<AppLayout appId="pawsteps">
-  <section class="py-16">
-    <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-2xl font-bold text-gray-900">サポート</h1>
-      <p class="mt-2 text-gray-500">PawSteps に関するよくある質問とお問い合わせ</p>
-
-      <!-- FAQ -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">よくある質問（FAQ）</h2>
-        <FaqSection items={faqItems} />
-      </div>
-
-      <!-- お問い合わせ -->
-      <div class="mt-10 rounded-xl bg-white border border-gray-100 shadow-sm p-8 text-center">
-        <h2 class="text-lg font-bold text-gray-900">お問い合わせ</h2>
-        <p class="mt-2 text-sm text-gray-500">
-          上記のFAQで解決しない場合は、以下のメールアドレスまでお気軽にお問い合わせください。
-        </p>
-        <a
-          href={`mailto:${app.contactEmail}`}
-          class="inline-flex items-center gap-2 mt-4 px-6 py-2.5 bg-pawsteps text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
-        >
-          <i class="ri-mail-line"></i>
-          {app.contactEmail}
-        </a>
-      </div>
-    </div>
-  </section>
+<AppLayout
+  appId="pawsteps"
+  title="PawSteps サポート・よくある質問 | daywizz"
+  description="PawSteps（犬と歩く歩数計）のよくある質問。歩数の記録方法、Apple Watch、料金、機種変更時のデータについて。"
+  jsonLd={faqJsonLd(items)}
+>
+  <AppSupport app={app} items={items} />
 </AppLayout>

@@ -1,115 +1,109 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AppIcon from '../components/AppIcon.astro';
+import { apps } from '../data/apps';
+
+const skills = ['システムアーキテクト', 'G検定', 'Next.js', 'Swift / SwiftUI', 'TypeScript', 'Supabase', 'ITコンサルティング', '個人開発'];
+
+const works = [
+  { name: 'Picolle.', body: 'お子さまの作品を美術館風に保存できるアプリ', href: '/apps/picolle/', app: apps.picolle },
+  { name: 'PawSteps', body: 'かわいい犬と歩く歩数計アプリ', href: '/apps/pawsteps/', app: apps.pawsteps },
+  { name: 'omiya', body: '訪日観光客向けお土産紹介アプリ', href: undefined, app: undefined },
+];
+
+const sns = [
+  { icon: 'ri-twitter-x-line', label: 'X', handle: '@shin_daywizz', href: 'https://x.com/shin_daywizz' },
+  { icon: 'ri-file-text-line', label: 'note', handle: 'shin_daywizz', href: 'https://note.com/shin_daywizz' },
+  { icon: 'ri-github-line', label: 'GitHub', handle: 'trajanme', href: 'https://github.com/trajanme' },
+];
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: '石川 真太郎',
+  alternateName: 'Shintaro Ishikawa',
+  jobTitle: 'daywizz 代表',
+  url: 'https://daywizz.com/about/',
+  image: 'https://daywizz.com/images/profile.webp',
+  sameAs: sns.map((s) => s.href),
+};
 ---
 
-<BaseLayout title="About - daywizz" description="daywizz 代表 石川真太郎のプロフィール">
-  <section class="py-16">
-    <div class="max-w-3xl mx-auto px-4">
-      <!-- プロフィールヘッダー -->
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
-        <!-- プロフィール画像プレースホルダー -->
-        <img src="/images/profile.jpg" alt="石川 真太郎" class="w-32 h-32 rounded-full object-cover shrink-0" />
-
-        <div>
-          <h1 class="text-2xl font-bold text-gray-900">石川 真太郎</h1>
-          <p class="mt-1 text-sm text-gray-500">Shintaro Ishikawa</p>
-          <p class="mt-2 text-sm text-gray-500">daywizz 代表 / コンサルタント / ソロプレナー</p>
-        </div>
-      </div>
-
-      <!-- 経歴 -->
-      <div class="mt-12">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">経歴</h2>
-        <p class="text-gray-600 leading-relaxed">
-          1990年生まれ、東京出身、兵庫県在住。ITコンサルタントとして企業のデジタル変革を支援する傍ら、
-          ソロプレナーとして個人開発に取り組んでいます。3児の父として、日々の子育てや暮らしの中から
-          アプリのアイデアを見つけ、形にしています。
-        </p>
-      </div>
-
-      <!-- 実績 -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">実績</h2>
-        <ul class="space-y-3 text-gray-600">
-          <li class="flex items-start gap-2">
-            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
-            <span>omiya - 訪日観光客向けお土産紹介アプリのリリース</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
-            <span>Picolle. - お子さまの作品を美術館風に保存できるアプリのリリース</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
-            <span>PawSteps - かわいい犬と歩く歩数計アプリをリリース</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- スキル -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">スキル</h2>
-        <div class="flex flex-wrap gap-2">
-          {[
-            'システムアーキテクト',
-            'G検定',
-            'Next.js',
-            'Swift / SwiftUI',
-            'TypeScript',
-            'Supabase',
-            'ITコンサルティング',
-            '個人開発',
-          ].map((skill) => (
-            <span class="inline-block px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <!-- ビジョン -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">ビジョン</h2>
-        <p class="text-gray-600 leading-relaxed">
-          みんなの何気ない日常をデジタルの力でより良くしていきたい。
-          大きなイノベーションではなく、毎日の暮らしの中にある小さな不便や「もっとこうだったらいいのに」を
-          一つずつ解決していく。そんなプロダクトづくりを通じて、多くの人の日常に小さな魔法をかけていきます。
-        </p>
-      </div>
-
-      <!-- SNS -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">SNS</h2>
-        <div class="flex gap-4">
-          <a
-            href="https://x.com/shin_daywizz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <i class="ri-twitter-x-line text-xl"></i>
-            <span class="text-sm">X (Twitter)</span>
-          </a>
-          <a
-            href="https://github.com/trajanme"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <i class="ri-github-line text-xl"></i>
-            <span class="text-sm">GitHub</span>
-          </a>
-          <a
-            href="https://note.com/shin_daywizz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <i class="ri-file-text-line text-xl"></i>
-            <span class="text-sm">note</span>
-          </a>
-        </div>
+<BaseLayout title="運営者情報 - daywizz" description="daywizz 代表 石川 真太郎のプロフィール。3児の父として、子育てや暮らしの中からアプリのアイデアを見つけ、形にしています。" jsonLd={personLd}>
+  <section class="bg-primary-bg">
+    <div class="mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 py-14 text-center sm:flex-row sm:text-left md:py-16">
+      <img src="/images/profile.webp" alt="石川 真太郎" width="400" height="400" class="h-32 w-32 shrink-0 rounded-full object-cover ring-4 ring-white" />
+      <div>
+        <p class="eyebrow text-primary">ABOUT</p>
+        <h1 class="mt-2 text-3xl font-bold text-gray-900">石川 真太郎</h1>
+        <p class="text-gray-600">Shintaro Ishikawa</p>
+        <p class="mt-2 text-sm text-gray-700">daywizz 代表 / コンサルタント / ソロプレナー</p>
       </div>
     </div>
   </section>
+
+  <div class="mx-auto max-w-3xl space-y-12 px-4 py-14">
+    <section>
+      <h2 class="text-xl font-bold text-gray-900">ビジョン</h2>
+      <p class="mt-4 text-gray-700">
+        みんなの何気ない日常をデジタルの力でより良くしていきたい。大きなイノベーションではなく、毎日の暮らしの中にある小さな不便や「もっとこうだったらいいのに」を一つずつ解決していく。そんなプロダクトづくりを通じて、多くの人の日常に小さな魔法をかけていきます。
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold text-gray-900">経歴</h2>
+      <p class="mt-4 text-gray-700">
+        1990年生まれ、東京出身、兵庫県在住。ITコンサルタントとして企業のデジタル変革を支援する傍ら、ソロプレナーとして個人開発に取り組んでいます。3児の父として、日々の子育てや暮らしの中からアプリのアイデアを見つけ、形にしています。
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold text-gray-900">つくったもの</h2>
+      <ul class="mt-4 grid gap-3">
+        {works.map((w) => {
+          const inner = (
+            <>
+              {w.app ? <AppIcon app={w.app} size={48} decorative /> : <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-[22%] bg-omiya-bg text-xl text-omiya"><i class="ri-gift-line" aria-hidden="true"></i></span>}
+              <span class="min-w-0 flex-1">
+                <span class="block font-bold text-gray-900">{w.name}</span>
+                <span class="block text-sm text-gray-600">{w.body}</span>
+              </span>
+              {w.href && <i class="ri-arrow-right-s-line text-xl text-gray-400" aria-hidden="true"></i>}
+            </>
+          );
+          return (
+            <li>
+              {w.href
+                ? <a href={w.href} class="card flex items-center gap-4 p-4 transition-shadow hover:shadow-md">{inner}</a>
+                : <div class="card flex items-center gap-4 p-4">{inner}</div>}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold text-gray-900">スキル</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {skills.map((skill) => <li class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">{skill}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold text-gray-900">SNS</h2>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-3">
+        {sns.map((s) => (
+          <li>
+            <a href={s.href} target="_blank" rel="noopener noreferrer" class="card flex min-h-14 items-center gap-3 px-4 py-3 transition-shadow hover:shadow-md">
+              <i class={`${s.icon} text-xl text-gray-800`} aria-hidden="true"></i>
+              <span>
+                <span class="block text-sm font-bold text-gray-900">{s.label}</span>
+                <span class="block text-xs text-gray-600">{s.handle}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
 </BaseLayout>
