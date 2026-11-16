@@ -1,0 +1,51 @@
+{
+  "scope": "Local UI improvement; agent review, not human acceptance",
+  "codeReviewScore": 96,
+  "deterministicArtifacts": 21,
+  "blockingFindings": 0,
+  "uniqueWarnings": 122,
+  "functionalTests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "output": ".styleseed/evidence/ui-improvement/functional.tap"
+  },
+  "renderedViewports": [
+    {
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "screenshots": [
+    {
+      "path": ".styleseed/evidence/ui-improvement/screenshots/home-mobile.png",
+      "width": 780,
+      "height": 9404,
+      "sha256": "90c2ee43031cc7e21def73d7d80ba9b6354f6037cc6d4f9afdaa017f0fe69b5d"
+    },
+    {
+      "path": ".styleseed/evidence/ui-improvement/screenshots/home-desktop.png",
+      "width": 2880,
+      "height": 5648,
+      "sha256": "6ecbc36fb3982356147a3b7c15737997bfebb20843155b9f8bc0dc9b0f847223"
+    }
+  ],
+  "observedInteractions": [
+    "desktop disclosure open/Space/Escape",
+    "mobile disclosure open",
+    "blog keyboard filtering: two articles to one",
+    "FAQ Space open/close",
+    "empty contact validation and focus movement",
+    "reduced motion emulation"
+  ],
+  "notVerified": [
+    "OS mail client handoff and actual sending",
+    "all artifact/state/viewport combinations",
+    "automated spacing/appearance inspector",
+    "physical touch devices and full assistive-technology coverage"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "artifactId": "home",
+  "engineVersion": "5.0.0",
+  "engineRevision": "sha256:9bddb23ed24bad0c8feb95c8d9855de7d71468941cff8daa475b6fe066b2cd75",
+  "distributionIntegrity": "verified",
+  "selection": {
+    "agent": "codex",
+    "grammar": "expressive-marketing",
+    "grammarSource": "built-in:expressive-marketing",
+    "referenceContract": null,
+    "fallback": "expressive-marketing",
+    "adapter": "product-ui",
+    "domain": "content",
+    "page": "landing",
+    "recipe": "expressive-brand",
+    "recipeSelection": "expressive-brand",
+    "palette": "quiet-mineral",
+    "paletteSelection": "quiet-mineral",
+    "paletteGeneration": null,
+    "tokenCanon": {
+      "source": "design/brand/tokens.json",
+      "format": "dtcg",
+      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "mode": "light",
+      "modeName": null
+    },
+    "profile": "none"
+  },
+  "inputs": [
+    {
+      "id": "project",
+      "path": ".styleseed/project.json",
+      "sha256": "sha256:cb8886a17885a5ac51977b4eb53b68516de52f0e3a2c887d9f17d0d4cd0663ff",
+      "bytes": 9306
+    },
+    {
+      "id": "artifact",
+      "path": ".styleseed/artifacts/home.json",
+      "sha256": "sha256:5b4d56d3b68a56bd943c24af55de760fb2da6692a74d0bd5f5de021bb03226e4",
+      "bytes": 2160
+    },
+    {
+      "id": "tokens",
+      "path": "design/brand/tokens.json",
+      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "bytes": 9873
+    }
+  ],
+  "sources": [
+    {
+      "id": "agent-execution",
+      "path": "catalog:agents",
+      "sha256": "sha256:7432f369c99d3d0b10a5c96d76b418b7dfbfb83e57a6b25e480f79ee86a1cd81",
+      "bytes": 358
+    },
+    {
+      "id": "core",
+      "path": "catalog:core",
+      "sha256": "sha256:c266458625238fc647b40eb15a80476ee116d3b8e4fbd9bee71db917f2c7a33d",
+      "bytes": 8400
+    },
+    {
+      "id": "grammar",
+      "path": "built-in:expressive-marketing",
+      "sha256": "sha256:c4fbfe1dbecf6d6b5b0300dc4e4573452177464cac0d43640436acba59deae55",
+      "bytes": 967
+    },
+    {
+      "id": "adapter",
+      "path": "catalog:adapters/product-ui",
+      "sha256": "sha256:7b5b5c34b0b235dca329e6384ccb94c66ee65a348bbe7142277ae7bbda3c13b0",
+      "bytes": 714
+    },
+    {
+      "id": "domain",
+      "path": "catalog:domains/content",
+      "sha256": "sha256:e24193e09803166f299695aed866d31836137e2b45540bc9ad524ad96c2d7de0",
+      "bytes": 1381
+    },
+    {
+      "id": "page",
+      "path": "catalog:pages/landing",
+      "sha256": "sha256:f4da394144f34d3f1aa256b9caf0320b82c4523b068bae893c92413e622c82ef",
+      "bytes": 2044
+    },
+    {
+      "id": "recipe",
+      "path": "catalog:recipes/expressive-brand",
+      "sha256": "sha256:95befeb0a0a3ffaecdfebde333231f33cb29052a13523c087d3b10ffc3c3be82",
+      "bytes": 1984
+    },
+    {
+      "id": "palette",
+      "path": "catalog:palettes/quiet-mineral",
+      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "bytes": 2947
+    },
+    {
+      "id": "spacing",
+      "path": "config:spacing",
+      "sha256": "sha256:e03703dd645ee04623f3b2d55eae8111251c42f6cc4e93e52075dd3dc0829f45",
+      "bytes": 2280
+    },
+    {
+      "id": "rules",
+      "path": "catalog:rules",
+      "sha256": "sha256:3ed16686d3bf72e8dc40bda901b9df9a53ec9197df5dc2319cf48c065188f3d6",
+      "bytes": 10854
+    },
+    {
+      "id": "craft",
+      "path": "catalog:craft",
+      "sha256": "sha256:cf337a06f68960ee01e99fa734da2955fe67db990e7cda3fb1d2729acd0bd1bd",
+      "bytes": 4870
+    }
+  ],
+  "methodHash": "sha256:be9ce6b3673d280009fd33c0f1057f3f4248162a62a5561087dbfabac5774be9",
+  "validationHash": "sha256:7f97201d8482c653f7008dd2d21a73dd896d801a7338236614a2b69bf218ceb5",
+  "validationSlices": {
+    "target": "sha256:fd89b3b7c61fa08e9a1055ecd5c5678651b23752e9a5d07d80a2fb7f5ac1ae14",
+    "implementation": "sha256:52f7d1aa5eee4d556a6fe6dab788e16ae6605f45145c3c0a9bea456b74bcedab",
+    "scoreFloor": "sha256:48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc",
+    "requiredRenders": "sha256:e2cbc22ce7be59d23cd2e88d6fdbc576aa98f69928e4ff1e61fda02e15ccca2f",
+    "temporal": "sha256:3ed3b6fd5761eadf3e7c1fc17d5551f4e3e6871028cd6f42664b8b89e6a52ecc",
+    "humanAcceptance": "sha256:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+    "functional": "sha256:3b0f12fa061435e1905907b72840b86d1372f2bc2c199bf71da04e14593ca407"
+  },
+  "bundle": {
+    "kind": "bundle",
+    "path": ".styleseed/bundles/home.md",
+    "sha256": "sha256:ecb188e2d33142ba842fa179a47a7a6d4a879f9e9e3fc7bf75bab53ee6460adc",
+    "bytes": 37797
+  },
+  "outputs": [
+    {
+      "kind": "bundle",
+      "path": ".styleseed/bundles/home.md",
+      "sha256": "sha256:ecb188e2d33142ba842fa179a47a7a6d4a879f9e9e3fc7bf75bab53ee6460adc",
+      "bytes": 37797
+    },
+    {
+      "kind": "palette-json",
+      "path": ".styleseed/palettes/home.json",
+      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "bytes": 7734
+    },
+    {
+      "kind": "palette-css",
+      "path": ".styleseed/palettes/home.css",
+      "sha256": "sha256:0cdd1d2423b1bf91ebde4e97ea5350596e01417c2572280f94901c587c5108b1",
+      "bytes": 888
+    }
+  ]
+}

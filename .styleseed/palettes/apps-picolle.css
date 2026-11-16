@@ -1,0 +1,20 @@
+:root {
+  --ss-background: #F6F3E9; /* color.kinari */
+  --ss-surface: #FFFDF8; /* color.surface */
+  --ss-chrome: #2F5D50; /* color.forest */
+  --ss-foreground: #24221E; /* color.sumi */
+  --ss-muted-foreground: #65675C; /* color.ink-muted */
+  --ss-chrome-foreground: #FFFFFF; /* color.on-forest */
+  --ss-border: #C7CBBD; /* color.line */
+  --ss-primary: #E0913A; /* color.akari */
+  --ss-primary-foreground: #24221E; /* color.sumi */
+  --ss-accent: #2F5D50; /* color.forest */
+  --ss-accent-foreground: #FFFFFF; /* color.on-forest */
+  --ss-focus: #2F5D50; /* color.forest */
+  --ss-success: #2F5D50; /* color.success */
+  --ss-success-foreground: #FFFFFF; /* color.on-forest */
+  --ss-warning: #8A5700; /* color.warning */
+  --ss-warning-foreground: #FFFFFF; /* color.on-forest */
+  --ss-danger: #A6372D; /* color.danger */
+  --ss-danger-foreground: #FFFFFF; /* color.on-forest */
+}

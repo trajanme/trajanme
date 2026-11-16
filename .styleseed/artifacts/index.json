@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "artifacts": [
+    {
+      "id": "pawsteps-pawstepsprivacypolicy",
+      "config": "pawsteps-pawstepsprivacypolicy.json"
+    },
+    {
+      "id": "pawsteps-pawstepstermofuse",
+      "config": "pawsteps-pawstepstermofuse.json"
+    },
+    {
+      "id": "picolle-privacy-policy",
+      "config": "picolle-privacy-policy.json"
+    },
+    {
+      "id": "picolle-support",
+      "config": "picolle-support.json"
+    },
+    {
+      "id": "picolle-terms",
+      "config": "picolle-terms.json"
+    },
+    {
+      "id": "picolle-tokushoho",
+      "config": "picolle-tokushoho.json"
+    },
+    {
+      "id": "about",
+      "config": "about.json"
+    },
+    {
+      "id": "apps-omiya",
+      "config": "apps-omiya.json"
+    },
+    {
+      "id": "apps-pawsteps",
+      "config": "apps-pawsteps.json"
+    },
+    {
+      "id": "apps-pawsteps-privacy",
+      "config": "apps-pawsteps-privacy.json"
+    },
+    {
+      "id": "apps-pawsteps-support",
+      "config": "apps-pawsteps-support.json"
+    },
+    {
+      "id": "apps-pawsteps-terms",
+      "config": "apps-pawsteps-terms.json"
+    },
+    {
+      "id": "apps-picolle",
+      "config": "apps-picolle.json"
+    },
+    {
+      "id": "apps-picolle-privacy",
+      "config": "apps-picolle-privacy.json"
+    },
+    {
+      "id": "apps-picolle-support",
+      "config": "apps-picolle-support.json"
+    },
+    {
+      "id": "apps-picolle-terms",
+      "config": "apps-picolle-terms.json"
+    },
+    {
+      "id": "apps-picolle-tokushoho",
+      "config": "apps-picolle-tokushoho.json"
+    },
+    {
+      "id": "blog-article",
+      "config": "blog-article.json"
+    },
+    {
+      "id": "blog",
+      "config": "blog.json"
+    },
+    {
+      "id": "contact",
+      "config": "contact.json"
+    },
+    {
+      "id": "home",
+      "config": "home.json"
+    }
+  ]
+}

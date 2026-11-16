@@ -1,0 +1,31 @@
+{
+  "scope": "Home hero pixel background",
+  "functionalTests": {
+    "passed": 7,
+    "output": ".styleseed/evidence/home-pixel-background-tests.tap"
+  },
+  "blockingSourceFindings": 0,
+  "htmlBytes": 84531,
+  "htmlGzipBytes": 17629,
+  "geometryTested": [
+    [
+      1440,
+      240,
+      8
+    ],
+    [
+      480,
+      192,
+      6
+    ]
+  ],
+  "pausePolicyTested": [
+    "manual pause",
+    "reduced motion",
+    "outside viewport",
+    "hidden tab"
+  ],
+  "temporalVerification": "unobserved: native app pipe startup failed; browser access host unavailable",
+  "visualVerification": "not performed: no browser connection available",
+  "staticFallback": "implemented; no-JS and reduced-motion screenshots not observed"
+}

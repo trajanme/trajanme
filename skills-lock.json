@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "skills": {
+    "anti-ui-slop": {
+      "source": "uizze/uizze",
+      "sourceType": "github",
+      "skillPath": "skills/anti-ui-slop/SKILL.md",
+      "computedHash": "29e29b5bcb0bce74d329abe9c3c66be67ccd040afe31588a07871e623623afb4",
+      "installMode": "copy"
+    },
+    "emil-design-eng": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/emil-design-eng/SKILL.md",
+      "computedHash": "e1b377ccde1d32743d1d3f7d8626629deb8055c9114d180c184697928cc66cc6",
+      "installMode": "copy"
+    },
+    "styleseed": {
+      "source": "bitjaru/styleseed",
+      "sourceType": "github",
+      "skillPath": "skills/styleseed/SKILL.md",
+      "computedHash": "233b59c1b17d8c549c0339fffc713f3d60da5071a0718eab127b0fa8cd90f810",
+      "installMode": "copy"
+    }
+  }
+}

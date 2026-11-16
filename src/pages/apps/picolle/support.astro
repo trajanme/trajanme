@@ -36,8 +36,8 @@ const faqItems = [
       <p class="mt-2 text-gray-500">Picolle. に関するよくある質問とお問い合わせ</p>
 
       <!-- アプリ概要カード -->
-      <div class="mt-8 rounded-xl bg-white border border-gray-100 shadow-sm p-6">
-        <h2 class="text-lg font-bold text-picolle">{app.name}（ピコレ）</h2>
+      <div class="mt-8 rounded-xl bg-surface border border-gray-200  p-6">
+        <h2 class="text-lg font-bold text-primary">{app.name}（ピコレ）</h2>
         <p class="mt-1 text-sm text-gray-500">{app.tagline}</p>
         <p class="mt-3 text-sm text-gray-600 leading-relaxed">{app.description}</p>
       </div>
@@ -49,7 +49,7 @@ const faqItems = [
       </div>
 
       <!-- お問い合わせ -->
-      <div class="mt-10 rounded-xl bg-white border border-gray-100 shadow-sm p-8 text-center">
+      <div class="mt-10 rounded-xl bg-surface border border-gray-200  p-8 text-center">
         <h2 class="text-lg font-bold text-gray-900">お問い合わせ</h2>
         <p class="mt-2 text-sm text-gray-500">
           上記のFAQで解決しない場合は、以下のメールアドレスまでお気軽にお問い合わせください。<br />
@@ -57,7 +57,7 @@ const faqItems = [
         </p>
         <a
           href={`mailto:${app.contactEmail}`}
-          class="inline-flex items-center gap-2 mt-4 px-6 py-2.5 bg-picolle text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
+          class="inline-flex items-center gap-2 mt-4 px-6 py-2.5 bg-primary text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
         >
           <i class="ri-mail-line"></i>
           {app.contactEmail}

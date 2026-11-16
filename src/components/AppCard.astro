@@ -1,67 +1,13 @@
 ---
 import type { Platform } from '../data/apps';
-
-interface Props {
-  name: string;
-  tagline: string;
-  color: string;
-  href: string;
-  platforms: Platform[];
-  icon: string;
-  version?: string;
-}
-
-const { name, tagline, color, href, platforms, icon, version } = Astro.props;
-
-const platformIcons: Record<Platform, { icon: string; label: string }> = {
-  iOS: { icon: 'ri-apple-line', label: 'iOS' },
-  Android: { icon: 'ri-android-line', label: 'Android' },
-  Web: { icon: 'ri-global-line', label: 'Web' },
-};
+interface Props { name: string; tagline: string; color: string; href: string; platforms: Platform[]; icon: string; version?: string; }
+const { name, tagline, href, platforms, icon, version } = Astro.props;
+const walking = name === 'PawSteps';
 ---
-
-<a
-  href={href}
-  class="group block rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
->
-  <div class="flex items-start gap-4">
-    <!-- アプリアイコン -->
-    {icon ? (
-      <img src={icon} alt={name} class="w-14 h-14 rounded-xl shrink-0" />
-    ) : (
-      <div
-        class="w-14 h-14 rounded-xl shrink-0"
-        style={`background-color: var(--color-${color});`}
-      />
-    )}
-
-    <div class="min-w-0">
-      <h3 class="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors">
-        {name}
-      </h3>
-      <p class="mt-1 text-sm text-gray-500">{tagline}</p>
-
-      <!-- プラットフォームバッジ + バージョン -->
-      {(platforms.length > 0 || version) && (
-        <div class="mt-2 flex flex-wrap gap-1.5">
-          {platforms.map((p) => (
-            <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
-              <i class={platformIcons[p].icon}></i>
-              {platformIcons[p].label}
-            </span>
-          ))}
-          {version && (
-            <span class="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
-              {version}
-            </span>
-          )}
-        </div>
-      )}
-    </div>
+<a href={href} class="product-card">
+  <div class="product-card-media">
+    {walking ? <img class="product-dog" src="/images/pawsteps-corgi.png" alt="PawStepsのコーギーキャラクター" width="200" height="200" loading="lazy" /> : <img class="product-screen" src="/images/picolle-ss-1.png" alt="Picolle.の個展画面" width="180" height="390" loading="lazy" />}
+    <span class="product-card-category">{walking ? '楽しめる体をつくる' : '地域で育つ力を伸ばす'}</span>
   </div>
-
-  <div class="mt-4 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-    詳しく見る
-    <i class="ri-arrow-right-line ml-1"></i>
-  </div>
+  <div class="product-card-content"><div class="product-card-title">{icon && <img src={icon} alt="" width="48" height="48" loading="lazy" />}<div><h3>{name}</h3><span class="product-meta">{platforms.join(' / ')}{version && ` · ${version}`}</span></div><span class="product-arrow" aria-hidden="true">↗</span></div><p>{tagline}</p><span class="text-link">詳しく見る <span aria-hidden="true">→</span></span></div>
 </a>

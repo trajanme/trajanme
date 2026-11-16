@@ -26,28 +26,13 @@ const navItems = [
 ---
 
 <BaseLayout title={`${app.name} - daywizz`} description={app.description}>
-  <div style={`--app-color: var(--color-${app.color}); --app-bg: var(--color-${app.bgColor});`}>
-    <!-- アプリ用サブナビゲーション -->
-    <nav class="border-b border-gray-200 bg-[var(--app-bg)]">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="flex items-center gap-1 overflow-x-auto py-3 text-sm">
-          {navItems.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                'whitespace-nowrap px-3 py-1.5 rounded-full transition-colors',
-                currentPath === item.href
-                  ? 'bg-[var(--app-color)] text-white font-medium'
-                  : 'text-gray-600 hover:bg-gray-100',
-              ]}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
+  <div class="product-shell">
+    <nav class="app-subnav" aria-label={`${app.name} のナビゲーション`}>
+      <div class="site-container app-subnav-inner">
+        <a class="app-identity" href={`${basePath}/`}>{app.icon && <img src={app.icon} alt="" width="28" height="28" />}<strong>{app.name}</strong></a>
+        <div class="app-subnav-links">{navItems.map(item => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>)}</div>
       </div>
     </nav>
-
     <slot />
   </div>
 </BaseLayout>

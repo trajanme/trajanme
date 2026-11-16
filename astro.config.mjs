@@ -8,6 +8,8 @@ export default defineConfig({
   site: 'https://daywizz.com',
   output: 'static',
   trailingSlash: 'always',
+  // Keep the local preview free of development controls over product content.
+  devToolbar: { enabled: false },
   vite: {
     plugins: [tailwindcss()]
   }

@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "StyleSeed Token Import",
+    "version": "5.0.0",
+    "format": "dtcg"
+  },
+  "input": {
+    "source": "design/brand/tokens.json",
+    "format": "dtcg",
+    "mode": "light",
+    "modeName": null,
+    "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9"
+  },
+  "tokens": {
+    "total": 41,
+    "byType": {
+      "color": 15,
+      "dimension": 13,
+      "typography": 8,
+      "fontFamily": 1,
+      "number": 4
+    },
+    "layering": {
+      "status": "partial",
+      "counts": {
+        "primitive": 0,
+        "semantic": 0,
+        "type": 8,
+        "component": 0,
+        "outside": 33,
+        "total": 41
+      }
+    }
+  },
+  "mapping": {
+    "background": {
+      "token": "color.kinari",
+      "value": "#F6F3E9",
+      "via": "project"
+    },
+    "surface": {
+      "token": "color.surface",
+      "value": "#FFFDF8",
+      "via": "project"
+    },
+    "chrome": {
+      "token": "color.forest",
+      "value": "#2F5D50",
+      "via": "project"
+    },
+    "foreground": {
+      "token": "color.sumi",
+      "value": "#24221E",
+      "via": "project"
+    },
+    "mutedForeground": {
+      "token": "color.ink-muted",
+      "value": "#65675C",
+      "via": "project"
+    },
+    "chromeForeground": {
+      "token": "color.on-forest",
+      "value": "#FFFFFF",
+      "via": "project"
+    },
+    "border": {
+      "token": "color.line",
+      "value": "#C7CBBD",
+      "via": "project"
+    },
+    "primary": {
+      "token": "color.akari",
+      "value": "#E0913A",
+      "via": "project"
+    },
+    "primaryForeground": {
+      "token": "color.sumi",
+      "value": "#24221E",
+      "via": "project"
+    },
+    "accent": {
+      "token": "color.forest",
+      "value": "#2F5D50",
+      "via": "project"
+    },
+    "accentForeground": {
+      "token": "color.on-forest",
+      "value": "#FFFFFF",
+      "via": "project"
+    },
+    "focus": {
+      "token": "color.forest",
+      "value": "#2F5D50",
+      "via": "project"
+    },
+    "success": {
+      "token": "color.success",
+      "value": "#2F5D50",
+      "via": "project"
+    },
+    "successForeground": {
+      "token": "color.on-forest",
+      "value": "#FFFFFF",
+      "via": "project"
+    },
+    "warning": {
+      "token": "color.warning",
+      "value": "#8A5700",
+      "via": "project"
+    },
+    "warningForeground": {
+      "token": "color.on-forest",
+      "value": "#FFFFFF",
+      "via": "project"
+    },
+    "danger": {
+      "token": "color.danger",
+      "value": "#A6372D",
+      "via": "project"
+    },
+    "dangerForeground": {
+      "token": "color.on-forest",
+      "value": "#FFFFFF",
+      "via": "project"
+    }
+  },
+  "roles": {
+    "background": "#F6F3E9",
+    "surface": "#FFFDF8",
+    "chrome": "#2F5D50",
+    "foreground": "#24221E",
+    "mutedForeground": "#65675C",
+    "chromeForeground": "#FFFFFF",
+    "border": "#C7CBBD",
+    "primary": "#E0913A",
+    "primaryForeground": "#24221E",
+    "accent": "#2F5D50",
+    "accentForeground": "#FFFFFF",
+    "focus": "#2F5D50",
+    "success": "#2F5D50",
+    "successForeground": "#FFFFFF",
+    "warning": "#8A5700",
+    "warningForeground": "#FFFFFF",
+    "danger": "#A6372D",
+    "dangerForeground": "#FFFFFF"
+  },
+  "contrast": [
+    {
+      "foreground": "foreground",
+      "background": "background",
+      "ratio": 14.3,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "mutedForeground",
+      "background": "background",
+      "ratio": 5.19,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "foreground",
+      "background": "surface",
+      "ratio": 15.62,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "chromeForeground",
+      "background": "chrome",
+      "ratio": 7.49,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "primaryForeground",
+      "background": "primary",
+      "ratio": 6.26,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "accentForeground",
+      "background": "accent",
+      "ratio": 7.49,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "successForeground",
+      "background": "success",
+      "ratio": 7.49,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "warningForeground",
+      "background": "warning",
+      "ratio": 6.1,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "dangerForeground",
+      "background": "danger",
+      "ratio": 6.55,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "background",
+      "ratio": 6.75,
+      "minimum": 3,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "surface",
+      "ratio": 7.37,
+      "minimum": 3,
+      "pass": true
+    }
+  ],
+  "valid": true,
+  "typeRoles": [
+    {
+      "role": "display",
+      "token": "type.display",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "56px",
+      "fontWeight": 700,
+      "lineHeight": "1.1428571428571428"
+    },
+    {
+      "role": "h1",
+      "token": "type.h1",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "40px",
+      "fontWeight": 700,
+      "lineHeight": "1.5"
+    },
+    {
+      "role": "h2",
+      "token": "type.h2",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "28px",
+      "fontWeight": 700,
+      "lineHeight": "1.5"
+    },
+    {
+      "role": "h3",
+      "token": "type.h3",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "20px",
+      "fontWeight": 700,
+      "lineHeight": "1.6"
+    },
+    {
+      "role": "body",
+      "token": "type.body",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "16px",
+      "fontWeight": 400,
+      "lineHeight": "1.75"
+    },
+    {
+      "role": "small",
+      "token": "type.small",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "14px",
+      "fontWeight": 400,
+      "lineHeight": "1.7142857142857142"
+    },
+    {
+      "role": "caption",
+      "token": "type.caption",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "12px",
+      "fontWeight": 500,
+      "lineHeight": "1.6666666666666667"
+    },
+    {
+      "role": "button",
+      "token": "type.button",
+      "fontFamily": "Zen Kaku Gothic Antique",
+      "fontSize": "15px",
+      "fontWeight": 700,
+      "lineHeight": "1"
+    }
+  ],
+  "problems": [],
+  "warnings": [
+    "33 token(s) sit outside the four layers and are imported as-is"
+  ],
+  "notes": [],
+  "reasoning": [
+    "Values come from the project's token file; StyleSeed mapped its semantic roles onto them and measured contrast.",
+    "Nothing was generated, adjusted, or substituted. A failing gate or an unmapped role is a decision for the design-system owner."
+  ],
+  "css": ":root {\n  --ss-background: #F6F3E9; /* color.kinari */\n  --ss-surface: #FFFDF8; /* color.surface */\n  --ss-chrome: #2F5D50; /* color.forest */\n  --ss-foreground: #24221E; /* color.sumi */\n  --ss-muted-foreground: #65675C; /* color.ink-muted */\n  --ss-chrome-foreground: #FFFFFF; /* color.on-forest */\n  --ss-border: #C7CBBD; /* color.line */\n  --ss-primary: #E0913A; /* color.akari */\n  --ss-primary-foreground: #24221E; /* color.sumi */\n  --ss-accent: #2F5D50; /* color.forest */\n  --ss-accent-foreground: #FFFFFF; /* color.on-forest */\n  --ss-focus: #2F5D50; /* color.forest */\n  --ss-success: #2F5D50; /* color.success */\n  --ss-success-foreground: #FFFFFF; /* color.on-forest */\n  --ss-warning: #8A5700; /* color.warning */\n  --ss-warning-foreground: #FFFFFF; /* color.on-forest */\n  --ss-danger: #A6372D; /* color.danger */\n  --ss-danger-foreground: #FFFFFF; /* color.on-forest */\n}"
+}

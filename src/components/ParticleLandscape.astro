@@ -1,0 +1,121 @@
+---
+import { createParticleCloud, sampleParticleField, dotsPath } from '../lib/particle-landscape.mjs';
+const still = sampleParticleField(createParticleCloud(2000),0,720,600);
+---
+<div class="particle-scenery" data-particle-scenery>
+  <div class="particle-visual" data-particle-visual aria-hidden="true">
+    <svg class="particle-fallback" viewBox="0 0 720 600" preserveAspectRatio="xMidYMid meet" focusable="false" aria-hidden="true">
+      <path class="particle-forest" d={dotsPath(still)} />
+      <path class="particle-akari" d={dotsPath(still,true)} />
+    </svg>
+    <canvas class="particle-canvas" data-particle-canvas aria-hidden="true"></canvas>
+  </div>
+  <button class="scenery-control" type="button" aria-label="背景のアニメーション" aria-pressed="false" title="背景の動きを止める" data-scenery-toggle hidden>
+    <svg width="16" height="16" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true" focusable="false"><path class="scenery-pause-icon" d="M3 2h3v10H3zm5 0h3v10H8z" /><path class="scenery-play-icon" d="M4 2l8 5-8 5z" /></svg>
+  </button>
+</div>
+
+<script>
+  import { createParticleCloud, sampleParticleField, shouldAnimateLandscape } from '../lib/particle-landscape.mjs';
+  const scenery=document.querySelector<HTMLElement>('[data-particle-scenery]');
+  const visual=scenery?.querySelector<HTMLElement>('[data-particle-visual]');
+  const canvas=scenery?.querySelector<HTMLCanvasElement>('[data-particle-canvas]');
+  const button=scenery?.querySelector<HTMLButtonElement>('[data-scenery-toggle]');
+  // If Canvas is unavailable, the server-rendered dot sculpture stays visible.
+  if (scenery && visual && canvas && button) {
+    let ctx: CanvasRenderingContext2D | null = null;
+    try { ctx=canvas.getContext('2d'); } catch { /* SVG is the complete static fallback. */ }
+    if (ctx) {
+      const context=ctx;
+      const preference=window.matchMedia('(prefers-reduced-motion: reduce)');
+      let userPaused=false;
+      try { userPaused=sessionStorage.getItem('daywizz-scenery-paused')==='true'; } catch { /* Per-page controls still work without storage. */ }
+      let inView=true, width=0, height=0, elapsed=0, previousTime=0, previousPaint=0;
+      let request=0;
+      let cloud=createParticleCloud(3000);
+      let colors:string[]=[];
+      const draw = (time:number) => {
+        if (!width || !height) return;
+        context.clearRect(0,0,width,height);
+        for (const point of sampleParticleField(cloud,time,width,height)) {
+          context.globalAlpha=point.opacity;
+          context.fillStyle=colors[Math.round(point.accent*100)];
+          context.beginPath(); context.arc(point.x,point.y,point.radius,0,Math.PI*2); context.fill();
+        }
+        context.globalAlpha=1;
+        scenery.dataset.ready='true';
+      };
+      const tick = (timestamp:number) => {
+        if (previousTime) elapsed+=Math.min(timestamp-previousTime,80);
+        previousTime=timestamp;
+        if (timestamp-previousPaint>=1000/30) { draw(elapsed); previousPaint=timestamp; }
+        request=requestAnimationFrame(tick);
+      };
+      const sync = () => {
+        const running=shouldAnimateLandscape({reducedMotion:preference.matches,userPaused,inView,documentHidden:document.hidden});
+        if (request) { cancelAnimationFrame(request); request=0; }
+        previousTime=0; previousPaint=0;
+        button.hidden=preference.matches;
+        button.setAttribute('aria-pressed',String(!userPaused && !preference.matches));
+        scenery.dataset.userPaused=String(userPaused);
+        scenery.dataset.running=String(running);
+        button.title=userPaused ? '背景の動きを再開する' : '背景の動きを止める';
+        if (preference.matches) { elapsed=0; draw(0); }
+        if (running) request=requestAnimationFrame(tick);
+      };
+      const resize = () => {
+        const rect=visual.getBoundingClientRect(); width=rect.width; height=rect.height;
+        if (!width || !height) return;
+        const dpr=Math.min(window.devicePixelRatio || 1,2);
+        canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr);
+        context.setTransform(dpr,0,0,dpr,0,0);
+        const tokens=getComputedStyle(scenery);
+        const rgb=(name:string)=>tokens.getPropertyValue(name).trim().slice(1).match(/.{2}/g)!.map(value=>parseInt(value,16));
+        const forest=rgb('--forest'), akari=rgb('--akari');
+        colors=Array.from({length:101},(_,i)=>`rgb(${forest.map((value,c)=>Math.round(value+(akari[c]-value)*i/100)).join(',')})`);
+        cloud=createParticleCloud(width<500 ? 1400 : 3000);
+        draw(preference.matches ? 0 : elapsed);
+      };
+      button.addEventListener('click',()=>{
+        userPaused=!userPaused;
+        try { sessionStorage.setItem('daywizz-scenery-paused',String(userPaused)); } catch { /* Keep the choice in memory. */ }
+        sync();
+      });
+      preference.addEventListener('change',sync);
+      document.addEventListener('visibilitychange',sync);
+      if ('ResizeObserver' in window) new ResizeObserver(resize).observe(visual);
+      window.addEventListener('resize',resize,{passive:true});
+      if ('IntersectionObserver' in window) {
+        const observer=new IntersectionObserver(entries=>{inView=entries.some(entry=>entry.isIntersecting);sync();},{threshold:0});
+        observer.observe(scenery);
+      }
+      resize(); sync();
+      window.addEventListener('pagehide',()=>{if(request)cancelAnimationFrame(request);request=0;});
+      window.addEventListener('pageshow',sync);
+    }
+  }
+</script>
+
+<style>
+  .particle-scenery { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+  .particle-visual { position:absolute; left:46%; right:2%; top:0; bottom:24px; }
+  .particle-fallback, .particle-canvas { position:absolute; inset:0; width:100%; height:100%; }
+  .particle-fallback { overflow:visible; }
+  .particle-forest { fill:var(--forest); opacity:.54; }
+  .particle-akari { fill:var(--akari); opacity:.57; }
+  .particle-canvas { visibility:hidden; }
+  [data-ready="true"] .particle-canvas { visibility:visible; }
+  [data-ready="true"] .particle-fallback { visibility:hidden; }
+  .scenery-control { position:absolute; right:max(var(--space-4),calc((100% - 1120px) / 2)); bottom:var(--space-3); z-index:2; display:inline-flex; gap:var(--space-2); align-items:center; width:44px; height:44px; padding:0; justify-content:center; border:1px solid var(--line); border-radius:var(--radius-pill); background:var(--kinari); color:var(--forest); font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; pointer-events:auto; }
+  .scenery-control:active { transform:scale(.97); }
+  .scenery-control:focus-visible { outline:2px solid var(--forest); outline-offset:3px; }
+  .scenery-control:hover { background:var(--surface); }
+  .scenery-play-icon { display:none; }
+  [data-user-paused="true"] .scenery-play-icon { display:block; }
+  [data-user-paused="true"] .scenery-pause-icon { display:none; }
+  @media (max-width:767px) {
+    .particle-visual { left:0; right:0; top:auto; bottom:48px; height:330px; }
+    .scenery-control { bottom:var(--space-2); }
+  }
+  @media (prefers-reduced-motion:reduce) { .scenery-control { display:none; } }
+</style>

@@ -1,0 +1,17 @@
+{
+  "scope": "Home hero dot collective",
+  "blockingSourceFindings": 0,
+  "tests": {
+    "passed": 9,
+    "failed": 0,
+    "report": ".styleseed/evidence/home-particle-background/functional.tap"
+  },
+  "reference": "https://www.ignitionpoint-inc.com/",
+  "referenceObserved": "public HTML with canvas; motion not visually observed",
+  "geometryPreview": "Model frames at 0, 11000, 22000, 33000 ms; PNG inspected, not browser screenshots",
+  "builtFallback": "rendered built SVG with compiler-only boolean scope attributes removed for XML compatibility; inspected",
+  "browserTemporalVerification": "unobserved: native pipe startup failed; browser host unavailable",
+  "modelSha256": "e9112f89ee383f3dcf95d011f8c4cf6a465f83f533cd91b5c845b781cac6fa18",
+  "latestRefinement": "design/hero-refinement.md",
+  "photo": "Nicholas Graves / NickAura, CC BY 3.0; public attribution in home"
+}

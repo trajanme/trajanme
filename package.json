@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:app-store": "node scripts/check-app-store-updates.mjs"
+    "check:app-store": "node scripts/check-app-store-updates.mjs",
+    "test:ui": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",

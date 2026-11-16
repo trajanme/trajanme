@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "apps-omiya",
+  "target": {
+    "kind": "route",
+    "locator": "/apps/omiya/"
+  },
+  "selection": {
+    "grammar": "expressive-marketing",
+    "adapter": "product-ui",
+    "domain": "content",
+    "page": "landing",
+    "recipe": "expressive-brand",
+    "palette": null,
+    "profile": "none",
+    "fallback": "expressive-marketing"
+  },
+  "decisions": {
+    "primaryDecision": "Understand omiya and decide whether its actual offering is relevant.",
+    "primaryAction": "Follow the product’s existing destination or supported availability state.",
+    "signatureMove": "土地と灯り: calm kinari and forest framing, genuine product evidence, and one akari emphasis per screen."
+  },
+  "implementation": {
+    "sourceRoots": [
+      "src/pages/apps/omiya/index.astro",
+      "src/components",
+      "src/layouts",
+      "src/styles",
+      "src/data",
+      "public/brand",
+      "public/images",
+      "astro.config.mjs",
+      "package.json",
+      "src/lib",
+      "test",
+      "package-lock.json",
+      "scripts/sync-styleseed-spacing.mjs"
+    ],
+    "tokenFiles": [
+      "src/styles/global.css",
+      "design/brand/tokens.json",
+      "design/brand/tokens.css",
+      "design/brand/components.css"
+    ]
+  },
+  "validation": {
+    "scoreFloor": 80,
+    "requiredRenders": [
+      {
+        "id": "mobile-loaded",
+        "state": "loaded",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      {
+        "id": "desktop-loaded",
+        "state": "loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    ],
+    "temporal": {
+      "required": false,
+      "scenarios": []
+    },
+    "humanAcceptance": true
+  }
+}

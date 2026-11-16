@@ -1,115 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { releasedApps } from '../data/apps';
 ---
-
-<BaseLayout title="About - daywizz" description="daywizz 代表 石川真太郎のプロフィール">
-  <section class="py-16">
-    <div class="max-w-3xl mx-auto px-4">
-      <!-- プロフィールヘッダー -->
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
-        <!-- プロフィール画像プレースホルダー -->
-        <img src="/images/profile.jpg" alt="石川 真太郎" class="w-32 h-32 rounded-full object-cover shrink-0" />
-
-        <div>
-          <h1 class="text-2xl font-bold text-gray-900">石川 真太郎</h1>
-          <p class="mt-1 text-sm text-gray-500">Shintaro Ishikawa</p>
-          <p class="mt-2 text-sm text-gray-500">daywizz 代表 / コンサルタント / ソロプレナー</p>
-        </div>
-      </div>
-
-      <!-- 経歴 -->
-      <div class="mt-12">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">経歴</h2>
-        <p class="text-gray-600 leading-relaxed">
-          1990年生まれ、東京出身、兵庫県在住。ITコンサルタントとして企業のデジタル変革を支援する傍ら、
-          ソロプレナーとして個人開発に取り組んでいます。3児の父として、日々の子育てや暮らしの中から
-          アプリのアイデアを見つけ、形にしています。
-        </p>
-      </div>
-
-      <!-- 実績 -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">実績</h2>
-        <ul class="space-y-3 text-gray-600">
-          <li class="flex items-start gap-2">
-            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
-            <span>omiya - 訪日観光客向けお土産紹介アプリのリリース</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
-            <span>Picolle. - お子さまの作品を美術館風に保存できるアプリのリリース</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <i class="ri-check-line text-primary mt-0.5 shrink-0"></i>
-            <span>PawSteps - かわいい犬と歩く歩数計アプリをリリース</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- スキル -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">スキル</h2>
-        <div class="flex flex-wrap gap-2">
-          {[
-            'システムアーキテクト',
-            'G検定',
-            'Next.js',
-            'Swift / SwiftUI',
-            'TypeScript',
-            'Supabase',
-            'ITコンサルティング',
-            '個人開発',
-          ].map((skill) => (
-            <span class="inline-block px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <!-- ビジョン -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">ビジョン</h2>
-        <p class="text-gray-600 leading-relaxed">
-          みんなの何気ない日常をデジタルの力でより良くしていきたい。
-          大きなイノベーションではなく、毎日の暮らしの中にある小さな不便や「もっとこうだったらいいのに」を
-          一つずつ解決していく。そんなプロダクトづくりを通じて、多くの人の日常に小さな魔法をかけていきます。
-        </p>
-      </div>
-
-      <!-- SNS -->
-      <div class="mt-10">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">SNS</h2>
-        <div class="flex gap-4">
-          <a
-            href="https://x.com/shin_daywizz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <i class="ri-twitter-x-line text-xl"></i>
-            <span class="text-sm">X (Twitter)</span>
-          </a>
-          <a
-            href="https://github.com/trajanme"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <i class="ri-github-line text-xl"></i>
-            <span class="text-sm">GitHub</span>
-          </a>
-          <a
-            href="https://note.com/shin_daywizz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <i class="ri-file-text-line text-xl"></i>
-            <span class="text-sm">note</span>
-          </a>
-        </div>
-      </div>
+<BaseLayout title="daywizzについて - daywizz" description="地域に、ちいさな魔法を。daywizzの思いと、代表・石川真太郎のプロフィール。">
+  <section class="section-space site-container reading-page">
+    <header class="page-intro"><p class="eyebrow">daywizzについて</p><h1>土地と、人の可能性に。<br />小さな灯りをともす。</h1><p>日本各地の魅力に光を当て、地域がにぎわい続ける仕組みをつくる。<br />それが、daywizzの目指すことです。</p></header>
+    <div class="prose mt-10 max-w-none">
+      <h2>地域が主役。</h2><p>訪れる人が土地の良さを知り、暮らす人が元気に楽しみ、そこで育つ子がAI時代を力強く生きる。そんな日本を目指しています。</p>
+      <p>兵庫を拠点に、まずは関西の身近な地域から。土地の魅力や人の思いに触れながら、にぎわいが続くきっかけを育てていきます。</p>
+      <p>歩くことが楽しみになるPawSteps。子どもの作品と成長を残すPicolle.。身近な暮らしの中にある課題から始め、小さく、速く、届く形で育てていきます。</p>
+      <h2>一度きりで、終わらせない。</h2><p>コンサルティングで培ったIT・業務変革への理解と、AIを活用した少人数での開発を組み合わせ、予算や人手の少ない地域でも使える規模と価格を考えます。つくって終わりではなく、続けられる仕組みまで整えることを大切にしています。</p>
     </div>
+    <section class="mt-12 border-t border-gray-200 pt-10" aria-labelledby="profile-title">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-center"><img src="/images/profile.jpg" alt="石川 真太郎" width="112" height="112" class="h-28 w-28 rounded-full object-cover" loading="lazy" /><div><p class="eyebrow">つくっている人</p><h2 id="profile-title" class="mt-2">石川 真太郎</h2><p class="text-sm text-gray-500">Shintaro Ishikawa / daywizz代表・ITコンサルタント</p></div></div>
+      <p class="mt-6 text-gray-600">1990年生まれ、東京出身、兵庫県在住。ITコンサルタントとして企業のデジタル変革を支援する傍ら、個人でアプリを開発しています。3児の父として、日々の子育てや暮らしの中からアイデアを見つけ、形にしています。</p>
+      <div class="mt-8"><h3>これまでにつくったもの</h3><ul class="mt-4 space-y-3">{releasedApps.map(app => <li><a class="text-link" href={`/apps/${app.id}/`}>{app.name} <span aria-hidden="true">↗</span></a><p class="text-sm text-gray-500">{app.tagline}</p></li>)}</ul><p class="mt-4 text-sm text-gray-500"><a href="/apps/omiya/" class="underline">omiya</a>は、現在準備中です。</p></div>
+      <div class="mt-8"><h3>技術・専門領域</h3><div class="mt-4 flex flex-wrap gap-2">{['システムアーキテクト','G検定','Next.js','Swift / SwiftUI','TypeScript','Supabase','Web開発','ITコンサルティング','個人開発'].map(skill => <span class="tag">{skill}</span>)}</div></div>
+    </section>
+    <div class="mt-12 border-t border-gray-200 pt-8"><a href="/contact/" class="button button-primary">お問い合わせ <span aria-hidden="true">↗</span></a><a href="/blog/" class="text-link ml-4">活動の足跡 <span aria-hidden="true">→</span></a></div>
   </section>
 </BaseLayout>

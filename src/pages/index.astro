@@ -1,115 +1,44 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
 import AppCard from '../components/AppCard.astro';
+import ParticleLandscape from '../components/ParticleLandscape.astro';
 import BlogPostCard from '../components/BlogPostCard.astro';
 import { releasedApps } from '../data/apps';
 import { getCollection } from 'astro:content';
-
-// ブログ記事を取得（下書きを除外、日付降順、最新3件）
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const latestPosts = allPosts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const latestPosts = allPosts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0,3);
 ---
-
-<BaseLayout title="daywizz - 日常をより楽しくする魔法をかける">
-  <!-- ヒーロー -->
-  <HeroSection
-    title="日常をより楽しくする魔法をかける"
-    subtitle="daywizz は「day（日常）」と「wizard（魔法使い）」。何気ない毎日にちょっとした魔法をかけて、より楽しく、より豊かにするプロダクトを作っています。"
-    ctaText="アプリを見る"
-    ctaHref="#apps"
-  />
-
-  <!-- About 要約 -->
-  <section class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-gray-900">About daywizz</h2>
-      <p class="mt-4 text-gray-500 leading-relaxed">
-        daywizz（デイウィズ）は、日常の中にある小さな幸せに着目し、
-        デジタルの力でそれをもっと楽しく、もっと豊かにすることを目指しています。
-        健康、子育て、暮らし。身近なテーマからアプリを開発し、
-        みんなの何気ない日常をより良くしていきます。
-      </p>
-      <a
-        href="/about/"
-        class="inline-flex items-center gap-1 mt-6 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
-      >
-        詳しく見る
-        <i class="ri-arrow-right-line"></i>
-      </a>
+<BaseLayout title="daywizz — 地域に、ちいさな魔法を。" description="日本各地の魅力に光を当て、地域がにぎわい続ける仕組みをつくる。暮らしに寄り添うアプリと、IT・業務の仕組みづくりに取り組むdaywizzです。">
+  <section class="hero-scene" aria-labelledby="home-title">
+    <div class="hero-photo" aria-hidden="true"><img src="/images/hero-katsura.webp" alt="" width="1000" height="750" fetchpriority="high" decoding="async" /></div>
+    <ParticleLandscape />
+    <div class="home-hero site-container">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>暮らしから、地域へ。</p>
+      <h1 id="home-title">地域に、<br />ちいさな魔法を。</h1>
+      <p class="hero-lead">訪れる人に、土地の魅力を。<br />暮らす人に、毎日の楽しみを。<br />そこで育つ子に、広がる可能性を。</p>
+      <p class="hero-description">身近な暮らしに寄り添うアプリと、<br class="desktop-break" />IT・業務の仕組みづくりから始めています。</p>
+      <div class="hero-actions"><a href="#apps" class="button button-primary">アプリを見る <span aria-hidden="true">↓</span></a><a href="/about/" class="text-link">daywizzについて <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="hero-dot-stage" aria-hidden="true"></div>
     </div>
   </section>
+  <p class="hero-photo-credit site-container">背景写真：<a href="https://commons.wikimedia.org/wiki/File:Katsura_River_at_Arashiyama.jpg">京都・嵐山 / Nicholas Graves (NickAura)</a> · <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>（トリミング・生成りのフェードを追加）</p>
 
-  <!-- アプリ一覧 -->
-  <section id="apps" class="py-16 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 text-center">Apps</h2>
-      <p class="mt-2 text-center text-gray-500">daywizz が開発したアプリ</p>
-
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {releasedApps.map((app) => (
-          <AppCard
-            name={app.name}
-            tagline={app.tagline}
-            color={app.color}
-            href={`/apps/${app.id}/`}
-            platforms={app.platforms}
-            icon={app.icon}
-            version={app.version}
-          />
-        ))}
-      </div>
-    </div>
+  <section class="mission-section" aria-labelledby="mission-title">
+    <div class="site-container mission-inner"><p class="eyebrow">大切にしていること</p><div><h2 id="mission-title">主役は、土地とそこに暮らす人。</h2><p>日本各地の魅力に光を当て、地域がにぎわい続ける仕組みをつくる。<br class="desktop-break" />まずは拠点のある関西から、小さく始めて、続く形を育てていきます。</p></div><a href="/about/" class="text-link">私たちの思い <span aria-hidden="true">↗</span></a></div>
   </section>
 
-  <!-- 最新ブログ記事 -->
-  {latestPosts.length > 0 && (
-  <section class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 text-center">Blog</h2>
-      <p class="mt-2 text-center text-gray-500">最新の記事</p>
-
-      <div class="mt-8 flex flex-col">
-        {latestPosts.map((post) => (
-          <BlogPostCard
-            title={post.data.title}
-            date={post.data.pubDate}
-            tags={post.data.tags}
-            slug={post.id}
-            excerpt={post.data.description}
-          />
-        ))}
-      </div>
-
-      <div class="mt-8 text-center">
-        <a
-          href="/blog/"
-          class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
-        >
-          すべての記事を見る
-          <i class="ri-arrow-right-line"></i>
-        </a>
-      </div>
-    </div>
+  <section id="apps" class="section-space site-container" aria-labelledby="apps-title">
+    <div class="section-heading"><div><p class="eyebrow">暮らしに寄り添うアプリ</p><h2 id="apps-title">いつもの毎日に、<br class="mobile-break" />新しいきっかけを。</h2></div><p>自分や家族の「こうだったらいいのに」から<br class="desktop-break" />生まれたプロダクトです。</p></div>
+    <div class="product-grid">{releasedApps.map(app => <AppCard name={app.name} tagline={app.tagline} color={app.color} href={`/apps/${app.id}/`} platforms={app.platforms} icon={app.icon} version={app.version} />)}</div>
+    <a href="/apps/omiya/" class="upcoming-row"><span class="status-label">準備中</span><strong>omiya</strong><span>日本のおみやげ文化を世界へ</span><span aria-hidden="true">↗</span></a>
   </section>
-  )}
 
-  <!-- Contact CTA -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-gray-900">Contact</h2>
-      <p class="mt-4 text-gray-500">
-        ご質問・ご要望・お仕事のご相談など、お気軽にお問い合わせください。
-      </p>
-      <a
-        href="/contact/"
-        class="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-sm"
-      >
-        お問い合わせ
-        <i class="ri-mail-line"></i>
-      </a>
-    </div>
-  </section>
+  <section class="journal-section section-space" aria-labelledby="journal-title"><div class="site-container">
+    <div class="section-heading"><div><p class="eyebrow">日々の取り組みを、少しずつ</p><h2 id="journal-title">活動の足跡</h2></div><a href="/blog/" class="text-link">すべての記事 <span aria-hidden="true">↗</span></a></div>
+    {latestPosts.length > 0 ? <div class="journal-list">{latestPosts.map(post => <BlogPostCard title={post.data.title} date={post.data.pubDate} tags={post.data.tags} slug={post.id} excerpt={post.data.description} />)}</div> : <p class="empty-state">日々の取り組みを、これから少しずつお届けします。</p>}
+  </div></section>
+
+  <section class="section-space site-container"><div class="contact-band"><div><p class="eyebrow">一緒に、できることを。</p><h2>地域や暮らしの「困った」を、<br />話すところから。</h2><p>アプリのご質問も、IT・業務のご相談も。<br />まずはお気軽にお聞かせください。</p></div><a href="/contact/" class="button button-on-forest">お問い合わせ <span aria-hidden="true">↗</span></a></div></section>
 </BaseLayout>

@@ -21,10 +21,10 @@ const formattedDate = post.data.pubDate.toLocaleDateString('ja-JP', {
 ---
 
 <BaseLayout title={`${post.data.title} - daywizz`} description={post.data.description}>
-  <article class="py-16">
-    <div class="max-w-3xl mx-auto px-4">
+  <article class="section-space site-container reading-page">
+    <div>
       <!-- ヘッダー -->
-      <header class="mb-8">
+      <header class="article-header">
         <time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-400">
           {formattedDate}
         </time>
@@ -45,7 +45,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('ja-JP', {
       </header>
 
       <!-- 本文 -->
-      <div class="prose prose-gray max-w-none">
+      <div class="prose max-w-none">
         <Content />
       </div>
 
@@ -53,7 +53,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('ja-JP', {
       <div class="mt-12 pt-8 border-t border-gray-200">
         <a
           href="/blog/"
-          class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:opacity-80 transition-opacity"
+          class="text-link"
         >
           <i class="ri-arrow-left-line"></i>
           記事一覧に戻る

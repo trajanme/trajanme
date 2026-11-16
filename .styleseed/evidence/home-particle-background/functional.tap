@@ -1,0 +1,21 @@
+
+> daywizz-website@0.0.1 test:ui
+> node --test test/*.test.mjs
+
+✔ background-animation-pause-policy (0.524417ms)
+✔ particle-field-fits-responsive-viewports (19.094959ms)
+✔ particle-shapes-morph-continuously (0.418708ms)
+✔ logo-hold-preserves-source-artwork (8.957ms)
+✔ navigation-targets-exist (9.736875ms)
+✔ route-artifact-mapping (1.732166ms)
+✔ tag-filter-matches-exact-tags (0.266417ms)
+✔ contact-mailto-preserves-content (0.99825ms)
+✔ legal-wording-is-retained (45.8095ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.6175

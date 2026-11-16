@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "id": "contact",
+  "target": {
+    "kind": "route",
+    "locator": "/contact/"
+  },
+  "selection": {
+    "grammar": "consumer-service",
+    "adapter": "product-ui",
+    "domain": "content",
+    "page": "form",
+    "recipe": "calm-consumer",
+    "palette": null,
+    "profile": "none",
+    "fallback": "consumer-service"
+  },
+  "decisions": {
+    "primaryDecision": "Choose whether and how to contact daywizz.",
+    "primaryAction": "Complete the existing contact flow with explicit labels and consent.",
+    "signatureMove": "Readable Japanese hierarchy and quiet shared daywizz framing; keep prose out of decorative card grids."
+  },
+  "implementation": {
+    "sourceRoots": [
+      "src/pages/contact.astro",
+      "src/components",
+      "src/layouts",
+      "src/styles",
+      "src/data",
+      "public/brand",
+      "public/images",
+      "astro.config.mjs",
+      "package.json",
+      "src/lib",
+      "test",
+      "package-lock.json",
+      "scripts/sync-styleseed-spacing.mjs"
+    ],
+    "tokenFiles": [
+      "src/styles/global.css",
+      "design/brand/tokens.json",
+      "design/brand/tokens.css",
+      "design/brand/components.css"
+    ]
+  },
+  "validation": {
+    "scoreFloor": 80,
+    "requiredRenders": [
+      {
+        "id": "mobile-loaded",
+        "state": "loaded",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      {
+        "id": "desktop-loaded",
+        "state": "loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    ],
+    "temporal": {
+      "required": false,
+      "scenarios": []
+    },
+    "humanAcceptance": true,
+    "functional": {
+      "scenarios": [
+        "contact-mailto-preserves-content"
+      ]
+    }
+  }
+}

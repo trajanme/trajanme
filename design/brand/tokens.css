@@ -1,0 +1,33 @@
+/* Initial token canon: see tokens.json for observed versus proposed values.
+ * Imported by src/styles/global.css; supplemental values remain initial proposals. */
+:root {
+  --kinari: #F6F3E9;
+  --surface: #FFFDF8;
+  --forest: #2F5D50;
+  --forest-deep: #23483E;
+  --akari: #E0913A;
+  --akari-text: #995414;
+  --sumi: #24221E;
+  --ink-muted: #65675C;
+  --wakaba: #E3EAD9;
+  --line: #C7CBBD;
+  --on-forest: #FFFFFF;
+  --on-forest-muted: #E3EAD9;
+  --success: #2F5D50;
+  --warning: #8A5700;
+  --danger: #A6372D;
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-pill: 9999px;
+  --font-sans: "Zen Kaku Gothic Antique", sans-serif;
+}

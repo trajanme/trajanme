@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 2,
+  "artifactId": "apps-omiya",
+  "engineVersion": "5.0.0",
+  "engineRevision": "sha256:9bddb23ed24bad0c8feb95c8d9855de7d71468941cff8daa475b6fe066b2cd75",
+  "distributionIntegrity": "verified",
+  "selection": {
+    "agent": "codex",
+    "grammar": "expressive-marketing",
+    "grammarSource": "built-in:expressive-marketing",
+    "referenceContract": null,
+    "fallback": "expressive-marketing",
+    "adapter": "product-ui",
+    "domain": "content",
+    "page": "landing",
+    "recipe": "expressive-brand",
+    "recipeSelection": "expressive-brand",
+    "palette": "quiet-mineral",
+    "paletteSelection": "quiet-mineral",
+    "paletteGeneration": null,
+    "tokenCanon": {
+      "source": "design/brand/tokens.json",
+      "format": "dtcg",
+      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "mode": "light",
+      "modeName": null
+    },
+    "profile": "none"
+  },
+  "inputs": [
+    {
+      "id": "project",
+      "path": ".styleseed/project.json",
+      "sha256": "sha256:cb8886a17885a5ac51977b4eb53b68516de52f0e3a2c887d9f17d0d4cd0663ff",
+      "bytes": 9306
+    },
+    {
+      "id": "artifact",
+      "path": ".styleseed/artifacts/apps-omiya.json",
+      "sha256": "sha256:a58f52538ae4aefd50c98b7d61e89aecd3b7237ceb3f075cfd41c9421d4fa832",
+      "bytes": 1745
+    },
+    {
+      "id": "tokens",
+      "path": "design/brand/tokens.json",
+      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "bytes": 9873
+    }
+  ],
+  "sources": [
+    {
+      "id": "agent-execution",
+      "path": "catalog:agents",
+      "sha256": "sha256:7432f369c99d3d0b10a5c96d76b418b7dfbfb83e57a6b25e480f79ee86a1cd81",
+      "bytes": 358
+    },
+    {
+      "id": "core",
+      "path": "catalog:core",
+      "sha256": "sha256:c266458625238fc647b40eb15a80476ee116d3b8e4fbd9bee71db917f2c7a33d",
+      "bytes": 8400
+    },
+    {
+      "id": "grammar",
+      "path": "built-in:expressive-marketing",
+      "sha256": "sha256:c4fbfe1dbecf6d6b5b0300dc4e4573452177464cac0d43640436acba59deae55",
+      "bytes": 967
+    },
+    {
+      "id": "adapter",
+      "path": "catalog:adapters/product-ui",
+      "sha256": "sha256:7b5b5c34b0b235dca329e6384ccb94c66ee65a348bbe7142277ae7bbda3c13b0",
+      "bytes": 714
+    },
+    {
+      "id": "domain",
+      "path": "catalog:domains/content",
+      "sha256": "sha256:e24193e09803166f299695aed866d31836137e2b45540bc9ad524ad96c2d7de0",
+      "bytes": 1381
+    },
+    {
+      "id": "page",
+      "path": "catalog:pages/landing",
+      "sha256": "sha256:f4da394144f34d3f1aa256b9caf0320b82c4523b068bae893c92413e622c82ef",
+      "bytes": 2044
+    },
+    {
+      "id": "recipe",
+      "path": "catalog:recipes/expressive-brand",
+      "sha256": "sha256:95befeb0a0a3ffaecdfebde333231f33cb29052a13523c087d3b10ffc3c3be82",
+      "bytes": 1984
+    },
+    {
+      "id": "palette",
+      "path": "catalog:palettes/quiet-mineral",
+      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "bytes": 2947
+    },
+    {
+      "id": "spacing",
+      "path": "config:spacing",
+      "sha256": "sha256:bafd9caf887c54962012f45ad2bcaddf0ae3fb36873cd11642693fdb203e0c66",
+      "bytes": 2298
+    },
+    {
+      "id": "rules",
+      "path": "catalog:rules",
+      "sha256": "sha256:6a3cf60761a8cb0f16c62ab6babec62dce7c4a4522ee07eeadc9566f8b34b535",
+      "bytes": 10154
+    },
+    {
+      "id": "craft",
+      "path": "catalog:craft",
+      "sha256": "sha256:cf337a06f68960ee01e99fa734da2955fe67db990e7cda3fb1d2729acd0bd1bd",
+      "bytes": 4870
+    }
+  ],
+  "methodHash": "sha256:5c7b65f3cc00689601df00d55eb7bdbc5bd73daf74efec2b8761f6a6d48c312d",
+  "validationHash": "sha256:cff00792146f073d8fd210ba21c4abb4630ad8515d7799aef5f6856a1ee445e1",
+  "validationSlices": {
+    "target": "sha256:3a383e0e6ad775a07a8aaf1327ca3f73b6f1e6e4c2875f875e8ba40bc55e8c01",
+    "implementation": "sha256:35fc85286c3f2c3ffb40bd69016e3df747012ebf8b32ff4933d6f49ec3680cbf",
+    "scoreFloor": "sha256:48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc",
+    "requiredRenders": "sha256:e2cbc22ce7be59d23cd2e88d6fdbc576aa98f69928e4ff1e61fda02e15ccca2f",
+    "temporal": "sha256:c5ec5a78d8447626a8d2c39addbf2843320eb8e491b9e7c1e92927a135b06bba",
+    "humanAcceptance": "sha256:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b"
+  },
+  "bundle": {
+    "kind": "bundle",
+    "path": ".styleseed/bundles/apps-omiya.md",
+    "sha256": "sha256:0e5b649ee30a4a35fd02ac2d986611c3b9782eac044e11e96965716e53f135ed",
+    "bytes": 37115
+  },
+  "outputs": [
+    {
+      "kind": "bundle",
+      "path": ".styleseed/bundles/apps-omiya.md",
+      "sha256": "sha256:0e5b649ee30a4a35fd02ac2d986611c3b9782eac044e11e96965716e53f135ed",
+      "bytes": 37115
+    },
+    {
+      "kind": "palette-json",
+      "path": ".styleseed/palettes/apps-omiya.json",
+      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "bytes": 7734
+    },
+    {
+      "kind": "palette-css",
+      "path": ".styleseed/palettes/apps-omiya.css",
+      "sha256": "sha256:0cdd1d2423b1bf91ebde4e97ea5350596e01417c2572280f94901c587c5108b1",
+      "bytes": 888
+    }
+  ]
+}

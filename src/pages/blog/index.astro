@@ -2,84 +2,40 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { getCollection } from 'astro:content';
-
-// 全記事取得（下書き除外、日付降順）
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-// 全タグを抽出（重複なし）
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+const posts = allPosts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
 ---
-
-<BaseLayout title="ブログ - daywizz" description="daywizz のブログ記事一覧">
-  <section class="py-16">
-    <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-2xl font-bold text-gray-900 text-center">Blog</h1>
-      <p class="mt-2 text-center text-gray-500">daywizz の最新情報をお届けします</p>
-
-      <!-- タグフィルター -->
-      <div class="mt-8 flex flex-wrap gap-2 justify-center" id="tag-filter">
-        <button
-          type="button"
-          class="tag-btn active px-3 py-1 text-sm rounded-full border border-gray-200 bg-primary text-white transition-colors"
-          data-tag="all"
-        >
-          すべて
-        </button>
-        {allTags.map((tag) => (
-          <button
-            type="button"
-            class="tag-btn px-3 py-1 text-sm rounded-full border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary transition-colors"
-            data-tag={tag}
-          >
-            {tag}
-          </button>
-        ))}
+<BaseLayout title="活動の足跡 - daywizz" description="プロダクトづくりや地域での取り組み、事業のこと。daywizzの日々の挑戦と出会いを記録しています。">
+  <section class="section-space site-container reading-page">
+    <header class="page-intro"><p class="eyebrow">日々の取り組みを、少しずつ</p><h1>活動の足跡</h1><p>プロダクトづくりや地域での取り組み、事業のこと。<br class="desktop-break" />日々の挑戦や出会いを、ここに残していきます。</p></header>
+    {posts.length > 0 ? <>
+      <div class="tag-filters" role="group" aria-label="記事をタグで絞り込む">
+        <button type="button" class="tag-btn" data-tag="all" aria-pressed="true" aria-controls="post-list">すべて</button>
+        {allTags.map(tag => <button type="button" class="tag-btn" data-tag={tag} aria-pressed="false" aria-controls="post-list">{tag}</button>)}
       </div>
-
-      <!-- 記事一覧 -->
-      <div class="mt-8 flex flex-col" id="post-list">
-        {posts.map((post) => (
-          <div class="post-item" data-tags={post.data.tags.join(',')}>
-            <BlogPostCard
-              title={post.data.title}
-              date={post.data.pubDate}
-              tags={post.data.tags}
-              slug={post.id}
-              excerpt={post.data.description}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+      <p class="filter-status" id="filter-status" role="status" aria-live="polite" aria-atomic="true">すべての記事 · {posts.length}件</p>
+      <div id="post-list" class="journal-list">{posts.map(post => <div class="post-item" data-tags={JSON.stringify(post.data.tags)}><BlogPostCard title={post.data.title} date={post.data.pubDate} tags={post.data.tags} slug={post.id} excerpt={post.data.description} /></div>)}</div>
+      <div class="empty-state" id="filter-empty" hidden><p>このタグの記事はまだありません。</p><button type="button" class="text-link" id="reset-filter">すべての記事を表示 →</button></div>
+    </> : <div class="empty-state mt-8"><p>記事は、これから少しずつお届けします。</p><a href="/" class="text-link">ホームに戻る →</a></div>}
   </section>
 </BaseLayout>
-
 <script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
-  const items = document.querySelectorAll<HTMLElement>('.post-item');
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const tag = btn.dataset.tag;
-
-      // ボタンのアクティブ状態を更新
-      buttons.forEach((b) => {
-        b.classList.remove('active', 'bg-primary', 'text-white');
-        b.classList.add('bg-white', 'text-gray-600');
-      });
-      btn.classList.add('active', 'bg-primary', 'text-white');
-      btn.classList.remove('bg-white', 'text-gray-600');
-
-      // 記事の表示/非表示
-      items.forEach((item) => {
-        if (tag === 'all') {
-          item.style.display = '';
-        } else {
-          const itemTags = item.dataset.tags?.split(',') ?? [];
-          item.style.display = itemTags.includes(tag!) ? '' : 'none';
-        }
-      });
+  import { matchesTag } from '../../lib/ui-state.mjs';
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.tag-btn')];
+  const items = [...document.querySelectorAll<HTMLElement>('.post-item')];
+  const status = document.getElementById('filter-status');
+  const empty = document.getElementById('filter-empty');
+  function filterPosts(selected: string) {
+    let visible = 0;
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tag === selected)));
+    items.forEach(item => {
+      const matches = matchesTag(JSON.parse(item.dataset.tags ?? '[]'), selected);
+      item.hidden = !matches; if (matches) visible++;
     });
-  });
+    if (status) status.textContent = `${selected === 'all' ? 'すべての記事' : selected} · ${visible}件`;
+    if (empty) empty.hidden = visible > 0;
+  }
+  buttons.forEach(button => button.addEventListener('click', () => filterPosts(button.dataset.tag ?? 'all')));
+  document.getElementById('reset-filter')?.addEventListener('click', () => { filterPosts('all'); buttons[0]?.focus(); });
 </script>

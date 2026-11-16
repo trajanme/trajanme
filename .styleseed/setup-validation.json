@@ -1,0 +1,179 @@
+{
+  "scope": "Configuration setup only; no rendered score or visual acceptance",
+  "artifacts": 21,
+  "cssVariableReferences": 21,
+  "allVariablesDefined": true,
+  "cssMatchesTokenCanon": true,
+  "logos": [
+    {
+      "file": "public/brand/daywizz-logo-tagline-white.svg",
+      "sha256": "aecf8f9db062ddc75b3fe67f31585092cea9d8143d6b6316fb71851788a6d560",
+      "unchangedFromOriginal": true,
+      "viewBox": "0 0 1934 580"
+    },
+    {
+      "file": "public/brand/daywizz-logo-tagline.svg",
+      "sha256": "f29e0b40b89902f078c3e25f141b156342f3f228e22edadac53ba2418277c6c5",
+      "unchangedFromOriginal": true,
+      "viewBox": "0 0 1934 580"
+    },
+    {
+      "file": "public/brand/daywizz-logo-white.svg",
+      "sha256": "9d3800ac84ece9447e51670ffaeec748724a5c5007a09438cfa1c25116458f70",
+      "unchangedFromOriginal": true,
+      "viewBox": "0 0 1875 520"
+    },
+    {
+      "file": "public/brand/daywizz-logo.svg",
+      "sha256": "47224d6e67e284a3e87968ef4aae11faf1593952c09ed59d4bca31789d4c67cd",
+      "unchangedFromOriginal": true,
+      "viewBox": "0 0 1875 520"
+    },
+    {
+      "file": "public/brand/daywizz-mark-white.svg",
+      "sha256": "24d304ce70bf1781c5e2086f1bfdd7cde6daeb92b5dabb12c7752261d64fd775",
+      "unchangedFromOriginal": true,
+      "viewBox": "674 424 1722 1151"
+    },
+    {
+      "file": "public/brand/daywizz-mark.svg",
+      "sha256": "530a7bdc773a6fb0de006d6d256894d48fed388d3a89bcc0db317cc346bf753b",
+      "unchangedFromOriginal": true,
+      "viewBox": "674 424 1722 1151"
+    }
+  ],
+  "importedRoleContrast": [
+    {
+      "foreground": "foreground",
+      "background": "background",
+      "ratio": 14.3,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "mutedForeground",
+      "background": "background",
+      "ratio": 5.19,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "foreground",
+      "background": "surface",
+      "ratio": 15.62,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "chromeForeground",
+      "background": "chrome",
+      "ratio": 7.49,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "primaryForeground",
+      "background": "primary",
+      "ratio": 6.26,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "accentForeground",
+      "background": "accent",
+      "ratio": 7.49,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "successForeground",
+      "background": "success",
+      "ratio": 7.49,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "warningForeground",
+      "background": "warning",
+      "ratio": 6.1,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "dangerForeground",
+      "background": "danger",
+      "ratio": 6.55,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "background",
+      "ratio": 6.75,
+      "minimum": 3,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "surface",
+      "ratio": 7.37,
+      "minimum": 3,
+      "pass": true
+    }
+  ],
+  "supplementalComponentContrast": [
+    {
+      "foreground": "on-forest",
+      "background": "akari-text",
+      "ratio": 5.78,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "on-forest",
+      "background": "forest-deep",
+      "ratio": 10.15,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "on-forest-muted",
+      "background": "forest",
+      "ratio": 6.08,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "akari-text",
+      "background": "kinari",
+      "ratio": 5.21,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "akari-text",
+      "background": "surface",
+      "ratio": 5.69,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "sumi",
+      "background": "wakaba",
+      "ratio": 12.88,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "ink-muted",
+      "background": "surface",
+      "ratio": 5.66,
+      "minimum": 4.5,
+      "pass": true
+    }
+  ],
+  "paletteGenerationDisabledForAllArtifacts": true,
+  "supplementalTokensAreProposals": true,
+  "layering": "partial; native named tokens imported as-is, typography composite roles validated",
+  "visualVerification": "not run; website implementation unchanged"
+}

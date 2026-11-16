@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "apps-picolle-tokushoho",
+  "target": {
+    "kind": "route",
+    "locator": "/apps/picolle/tokushoho/"
+  },
+  "selection": {
+    "grammar": "editorial-reading",
+    "adapter": "product-ui",
+    "domain": "content",
+    "page": "detail",
+    "recipe": "editorial-authority",
+    "palette": null,
+    "profile": "none",
+    "fallback": "editorial-reading"
+  },
+  "decisions": {
+    "primaryDecision": "Find and understand the requested information without interruption.",
+    "primaryAction": "Read the content and follow the relevant existing navigation or support link.",
+    "signatureMove": "Readable Japanese hierarchy and quiet shared daywizz framing; keep prose out of decorative card grids."
+  },
+  "implementation": {
+    "sourceRoots": [
+      "src/pages/apps/picolle/tokushoho.astro",
+      "src/components",
+      "src/layouts",
+      "src/styles",
+      "src/data",
+      "public/brand",
+      "public/images",
+      "astro.config.mjs",
+      "package.json",
+      "src/lib",
+      "test",
+      "package-lock.json",
+      "scripts/sync-styleseed-spacing.mjs"
+    ],
+    "tokenFiles": [
+      "src/styles/global.css",
+      "design/brand/tokens.json",
+      "design/brand/tokens.css",
+      "design/brand/components.css"
+    ]
+  },
+  "validation": {
+    "scoreFloor": 80,
+    "requiredRenders": [
+      {
+        "id": "mobile-loaded",
+        "state": "loaded",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      {
+        "id": "desktop-loaded",
+        "state": "loaded",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    ],
+    "temporal": {
+      "required": false,
+      "scenarios": []
+    },
+    "humanAcceptance": true
+  }
+}

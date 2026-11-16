@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "projectId": "daywizz",
+  "defaults": {
+    "agent": "codex",
+    "domain": "content",
+    "adapter": "product-ui",
+    "recipe": "expressive-brand",
+    "palette": "quiet-mineral",
+    "profile": "none",
+    "fallback": "expressive-marketing"
+  },
+  "brand": {
+    "keyColor": "#2F5D50",
+    "paletteCharacter": "calm",
+    "paletteMode": "light",
+    "paletteHarmony": "contrast",
+    "surfaceTemperature": "warm",
+    "fontFamilies": [
+      "Zen Kaku Gothic Antique"
+    ],
+    "radius": "soft",
+    "elevation": "flat",
+    "density": "comfortable",
+    "motion": {
+      "seed": "silk",
+      "intensity": "restrained"
+    },
+    "imageryRole": "product-proof-first"
+  },
+  "tokens": {
+    "source": "design/brand/tokens.json",
+    "format": "dtcg",
+    "roles": {
+      "background": "color.kinari",
+      "surface": "color.surface",
+      "chrome": "color.forest",
+      "foreground": "color.sumi",
+      "mutedForeground": "color.ink-muted",
+      "chromeForeground": "color.on-forest",
+      "border": "color.line",
+      "primary": "color.akari",
+      "primaryForeground": "color.sumi",
+      "accent": "color.forest",
+      "accentForeground": "color.on-forest",
+      "focus": "color.forest",
+      "success": "color.success",
+      "successForeground": "color.on-forest",
+      "warning": "color.warning",
+      "warningForeground": "color.on-forest",
+      "danger": "color.danger",
+      "dangerForeground": "color.on-forest"
+    }
+  },
+  "spacing": {
+    "wideMinWidth": 768,
+    "roles": {
+      "pageInset": {
+        "base": 16,
+        "wide": 24
+      },
+      "sectionGap": {
+        "base": 64
+      },
+      "groupGap": {
+        "base": 24
+      },
+      "stackGap": {
+        "base": 8
+      },
+      "inlineGap": {
+        "base": 8
+      },
+      "componentInset": {
+        "base": 24
+      }
+    }
+  },
+  "decisions": [
+    {
+      "id": "D-001",
+      "kind": "decision",
+      "statement": "Use the supplied brand README and component CSS as explicit project requirements. Supplemental colors, spacing, and radius values in tokens.json are initial proposals, not extracted values or human acceptance.",
+      "approvedBy": "Setup proposal; user review pending",
+      "date": "2026-11-15",
+      "source": "design/brand/SETUP.md"
+    },
+    {
+      "id": "D-002",
+      "kind": "decision",
+      "statement": "Theme: 土地と灯り. Mission: 日本各地の魅力に光を当て、地域がにぎわい続ける仕組みをつくる。Tagline: 地域に、ちいさな魔法を。",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-003",
+      "kind": "decision",
+      "statement": "Regions and people are the subjects; daywizz supports them. Use short Japanese-first です・ます text. Avoid exaggeration, exclamation marks, emoji, and unsourced numbers.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-004",
+      "kind": "decision",
+      "statement": "Three pillars: 地域の魅力を届ける; 楽しめる体をつくる（PawSteps）; 地域で育つ力を伸ばす（Picolle）. Do not invent impact metrics or product capabilities.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-005",
+      "kind": "decision",
+      "statement": "Use kinari for canvas, surface for cards, forest for structural bands, on-forest on forest, sumi for text, ink-muted for secondary text, and akari for one focal action or figure per screen. Accent metadata does not permit repeated orange emphasis.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-006",
+      "kind": "decision",
+      "statement": "Use akari-text for orange text, including accented Stat text. Primary button hover uses akari-text with on-forest; secondary hover uses forest-deep. Focus uses forest with 2px outline and 3px offset.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-007",
+      "kind": "decision",
+      "statement": "Preserve logo SVG bytes, geometry, and colors. Use white variants on forest or photographs. Clear space must be at least the star height. Do not rotate, distort, shadow, or recolor the mark.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-008",
+      "kind": "decision",
+      "statement": "No gradients, stacked decorative shadows, photo color overlays, or excessive orange. Tag inset shadow is a border treatment. Wakaba supports tags, maps, and diagrams with accompanying labels or luminance cues.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-009",
+      "kind": "decision",
+      "statement": "Zen Kaku Gothic Antique is the only named typeface. Use 400 for body, 700 for headings, 500 for captions and the supplied tag/eyebrow components. Body line height is 1.75. Supplied component size exceptions remain valid.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-010",
+      "kind": "decision",
+      "statement": "Primary buttons are at least 44px high with radius-pill; cards use surface, line, radius-md, and space-6. Sections use space-16. Preserve supplied component CSS relationships, including its 220px grid minimum, subject to responsive verification.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-011",
+      "kind": "decision",
+      "statement": "Preserve Astro, existing routes, real content, and working navigation. The current user request authorizes applying the configured brand and improving UI across the project. Preserve app artwork and capabilities; do not install React.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "User UI improvement request; design/brand/README.md"
+    },
+    {
+      "id": "D-012",
+      "kind": "decision",
+      "statement": "Motion is restrained and nonessential. The source does not specify durations; silk/restrained is an initial method posture, not observed motion. Honor reduced motion and keep all information accessible without animation.",
+      "approvedBy": "Setup proposal; user review pending",
+      "date": "2026-11-15",
+      "source": "design/brand/SETUP.md"
+    },
+    {
+      "id": "D-013",
+      "kind": "decision",
+      "statement": "The source does not resolve whether the permanent logo star counts toward one orange emphasis per screen. Keep the logo intact and raise that composition choice at visual review; do not claim this ambiguity is approved.",
+      "approvedBy": "User-supplied brand requirements",
+      "date": "2026-11-15",
+      "source": "design/brand/README.md; design/brand/components.css"
+    },
+    {
+      "id": "D-014",
+      "kind": "decision",
+      "statement": "Use 活動の足跡 for the journal navigation and section title. Include future businesses, regional initiatives, product work, and encounters in its introduction. Quietly express starting from the Kansai region, based in Hyogo, without implying completed projects.",
+      "approvedBy": "User copy request",
+      "date": "2026-11-15",
+      "source": "User request: activity journal and understated Kansai ambition"
+    },
+    {
+      "id": "D-015",
+      "kind": "decision",
+      "scope": {
+        "artifacts": [
+          "home"
+        ]
+      },
+      "statement": "Home: fine dot masses morph through mountains, river, fruit and the supplied logo, inspired by ignitionpoint-inc.com. Use brand tokens, readable copy, an accessible icon-only pause control, reduced-motion/static fallbacks, and offscreen/hidden-tab suspension.",
+      "approvedBy": "User home background request",
+      "date": "2026-11-15",
+      "source": "User dot-collective motion clarification; https://www.ignitionpoint-inc.com/"
+    },
+    {
+      "id": "D-016",
+      "kind": "decision",
+      "scope": {
+        "artifacts": [
+          "home"
+        ]
+      },
+      "statement": "Home-only exception to D-008: regional photo fades into opaque kinari behind the copy; particles stay on plain kinari. Fade vertically on mobile. Preserve contrast and credit. Sample the original logo SVG, retaining geometry and brand colors in its front-facing hold.",
+      "approvedBy": "User photo fade and logo motion requests",
+      "date": "2026-11-16",
+      "source": "User instructions; design/hero-refinement.md"
+    }
+  ]
+}

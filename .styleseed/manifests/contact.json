@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "artifactId": "contact",
+  "engineVersion": "5.0.0",
+  "engineRevision": "sha256:9bddb23ed24bad0c8feb95c8d9855de7d71468941cff8daa475b6fe066b2cd75",
+  "distributionIntegrity": "verified",
+  "selection": {
+    "agent": "codex",
+    "grammar": "consumer-service",
+    "grammarSource": "built-in:consumer-service",
+    "referenceContract": null,
+    "fallback": "consumer-service",
+    "adapter": "product-ui",
+    "domain": "content",
+    "page": "form",
+    "recipe": "calm-consumer",
+    "recipeSelection": "calm-consumer",
+    "palette": "quiet-mineral",
+    "paletteSelection": "quiet-mineral",
+    "paletteGeneration": null,
+    "tokenCanon": {
+      "source": "design/brand/tokens.json",
+      "format": "dtcg",
+      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "mode": "light",
+      "modeName": null
+    },
+    "profile": "none"
+  },
+  "inputs": [
+    {
+      "id": "project",
+      "path": ".styleseed/project.json",
+      "sha256": "sha256:cb8886a17885a5ac51977b4eb53b68516de52f0e3a2c887d9f17d0d4cd0663ff",
+      "bytes": 9306
+    },
+    {
+      "id": "artifact",
+      "path": ".styleseed/artifacts/contact.json",
+      "sha256": "sha256:025e9f9e970625bf3cb3e681a0579fae43cc8965099870b521b58032a987eed1",
+      "bytes": 1774
+    },
+    {
+      "id": "tokens",
+      "path": "design/brand/tokens.json",
+      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "bytes": 9873
+    }
+  ],
+  "sources": [
+    {
+      "id": "agent-execution",
+      "path": "catalog:agents",
+      "sha256": "sha256:7432f369c99d3d0b10a5c96d76b418b7dfbfb83e57a6b25e480f79ee86a1cd81",
+      "bytes": 358
+    },
+    {
+      "id": "core",
+      "path": "catalog:core",
+      "sha256": "sha256:c266458625238fc647b40eb15a80476ee116d3b8e4fbd9bee71db917f2c7a33d",
+      "bytes": 8400
+    },
+    {
+      "id": "grammar",
+      "path": "built-in:consumer-service",
+      "sha256": "sha256:f3d8aaa337233ed0bfde4cfbaee18e30891e4daef15857832a35e423fe74ee6d",
+      "bytes": 1069
+    },
+    {
+      "id": "adapter",
+      "path": "catalog:adapters/product-ui",
+      "sha256": "sha256:7b5b5c34b0b235dca329e6384ccb94c66ee65a348bbe7142277ae7bbda3c13b0",
+      "bytes": 714
+    },
+    {
+      "id": "domain",
+      "path": "catalog:domains/content",
+      "sha256": "sha256:e24193e09803166f299695aed866d31836137e2b45540bc9ad524ad96c2d7de0",
+      "bytes": 1381
+    },
+    {
+      "id": "page",
+      "path": "catalog:pages/form",
+      "sha256": "sha256:a04b1d73799697d460fab399ef156344c869add529cb48af7f07ae264d105996",
+      "bytes": 1182
+    },
+    {
+      "id": "recipe",
+      "path": "catalog:recipes/calm-consumer",
+      "sha256": "sha256:6aa52992150b131d09f8039cf5e24fab7ace9fa0a51c934ac874852927b265e8",
+      "bytes": 1181
+    },
+    {
+      "id": "palette",
+      "path": "catalog:palettes/quiet-mineral",
+      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "bytes": 2947
+    },
+    {
+      "id": "spacing",
+      "path": "config:spacing",
+      "sha256": "sha256:2c60fcf9181c2c97808c0af987aa941a9dfea602deb0278489a8bb20531fca5b",
+      "bytes": 2289
+    },
+    {
+      "id": "rules",
+      "path": "catalog:rules",
+      "sha256": "sha256:d2ec89e50c979dec3a3ff40031e8c24b8fb64e47d65beff726ede344db1622cb",
+      "bytes": 11637
+    },
+    {
+      "id": "craft",
+      "path": "catalog:craft",
+      "sha256": "sha256:cf337a06f68960ee01e99fa734da2955fe67db990e7cda3fb1d2729acd0bd1bd",
+      "bytes": 4870
+    }
+  ],
+  "methodHash": "sha256:d8b4bf8c9a180995172322f67afe8ef7cb12f8f730313e83a960164447fefb98",
+  "validationHash": "sha256:4eae1224fe86938801d5541db7f4448c5a0b2168fda992c53fdca0bb8cfa3e8f",
+  "validationSlices": {
+    "target": "sha256:e718cfdc10c51e3696d9eb96656a8fc59d9b614130f92272718e7b26ec463cfb",
+    "implementation": "sha256:743f729e7ba60ce36f34ea9a396c6cf8de7251f5e3cfb1902c4cba752e139850",
+    "scoreFloor": "sha256:48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc",
+    "requiredRenders": "sha256:e2cbc22ce7be59d23cd2e88d6fdbc576aa98f69928e4ff1e61fda02e15ccca2f",
+    "temporal": "sha256:c5ec5a78d8447626a8d2c39addbf2843320eb8e491b9e7c1e92927a135b06bba",
+    "humanAcceptance": "sha256:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+    "functional": "sha256:5d86970796fcee38a581816226a63146ef5675adf0e783d32dfdb927212a0a5c"
+  },
+  "bundle": {
+    "kind": "bundle",
+    "path": ".styleseed/bundles/contact.md",
+    "sha256": "sha256:69cc472e0d7bc4ae8ef36e23d6551965ae10427f3ca1e623c4ed8cd972a5ed80",
+    "bytes": 37016
+  },
+  "outputs": [
+    {
+      "kind": "bundle",
+      "path": ".styleseed/bundles/contact.md",
+      "sha256": "sha256:69cc472e0d7bc4ae8ef36e23d6551965ae10427f3ca1e623c4ed8cd972a5ed80",
+      "bytes": 37016
+    },
+    {
+      "kind": "palette-json",
+      "path": ".styleseed/palettes/contact.json",
+      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "bytes": 7734
+    },
+    {
+      "kind": "palette-css",
+      "path": ".styleseed/palettes/contact.css",
+      "sha256": "sha256:0cdd1d2423b1bf91ebde4e97ea5350596e01417c2572280f94901c587c5108b1",
+      "bytes": 888
+    }
+  ]
+}
