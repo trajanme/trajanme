@@ -31,8 +31,8 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:7345b5153333543995a5556b53b5c1fc344e5b2c7194411e5edab0a44cdfb671",
-      "bytes": 10510
+      "sha256": "sha256:2725b24240332ba009067a8588371f1933a57f53a83caf1ef7f2a8eef15c33dd",
+      "bytes": 10527
     },
     {
       "id": "artifact",
@@ -105,8 +105,8 @@
     {
       "id": "rules",
       "path": "catalog:rules",
-      "sha256": "sha256:4ffd0a45c67813bce86c989a4d6e02b806603a661027b768bfc8afe90465690d",
-      "bytes": 11577
+      "sha256": "sha256:eed76b89e0ab3fcceb3bd8f74c7d42c5cc1c2889883a374566646d0378422a79",
+      "bytes": 11594
     },
     {
       "id": "craft",
@@ -115,7 +115,7 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:10092d94e585945735d227d40afaa2533be9da410c53b0d6ef6d6c43c0acfa05",
+  "methodHash": "sha256:c9651f12cea396ec331d9ef4c116a95e40d8b43563183cb494467d137fc0fce7",
   "validationHash": "sha256:b98c3235e32eb76d635eeda5a4ef2850dee5b12afaf2ab89d31dbdd2763e1068",
   "validationSlices": {
     "target": "sha256:fd89b3b7c61fa08e9a1055ecd5c5678651b23752e9a5d07d80a2fb7f5ac1ae14",
@@ -129,15 +129,15 @@
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/home.md",
-    "sha256": "sha256:caa0d3bc2d3a0f1d8eaf672751d22e6b5c61ab2a66e6de6746ffc1e01a157a68",
-    "bytes": 38520
+    "sha256": "sha256:fe38e4212f7262c5e3ea7f661b6186cea664fcceebb1e9faaed1a90d73a07da5",
+    "bytes": 38537
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/home.md",
-      "sha256": "sha256:caa0d3bc2d3a0f1d8eaf672751d22e6b5c61ab2a66e6de6746ffc1e01a157a68",
-      "bytes": 38520
+      "sha256": "sha256:fe38e4212f7262c5e3ea7f661b6186cea664fcceebb1e9faaed1a90d73a07da5",
+      "bytes": 38537
     },
     {
       "kind": "palette-json",

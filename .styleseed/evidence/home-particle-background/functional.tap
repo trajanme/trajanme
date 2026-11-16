@@ -2,17 +2,17 @@
 > daywizz-website@0.0.1 test:ui
 > node --test test/*.test.mjs
 
-✔ background-animation-pause-policy (0.532125ms)
-✔ particle-field-fits-responsive-viewports (33.689208ms)
-✔ particle-shapes-morph-continuously (0.62275ms)
-✔ logo-hold-preserves-source-artwork (10.218417ms)
-✔ river-flows-downstream-faster-than-mountains (6.97825ms)
-✔ each-scene-scatters-outward-before-regrouping (13.430584ms)
-✔ navigation-targets-exist (14.161042ms)
-✔ route-artifact-mapping (1.861125ms)
-✔ tag-filter-matches-exact-tags (0.063167ms)
-✔ contact-mailto-preserves-content (0.845333ms)
-✔ legal-wording-is-retained (58.457834ms)
+✔ background-animation-pause-policy (0.599375ms)
+✔ particle-field-fits-responsive-viewports (39.322584ms)
+✔ particle-shapes-morph-continuously (0.709042ms)
+✔ logo-hold-preserves-source-artwork (10.177708ms)
+✔ river-flows-downstream-faster-than-mountains (5.14ms)
+✔ each-scene-scatters-outward-before-regrouping (13.271834ms)
+✔ navigation-targets-exist (16.987917ms)
+✔ route-artifact-mapping (1.290209ms)
+✔ tag-filter-matches-exact-tags (0.053584ms)
+✔ contact-mailto-preserves-content (0.848208ms)
+✔ legal-wording-is-retained (54.50525ms)
 ℹ tests 11
 ℹ suites 0
 ℹ pass 11
@@ -20,4 +20,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 139.39975
+ℹ duration_ms 138.395333

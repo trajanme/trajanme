@@ -39,7 +39,7 @@ test('particle-shapes-morph-continuously', () => {
   }
 });
 
-// The logo hold must retain the source artwork's aspect ratio, position, and color regions.
+// The logo gently floats without changing the artwork geometry or color regions.
 test('logo-hold-preserves-source-artwork', async () => {
   const { readFile } = await import('node:fs/promises');
   const { createHash } = await import('node:crypto');
@@ -49,12 +49,17 @@ test('logo-hold-preserves-source-artwork', async () => {
   const cloud=createParticleCloud(3000);
   const first=sampleParticleField(cloud,22000,720,600);
   const later=sampleParticleField(cloud,27000,720,600);
-  assert.deepEqual(first,later,'Logo stays front-facing and still during its hold');
+  const drift={x:later[0].x-first[0].x,y:later[0].y-first[0].y};
+  assert.ok(Math.hypot(drift.x,drift.y)>.5 && Math.hypot(drift.x,drift.y)<10,'Logo floats subtly');
   const scale=Math.min(720*.32,600*.43);
+  const offsetX=first[0].x-360-source.points[0][0]*scale;
+  const offsetY=first[0].y-318+source.points[0][1]*scale;
   for (const [i,p] of first.entries()) {
-    assert.ok(Math.abs((p.x-360)/scale-source.points[i][0])<1e-10);
-    assert.ok(Math.abs((318-p.y)/scale-source.points[i][1])<1e-10);
+    assert.ok(Math.abs((p.x-360-offsetX)/scale-source.points[i][0])<1e-10);
+    assert.ok(Math.abs((318-p.y+offsetY)/scale-source.points[i][1])<1e-10);
     assert.equal(p.accent,source.points[i][2]);
+    assert.ok(Math.abs(later[i].x-p.x-drift.x)<1e-10 && Math.abs(later[i].y-p.y-drift.y)<1e-10,
+      'Logo movement preserves all relative point positions');
   }
   assert.ok(first.some(p=>p.accent===1),'Original star color is present');
   assert.ok(first.some(p=>p.accent===0),'Original hill color is present');

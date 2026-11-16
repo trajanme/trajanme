@@ -11,7 +11,7 @@
   "geometryPreview": "Inspected 3 model phases at 0, 11000, 22000 ms for desktop 720x600 and mobile 390x330; PNGs are not browser screenshots",
   "builtFallback": "rendered built SVG with compiler-only boolean scope attributes removed for XML compatibility; inspected",
   "browserTemporalVerification": "unobserved: native pipe startup failed; browser host unavailable",
-  "modelSha256": "1fc424757405df9c0dca5df5a03d45397c1dbe230a6cac3104907e40ff06a3d0",
-  "latestRefinement": "River descends from a high mountainside along a longer winding course. Every transition spreads toward field edges and regroups; 5 transition model frames inspected, live browser unavailable.",
+  "modelSha256": "05e8f7ac6ae21be11165a04e9ff38f35fd86024230c08a07d4568462453dcde5",
+  "latestRefinement": "Logo floats subtly without geometry/color changes. Slower river turns right across the middle slope before winding left; banks follow the route. Desktop/mobile model images inspected; live browser remains unavailable.",
   "photo": "Nicholas Graves / NickAura, CC BY 3.0; public attribution in home"
 }

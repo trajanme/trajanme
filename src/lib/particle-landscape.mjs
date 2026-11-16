@@ -22,7 +22,7 @@ function mountainHeight(x,z) {
   return -.32+left+right+.018*Math.sin(x*9+z*6);
 }
 // Source on the high mountainside, then a long, winding descent around the foothills.
-const riverKnots=[[-.55,-.25],[-.44,-.04],[-.06,.18],[.1,.47],[-.27,.83],[-.8,.15],[-1.06,.53],[-1.38,-.2]];
+const riverKnots=[[-.55,-.25,mountainHeight(-.55,-.25)+.015],[-.3,-.02,.4],[.25,.2,.22],[.86,.35,.06],[.65,.76,-.31],[-.12,.85,-.38],[-.7,.15,-.4],[-1.38,-.2,-.415]];
 const spline=(a,b,c,d,t)=>.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t);
 function riverPoint(position,lane) {
   const progress=clamp((position+.96)/1.92,0,1);
@@ -33,9 +33,19 @@ function riverPoint(position,lane) {
   const width=riverChannel(position).halfWidth;
   return {
     x:x+lane*width,
-    y:mix(mountainHeight(x,z)+.015,-.39,smooth(clamp((progress-.25)/.3,0,1)))-progress*.025,
+    y:spline(a[2],b[2],c[2],d[2],t),
     z,
   };
+}
+// Let the banks follow the elevated middle reach instead of leaving water suspended above a valley.
+const riverBanks=Array.from({length:48},(_,i)=>riverPoint(-.96+i/47*1.92,0));
+function terrainHeight(x,z) {
+  let nearest=riverBanks[0], distance=Infinity;
+  for (const point of riverBanks) {
+    const squared=(x-point.x)**2+(z-point.z)**2;
+    if (squared<distance) {distance=squared;nearest=point;}
+  }
+  return mix(mountainHeight(x,z),nearest.y+.015,Math.exp(-distance/.025)*.96);
 }
 function random(seed) {
   let value = seed | 0;
@@ -56,7 +66,7 @@ export function createParticleCloud(count=3000) {
       const side=id%2===0 ? -1 : 1;
       const inner=channel+side*(halfWidth+.035);
       const x=mix(inner,side*1.19,u);
-      landscape={x,y:mountainHeight(x,z),z,water:0};
+      landscape={x,y:terrainHeight(x,z),z,water:0};
     }
     // All three fruits share one scene: apple, grape bunch, and mandarin.
     const kind=id%3, local=Math.floor(id/3)/Math.ceil(count/3);
@@ -116,8 +126,8 @@ export function sampleParticleField(cloud,time,width,height) {
   const scale=Math.min(width*.32,height*.43);
   return cloud.map(p => {
     const water=mix(p.forms[scene].water || 0,p.forms[(scene+1)%3].water || 0,blend);
-    // Water travels downstream in about 3.5 seconds; fade at both ends hides recycling.
-    const flowZ=(((p.forms[0].flowPosition ?? p.forms[0].z)+.96+time*.00055)%1.92)-.96;
+    // Water travels downstream in about 5.3 seconds; fade at both ends hides recycling.
+    const flowZ=(((p.forms[0].flowPosition ?? p.forms[0].z)+.96+time*.00036)%1.92)-.96;
     const flowing = form => form.water ? {
       ...form,
       ...riverPoint(flowZ,form.lane),
@@ -133,17 +143,18 @@ export function sampleParticleField(cloud,time,width,height) {
     const ry=y*cp-rz*sp, depth=y*sp+rz*cp;
     const perspective=3.8/(3.8+depth*.28);
     const near=clamp((1.1-depth)/2.2,0,1);
-    const ripple=Math.sin(time*.0063-mix(from.z,to.z,blend)*12+p.seed*.4);
+    const ripple=Math.sin(time*.0041-mix(from.z,to.z,blend)*12+p.seed*.4);
     const outer=.52+p.seed*.48;
     const outerX=width*.5+Math.cos(p.phase)*width*.465*outer;
     const outerY=height*.5+Math.sin(p.phase)*height*.465*outer;
     return {
-      x:mix(width*.5+rx*scale*perspective,outerX,scatter),
-      y:mix(height*.53-ry*scale*perspective,outerY,scatter),
+      x:mix(width*.5+rx*scale*perspective+Math.sin(time*.00045)*scale*.012*logoWeight,outerX,scatter),
+      y:mix(height*.53-ry*scale*perspective+Math.sin(time*.00065+.8)*scale*.018*logoWeight,outerY,scatter),
       radius:p.radius*(.8+near*.6)*perspective,
       opacity:(.24+near*.48+water*(.21+.045*ripple))
         *mix(1,clamp((.96-Math.abs(flowZ))/.13,0,1),water)
-        *mix(1,.48+mix(from.light || 0,to.light || 0,blend)*.7,grape),
+        *mix(1,.48+mix(from.light || 0,to.light || 0,blend)*.7,grape)
+        *mix(1,.96+.04*Math.sin(time*.0011+p.phase),logoWeight),
       water,
       highlight:p.highlight,
       accent:mix(Number(p.highlight),p.logoAccent,logoWeight),
