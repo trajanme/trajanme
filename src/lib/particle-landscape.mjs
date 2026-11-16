@@ -47,6 +47,16 @@ function terrainHeight(x,z) {
   }
   return mix(mountainHeight(x,z),nearest.y+.015,Math.exp(-distance/.025)*.96);
 }
+function hash(seed,step) {
+  let value=Math.imul(seed+1,374761393)^Math.imul(step,668265263);
+  value=Math.imul(value^(value>>>13),1274126177);
+  return ((value^(value>>>16))>>>0)/4294967296;
+}
+function drift(seed,time) {
+  const step=Math.floor(time);
+  return mix(hash(seed,step),hash(seed,step+1),smooth(time-step));
+}
+const reflect=value=>1-Math.abs(((value%2)+2)%2-1);
 function random(seed) {
   let value = seed | 0;
   return () => { value ^= value << 13; value ^= value >>> 17; value ^= value << 5; return (value >>> 0)/4294967296; };
@@ -106,8 +116,8 @@ export function createParticleCloud(count=3000) {
         x:1.01+u*.22,y:.24+Math.sin(u*Math.PI)*.08,z:(v-.5)*Math.sin(u*Math.PI)*.12,
       };
     }
-    const [lx,ly,accent]=logo.points[id % logo.points.length];
-    return { id,phase,seed:w,highlight:next()>.965,logoAccent:accent,radius:.62+next()*.68,forms:[landscape,fruit,{x:lx,y:ly,z:0}] };
+    const [lx,ly,accent,clearance]=logo.points[id % logo.points.length];
+    return { id,phase,seed:w,highlight:next()>.965,logoAccent:accent,radius:.62+next()*.68,forms:[landscape,fruit,{x:lx,y:ly,z:0,logo:true,clearance}] };
   });
 }
 
@@ -128,11 +138,17 @@ export function sampleParticleField(cloud,time,width,height) {
     const water=mix(p.forms[scene].water || 0,p.forms[(scene+1)%3].water || 0,blend);
     // Water travels downstream in about 5.3 seconds; fade at both ends hides recycling.
     const flowZ=(((p.forms[0].flowPosition ?? p.forms[0].z)+.96+time*.00036)%1.92)-.96;
-    const flowing = form => form.water ? {
-      ...form,
-      ...riverPoint(flowZ,form.lane),
-    } : form;
-    const from=flowing(p.forms[scene]), to=flowing(p.forms[(scene+1)%3]);
+    const moving = form => {
+      if (form.water) return {...form,...riverPoint(flowZ,form.lane)};
+      if (form.logo) {
+        const dx=drift(p.id+37,time*.0011)*2-1;
+        const dy=drift(p.id+2071,time*.0013)*2-1;
+        const reach=form.clearance*.88/Math.max(1,Math.hypot(dx,dy));
+        return {...form,x:form.x+dx*reach,y:form.y+dy*reach};
+      }
+      return form;
+    };
+    const from=moving(p.forms[scene]), to=moving(p.forms[(scene+1)%3]);
     const grape=mix(from.grape || 0,to.grape || 0,blend);
     const wobble=motion*(1-grape*.9);
     const spread=Math.sin(blend*Math.PI)*.065;
@@ -144,12 +160,14 @@ export function sampleParticleField(cloud,time,width,height) {
     const perspective=3.8/(3.8+depth*.28);
     const near=clamp((1.1-depth)/2.2,0,1);
     const ripple=Math.sin(time*.0041-mix(from.z,to.z,blend)*12+p.seed*.4);
-    const outer=.52+p.seed*.48;
-    const outerX=width*.5+Math.cos(p.phase)*width*.465*outer;
-    const outerY=height*.5+Math.sin(p.phase)*height*.465*outer;
+    // Independent smooth random walks fill the field, including its center: no radial shell.
+    const wanderX=reflect(hash(p.id,17)+.38*(drift(p.id+911,time*.0014)-.5));
+    const wanderY=reflect(hash(p.id,83)+.38*(drift(p.id+4201,time*.0017)-.5));
+    const outerX=width*(.04+.92*wanderX);
+    const outerY=height*(.04+.92*wanderY);
     return {
-      x:mix(width*.5+rx*scale*perspective+Math.sin(time*.00045)*scale*.012*logoWeight,outerX,scatter),
-      y:mix(height*.53-ry*scale*perspective+Math.sin(time*.00065+.8)*scale*.018*logoWeight,outerY,scatter),
+      x:mix(width*.5+rx*scale*perspective,outerX,scatter),
+      y:mix(height*.53-ry*scale*perspective,outerY,scatter),
       radius:p.radius*(.8+near*.6)*perspective,
       opacity:(.24+near*.48+water*(.21+.045*ripple))
         *mix(1,clamp((.96-Math.abs(flowZ))/.13,0,1),water)

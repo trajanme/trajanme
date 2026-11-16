@@ -39,30 +39,34 @@ test('particle-shapes-morph-continuously', () => {
   }
 });
 
-// The logo gently floats without changing the artwork geometry or color regions.
+// Every moving dot stays within its original SVG color region, including concave edges.
 test('logo-hold-preserves-source-artwork', async () => {
   const { readFile } = await import('node:fs/promises');
   const { createHash } = await import('node:crypto');
+  const { default:sharp } = await import('sharp');
   const source=JSON.parse(await readFile(new URL('../src/data/logo-particles.json',import.meta.url),'utf8'));
   const svg=await readFile(new URL('../public/brand/daywizz-mark.svg',import.meta.url));
   assert.equal(createHash('sha256').update(svg).digest('hex'),source.sha256);
-  const cloud=createParticleCloud(3000);
-  const first=sampleParticleField(cloud,22000,720,600);
-  const later=sampleParticleField(cloud,27000,720,600);
-  const drift={x:later[0].x-first[0].x,y:later[0].y-first[0].y};
-  assert.ok(Math.hypot(drift.x,drift.y)>.5 && Math.hypot(drift.x,drift.y)<10,'Logo floats subtly');
-  const scale=Math.min(720*.32,600*.43);
-  const offsetX=first[0].x-360-source.points[0][0]*scale;
-  const offsetY=first[0].y-318+source.points[0][1]*scale;
-  for (const [i,p] of first.entries()) {
-    assert.ok(Math.abs((p.x-360-offsetX)/scale-source.points[i][0])<1e-10);
-    assert.ok(Math.abs((318-p.y+offsetY)/scale-source.points[i][1])<1e-10);
-    assert.equal(p.accent,source.points[i][2]);
-    assert.ok(Math.abs(later[i].x-p.x-drift.x)<1e-10 && Math.abs(later[i].y-p.y-drift.y)<1e-10,
-      'Logo movement preserves all relative point positions');
+  const {data,info}=await sharp(svg).resize({width:344}).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+  const cloud=createParticleCloud(3000), scale=Math.min(720*.32,600*.43);
+  for (const time of [22000,22750,23500,25000,27000,27999]) {
+    const points=sampleParticleField(cloud,time,720,600);
+    for (const [i,p] of points.entries()) {
+      const x=(p.x-360)/scale, y=(318-p.y)/scale;
+      const [sx,sy,accent,clearance]=source.points[i];
+      assert.ok(Math.hypot(x-sx,y-sy)<=clearance+1e-10);
+      const px=Math.floor(x/2.3*info.width+info.width/2);
+      const py=Math.floor(info.height/2-y/2.3*info.width);
+      const offset=(py*info.width+px)*4;
+      assert.ok(px>=0 && px<info.width && py>=0 && py<info.height && data[offset+3]>240,'Dot remains within the artwork');
+      assert.equal(Number(data[offset]>data[offset+1]),accent,'Dot remains in its original hill/star color region');
+      assert.equal(p.accent,accent);
+    }
   }
-  assert.ok(first.some(p=>p.accent===1),'Original star color is present');
-  assert.ok(first.some(p=>p.accent===0),'Original hill color is present');
+  const first=sampleParticleField(cloud,22000,720,600),later=sampleParticleField(cloud,24000,720,600);
+  const deltas=first.map((p,i)=>({x:later[i].x-p.x,y:later[i].y-p.y}));
+  assert.ok(deltas.filter(d=>Math.hypot(d.x,d.y)>1).length>300,'Interior dots visibly move');
+  assert.ok(deltas.some(d=>Math.hypot(d.x-deltas[0].x,d.y-deltas[0].y)>2),'Dots move independently, rather than translating the whole logo');
 });
 
 test('river-flows-downstream-faster-than-mountains', () => {
@@ -93,5 +97,7 @@ test('each-scene-scatters-outward-before-regrouping', () => {
     const regrouped=sampleParticleField(cloud,start+11000,390,330);
     assert.ok(medianRadius(scattered)>medianRadius(held)*1.2);
     assert.ok(medianRadius(scattered)>medianRadius(regrouped)*1.2);
+    const center=scattered.filter(p=>Math.hypot((p.x-195)/195,(p.y-165)/165)<.35);
+    assert.ok(center.length>scattered.length*.06,'Random cloud fills its center instead of forming a ring');
   }
 });

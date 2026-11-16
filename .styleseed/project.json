@@ -236,8 +236,8 @@
           "home"
         ]
       },
-      "statement": "Home river descends from a high source, turns right across the middle slope, then winds left downstream at a slower pace. Each transition scatters outward and regroups. The front-facing logo floats and shimmers subtly while preserving its geometry and colors. Honor pause and reduced motion.",
-      "approvedBy": "User source-to-mouth flow and outward-scatter transition requests",
+      "statement": "Home: slower river turns right across mid-slope. Transitions use independent smooth random walks filling the field, including its center, before regrouping. Logo dots move inside their original SVG color regions, preserving silhouette and colors. Honor pause and reduced motion.",
+      "approvedBy": "User logo interior motion and molecular-like transition requests",
       "date": "2026-11-16",
       "source": "User motion refinements; design/hero-refinement.md"
     }
