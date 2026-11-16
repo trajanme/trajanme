@@ -14,7 +14,7 @@ test('particle-field-fits-responsive-viewports', () => {
   const cloud=createParticleCloud(3000);
   assert.deepEqual(createParticleCloud(3000),cloud,'Sampling is deterministic for a fixed particle count');
   for(const [width,height] of [[720,600],[390,330]]) {
-    for(const time of [0,3000,8000,10999,11000,18000,22000,29000,32999,33000,36000,41000,43999,44000]) {
+    for(const time of [0,3000,8000,10999,11000,18000,22000,29000,32999,33000]) {
       const points=sampleParticleField(cloud,time,width,height);
       assert.equal(points.length,cloud.length);
       for(const p of points) {
@@ -27,12 +27,12 @@ test('particle-field-fits-responsive-viewports', () => {
 
 test('particle-shapes-morph-continuously', () => {
   const cloud=createParticleCloud(150);
-  const mountain=sampleParticleField(cloud,0,720,600);
-  const river=sampleParticleField(cloud,11000,720,600);
-  const fruit=sampleParticleField(cloud,22000,720,600);
-  assert.ok(mountain.some((p,i)=>Math.hypot(p.x-river[i].x,p.y-river[i].y)>60));
-  assert.ok(river.some((p,i)=>Math.hypot(p.x-fruit[i].x,p.y-fruit[i].y)>60));
-  for(const boundary of [11000,22000,33000,44000]) {
+  const landscape=sampleParticleField(cloud,0,720,600);
+  const fruit=sampleParticleField(cloud,11000,720,600);
+  const logo=sampleParticleField(cloud,22000,720,600);
+  assert.ok(landscape.some((p,i)=>Math.hypot(p.x-fruit[i].x,p.y-fruit[i].y)>60));
+  assert.ok(fruit.some((p,i)=>Math.hypot(p.x-logo[i].x,p.y-logo[i].y)>60));
+  for(const boundary of [11000,22000,33000]) {
     const before=sampleParticleField(cloud,boundary-1,720,600);
     const after=sampleParticleField(cloud,boundary,720,600);
     assert.ok(before.every((p,i)=>Math.hypot(p.x-after[i].x,p.y-after[i].y)<1),'Morph must not jump when the scene changes');
@@ -47,8 +47,8 @@ test('logo-hold-preserves-source-artwork', async () => {
   const svg=await readFile(new URL('../public/brand/daywizz-mark.svg',import.meta.url));
   assert.equal(createHash('sha256').update(svg).digest('hex'),source.sha256);
   const cloud=createParticleCloud(3000);
-  const first=sampleParticleField(cloud,33000,720,600);
-  const later=sampleParticleField(cloud,38000,720,600);
+  const first=sampleParticleField(cloud,22000,720,600);
+  const later=sampleParticleField(cloud,27000,720,600);
   assert.deepEqual(first,later,'Logo stays front-facing and still during its hold');
   const scale=Math.min(720*.32,600*.43);
   for (const [i,p] of first.entries()) {

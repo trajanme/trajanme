@@ -8,10 +8,10 @@
   },
   "reference": "https://www.ignitionpoint-inc.com/",
   "referenceObserved": "public HTML with canvas; motion not visually observed",
-  "geometryPreview": "Model frames at 0, 11000, 22000, 33000 ms; PNG inspected, not browser screenshots",
+  "geometryPreview": "Inspected 3 model phases at 0, 11000, 22000 ms for desktop 720x600 and mobile 390x330; PNGs are not browser screenshots",
   "builtFallback": "rendered built SVG with compiler-only boolean scope attributes removed for XML compatibility; inspected",
   "browserTemporalVerification": "unobserved: native pipe startup failed; browser host unavailable",
-  "modelSha256": "e9112f89ee383f3dcf95d011f8c4cf6a465f83f533cd91b5c845b781cac6fa18",
-  "latestRefinement": "design/hero-refinement.md",
+  "modelSha256": "acbb46ae132f69e5e3263b41e16d32b70e6cbe979cb3a7ed868b8cfbc6db883a",
+  "latestRefinement": "Mountain valley with river; apple, grapes and mandarin together; 33-second loop. See design/hero-refinement.md",
   "photo": "Nicholas Graves / NickAura, CC BY 3.0; public attribution in home"
 }
