@@ -21,7 +21,7 @@
     "tokenCanon": {
       "source": "design/brand/tokens.json",
       "format": "dtcg",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
       "mode": "light",
       "modeName": null
     },
@@ -31,8 +31,8 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:4bb09091984fdb09df38a954444a21722cb4389c7df79b2caaff40ea7311a1bc",
-      "bytes": 9327
+      "sha256": "sha256:575d4b24cd56b2e2c0d00099c635037e1260ed3c95eabaf976af6fcf7a2cc170",
+      "bytes": 9899
     },
     {
       "id": "artifact",
@@ -43,8 +43,8 @@
     {
       "id": "tokens",
       "path": "design/brand/tokens.json",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
-      "bytes": 9873
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
+      "bytes": 10103
     }
   ],
   "sources": [
@@ -93,7 +93,7 @@
     {
       "id": "palette",
       "path": "catalog:palettes/quiet-mineral",
-      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "sha256": "sha256:77eff5b16791cdedcee81955ab47626b4fbc13d00280b4b235964db6ec7bdf77",
       "bytes": 2947
     },
     {
@@ -115,7 +115,7 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:2cf2dabdfe64db34d99e04beac3c9ab341416035efed328eeff331dcd7eecf20",
+  "methodHash": "sha256:0686e84f65c340bb18f786449ea923d6aed7a395daa6a7720921df9e5d8951d7",
   "validationHash": "sha256:c23dfa394b31b1777959fab5cb5eb6ab4df2a8738b391b8747d2ace27521b1f6",
   "validationSlices": {
     "target": "sha256:76e6e1a876658a1a689cc04064454a088471ed3c6b2d5c97fdff90e1213a2a96",
@@ -128,20 +128,20 @@
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/pawsteps-pawstepsprivacypolicy.md",
-    "sha256": "sha256:708327f17bee8c55f82a03a6e2266c6753424c318faf507e1c36c0603dd4dac2",
+    "sha256": "sha256:d0fb7df0332fa739fedc5d0070ab8391bc240f3cf9f03294b01ed7dbaaf87df8",
     "bytes": 36126
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/pawsteps-pawstepsprivacypolicy.md",
-      "sha256": "sha256:708327f17bee8c55f82a03a6e2266c6753424c318faf507e1c36c0603dd4dac2",
+      "sha256": "sha256:d0fb7df0332fa739fedc5d0070ab8391bc240f3cf9f03294b01ed7dbaaf87df8",
       "bytes": 36126
     },
     {
       "kind": "palette-json",
       "path": ".styleseed/palettes/pawsteps-pawstepsprivacypolicy.json",
-      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "sha256": "sha256:410e870998ae3dc4a3e82881b66f763248e1e25c3bed0f2280d9af900d98afcf",
       "bytes": 7734
     },
     {

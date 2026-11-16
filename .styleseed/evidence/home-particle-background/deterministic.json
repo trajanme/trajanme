@@ -1,6 +1,6 @@
 {
   "detectorRevision": "styleseed-check-v3",
-  "inventoryHash": "sha256:aae83519d5398e061c5b022194e0c264e1a2c46f0c2d93a15c30d8f6a1806d5e",
+  "inventoryHash": "sha256:abc98d22464083692de08d4142dfcde3e17c5c3f73bf2d2740f36049b0519607",
   "findings": [
     {
       "id": "SS001",
@@ -236,7 +236,7 @@
       "priority": "strong",
       "blocking": false,
       "file": "src/components/ParticleLandscape.astro",
-      "line": 109,
+      "line": 114,
       "evidence": "height:44px",
       "severity": "warning",
       "message": "Arbitrary pixel value found in a supported utility or CSS property.",
@@ -248,7 +248,7 @@
       "priority": "strong",
       "blocking": false,
       "file": "src/components/ParticleLandscape.astro",
-      "line": 109,
+      "line": 114,
       "evidence": "width:44px",
       "severity": "warning",
       "message": "Arbitrary pixel value found in a supported utility or CSS property.",
@@ -260,7 +260,7 @@
       "priority": "strong",
       "blocking": false,
       "file": "src/components/ParticleLandscape.astro",
-      "line": 116,
+      "line": 121,
       "evidence": "width:767px",
       "severity": "warning",
       "message": "Arbitrary pixel value found in a supported utility or CSS property.",
@@ -272,7 +272,7 @@
       "priority": "strong",
       "blocking": false,
       "file": "src/components/ParticleLandscape.astro",
-      "line": 117,
+      "line": 122,
       "evidence": "height:330px",
       "severity": "warning",
       "message": "Arbitrary pixel value found in a supported utility or CSS property.",

@@ -8,6 +8,14 @@ const TAU = Math.PI * 2;
 const clamp = (v,min,max) => Math.min(max,Math.max(min,v));
 const mix = (a,b,t) => a+(b-a)*t;
 const smooth = t => t*t*t*(t*(t*6-15)+10);
+// Narrow upper reaches meander between the banks and widen gradually toward the mouth.
+function riverChannel(z) {
+  const downstream=clamp((z+.96)/1.92,0,1);
+  return {
+    center:.19*Math.sin(z*3.8)+.045*Math.sin(z*7)-.035*z,
+    halfWidth:.024+.042*downstream**2,
+  };
+}
 function random(seed) {
   let value = seed | 0;
   return () => { value ^= value << 13; value ^= value >>> 17; value ^= value << 5; return (value >>> 0)/4294967296; };
@@ -19,11 +27,10 @@ export function createParticleCloud(count=3000) {
     const u=next(), v=next(), w=next(), phase=next()*TAU;
     // Two banks rise around one continuous river bed, rather than a floating ribbon.
     const z=(v*2-1)*.96;
-    const channel=.13*Math.sin(z*2.1)-.09*z;
-    const halfWidth=.075+.025*(z+1);
+    const {center:channel,halfWidth}=riverChannel(z);
     let landscape;
     if (id/count < .22) {
-      landscape={x:channel+(u*2-1)*halfWidth,y:-.35+.012*Math.sin(z*25+u*8),z,water:1};
+      landscape={x:channel+(u*2-1)*halfWidth,y:-.35+.012*Math.sin(z*25+u*8),z,water:1,lane:u*2-1};
     } else {
       const side=id%2===0 ? -1 : 1;
       const inner=channel+side*(halfWidth+.035);
@@ -50,10 +57,12 @@ export function createParticleCloud(count=3000) {
       };
     } else if (kind===1) {
       // Discrete berries form a tapered bunch; gaps keep it readable as grapes.
-      const berries=[[-.12,.3,0],[.12,.3,0],[0,.27,-.14],[-.2,.06,0],[.04,.06,.07],[.22,.06,-.05],[-.08,.04,-.16],[-.12,-.18,0],[.12,-.18,0],[0,-.2,-.14],[0,-.42,0]];
+      const berries=[[-.25,.3,0],[0,.3,.015],[.25,.3,0],[-.25,.05,0],[0,.05,.015],[.25,.05,0],[-.125,-.2,0],[.125,-.2,0],[0,-.45,0]];
       const berry=berries[Math.floor(w*berries.length)];
-      const r=.116;
+      const r=.104;
       fruit=local<.96 ? {
+        grape:1,
+        light:clamp(.55-.28*Math.sin(latitude)*Math.cos(angle)+.35*Math.cos(latitude)+.25*Math.sin(latitude)*Math.sin(angle),0,1),
         x:berry[0]+Math.sin(latitude)*Math.cos(angle)*r,
         y:berry[1]+Math.cos(latitude)*r,
         z:berry[2]+Math.sin(latitude)*Math.sin(angle)*r,
@@ -86,22 +95,35 @@ export function sampleParticleField(cloud,time,width,height) {
   const cp=Math.cos(pitch), sp=Math.sin(pitch);
   const scale=Math.min(width*.32,height*.43);
   return cloud.map(p => {
-    const from=p.forms[scene], to=p.forms[(scene+1)%3];
+    const water=mix(p.forms[scene].water || 0,p.forms[(scene+1)%3].water || 0,blend);
+    // Water travels downstream in about 3.5 seconds; fade at both ends hides recycling.
+    const flowZ=((p.forms[0].z+.96+time*.00055)%1.92)-.96;
+    const flowing = form => form.water ? {
+      ...form,
+      z:flowZ,
+      x:riverChannel(flowZ).center+form.lane*riverChannel(flowZ).halfWidth,
+      y:-.35+.012*Math.sin(flowZ*25+p.phase),
+    } : form;
+    const from=flowing(p.forms[scene]), to=flowing(p.forms[(scene+1)%3]);
+    const grape=mix(from.grape || 0,to.grape || 0,blend);
+    const wobble=motion*(1-grape*.9);
     const spread=Math.sin(blend*Math.PI)*.065;
-    const x=mix(from.x,to.x,blend)+Math.sin(time*.00045+p.phase)*(.024+spread)*motion;
-    const y=mix(from.y,to.y,blend)+Math.sin(time*.00062+p.phase+x*2)*.037*motion;
-    const z=mix(from.z,to.z,blend)+Math.cos(time*.00038+p.phase)*.028*motion;
+    const x=mix(from.x,to.x,blend)+Math.sin(time*.00045+p.phase)*(.024+spread)*wobble;
+    const y=mix(from.y,to.y,blend)+Math.sin(time*.00062+p.phase+x*2)*.037*wobble;
+    const z=mix(from.z,to.z,blend)+Math.cos(time*.00038+p.phase)*.028*wobble;
     const rx=x*cy+z*sy, rz=z*cy-x*sy;
     const ry=y*cp-rz*sp, depth=y*sp+rz*cp;
     const perspective=3.8/(3.8+depth*.28);
     const near=clamp((1.1-depth)/2.2,0,1);
-    const water=mix(from.water || 0,to.water || 0,blend);
-    const ripple=Math.sin(time*.0018-mix(from.z,to.z,blend)*12+p.seed*.4);
+    const ripple=Math.sin(time*.0063-mix(from.z,to.z,blend)*12+p.seed*.4);
     return {
       x:width*.5+rx*scale*perspective,
       y:height*.53-ry*scale*perspective,
       radius:p.radius*(.8+near*.6)*perspective,
-      opacity:.24+near*.48+water*(.14+.055*ripple),
+      opacity:(.24+near*.48+water*(.14+.055*ripple))
+        *mix(1,clamp((.96-Math.abs(flowZ))/.13,0,1),water)
+        *mix(1,.48+mix(from.light || 0,to.light || 0,blend)*.7,grape),
+      water,
       highlight:p.highlight,
       accent:mix(Number(p.highlight),p.logoAccent,logoWeight),
     };

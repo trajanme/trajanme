@@ -21,7 +21,7 @@
     "tokenCanon": {
       "source": "design/brand/tokens.json",
       "format": "dtcg",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
       "mode": "light",
       "modeName": null
     },
@@ -31,8 +31,8 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:4bb09091984fdb09df38a954444a21722cb4389c7df79b2caaff40ea7311a1bc",
-      "bytes": 9327
+      "sha256": "sha256:575d4b24cd56b2e2c0d00099c635037e1260ed3c95eabaf976af6fcf7a2cc170",
+      "bytes": 9899
     },
     {
       "id": "artifact",
@@ -43,8 +43,8 @@
     {
       "id": "tokens",
       "path": "design/brand/tokens.json",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
-      "bytes": 9873
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
+      "bytes": 10103
     }
   ],
   "sources": [
@@ -93,7 +93,7 @@
     {
       "id": "palette",
       "path": "catalog:palettes/quiet-mineral",
-      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "sha256": "sha256:77eff5b16791cdedcee81955ab47626b4fbc13d00280b4b235964db6ec7bdf77",
       "bytes": 2947
     },
     {
@@ -115,7 +115,7 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:7369686c1c7ce8078b66464d4dbf2e7a4c9c23dd01decce806bd6bd5b45fc1a1",
+  "methodHash": "sha256:6a6b09bf711525c276f9ae7fb622830da853d7357333e3455e5cbca288765ec0",
   "validationHash": "sha256:a3e839ac723049a80eb7d8f44285a3adf5a37299660b745668f9f3bb1959502d",
   "validationSlices": {
     "target": "sha256:41cb131f89f491da8f688460f2720e6f6fb0e24a3d52f786335cf70facd21178",
@@ -128,20 +128,20 @@
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/apps-picolle-support.md",
-    "sha256": "sha256:f33dd768e39a2cbcfda7aec071e2cfecec4e2467c005cd12cd20f37aad39bfe4",
+    "sha256": "sha256:eea0326f13ea81d68604762462032aac7addebeb8d1883787f7bb421e28cd859",
     "bytes": 36096
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/apps-picolle-support.md",
-      "sha256": "sha256:f33dd768e39a2cbcfda7aec071e2cfecec4e2467c005cd12cd20f37aad39bfe4",
+      "sha256": "sha256:eea0326f13ea81d68604762462032aac7addebeb8d1883787f7bb421e28cd859",
       "bytes": 36096
     },
     {
       "kind": "palette-json",
       "path": ".styleseed/palettes/apps-picolle-support.json",
-      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "sha256": "sha256:410e870998ae3dc4a3e82881b66f763248e1e25c3bed0f2280d9af900d98afcf",
       "bytes": 7734
     },
     {

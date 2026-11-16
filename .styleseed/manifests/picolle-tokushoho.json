@@ -21,7 +21,7 @@
     "tokenCanon": {
       "source": "design/brand/tokens.json",
       "format": "dtcg",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
       "mode": "light",
       "modeName": null
     },
@@ -31,8 +31,8 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:4bb09091984fdb09df38a954444a21722cb4389c7df79b2caaff40ea7311a1bc",
-      "bytes": 9327
+      "sha256": "sha256:575d4b24cd56b2e2c0d00099c635037e1260ed3c95eabaf976af6fcf7a2cc170",
+      "bytes": 9899
     },
     {
       "id": "artifact",
@@ -43,8 +43,8 @@
     {
       "id": "tokens",
       "path": "design/brand/tokens.json",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
-      "bytes": 9873
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
+      "bytes": 10103
     }
   ],
   "sources": [
@@ -93,7 +93,7 @@
     {
       "id": "palette",
       "path": "catalog:palettes/quiet-mineral",
-      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "sha256": "sha256:77eff5b16791cdedcee81955ab47626b4fbc13d00280b4b235964db6ec7bdf77",
       "bytes": 2947
     },
     {
@@ -115,7 +115,7 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:cf15035b0d33340a16ed05f021d2427a22b6283fd03ff97c612e1bd3fdda5a6d",
+  "methodHash": "sha256:0be300e2cc336c1d78a398182e7e355cf9e66ac154be76120a260a1226b6c800",
   "validationHash": "sha256:db7047c9d574b17e361d9adeead7d81e368dbb79913e7bb0030c8ecad1c40664",
   "validationSlices": {
     "target": "sha256:747a185644b80f6258d760d5245256e7103ea0fd259bb1cedb31abeda825275c",
@@ -128,20 +128,20 @@
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/picolle-tokushoho.md",
-    "sha256": "sha256:58cfadfb4be4d000ad87ea58b846040e1e25c61bb144692752f2de9183dd0a8a",
+    "sha256": "sha256:aca33c5038857464b6f39388466feddefa1ed5961c3c70e05e42c385cf7843ba",
     "bytes": 36087
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/picolle-tokushoho.md",
-      "sha256": "sha256:58cfadfb4be4d000ad87ea58b846040e1e25c61bb144692752f2de9183dd0a8a",
+      "sha256": "sha256:aca33c5038857464b6f39388466feddefa1ed5961c3c70e05e42c385cf7843ba",
       "bytes": 36087
     },
     {
       "kind": "palette-json",
       "path": ".styleseed/palettes/picolle-tokushoho.json",
-      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "sha256": "sha256:410e870998ae3dc4a3e82881b66f763248e1e25c3bed0f2280d9af900d98afcf",
       "bytes": 7734
     },
     {

@@ -21,7 +21,7 @@
     "tokenCanon": {
       "source": "design/brand/tokens.json",
       "format": "dtcg",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
       "mode": "light",
       "modeName": null
     },
@@ -31,8 +31,8 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:4bb09091984fdb09df38a954444a21722cb4389c7df79b2caaff40ea7311a1bc",
-      "bytes": 9327
+      "sha256": "sha256:575d4b24cd56b2e2c0d00099c635037e1260ed3c95eabaf976af6fcf7a2cc170",
+      "bytes": 9899
     },
     {
       "id": "artifact",
@@ -43,8 +43,8 @@
     {
       "id": "tokens",
       "path": "design/brand/tokens.json",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
-      "bytes": 9873
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
+      "bytes": 10103
     }
   ],
   "sources": [
@@ -93,7 +93,7 @@
     {
       "id": "palette",
       "path": "catalog:palettes/quiet-mineral",
-      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "sha256": "sha256:77eff5b16791cdedcee81955ab47626b4fbc13d00280b4b235964db6ec7bdf77",
       "bytes": 2947
     },
     {
@@ -115,7 +115,7 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:5c7b65f3cc00689601df00d55eb7bdbc5bd73daf74efec2b8761f6a6d48c312d",
+  "methodHash": "sha256:7f8276804061de72e58d15a9f3b2fa40186ff5381fcb49e1e9fa514e65212c56",
   "validationHash": "sha256:cff00792146f073d8fd210ba21c4abb4630ad8515d7799aef5f6856a1ee445e1",
   "validationSlices": {
     "target": "sha256:3a383e0e6ad775a07a8aaf1327ca3f73b6f1e6e4c2875f875e8ba40bc55e8c01",
@@ -128,20 +128,20 @@
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/apps-omiya.md",
-    "sha256": "sha256:0e5b649ee30a4a35fd02ac2d986611c3b9782eac044e11e96965716e53f135ed",
+    "sha256": "sha256:a31f2fa76068e58eae8291cc58502622160af991456ace81e7fd822f71005c59",
     "bytes": 37115
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/apps-omiya.md",
-      "sha256": "sha256:0e5b649ee30a4a35fd02ac2d986611c3b9782eac044e11e96965716e53f135ed",
+      "sha256": "sha256:a31f2fa76068e58eae8291cc58502622160af991456ace81e7fd822f71005c59",
       "bytes": 37115
     },
     {
       "kind": "palette-json",
       "path": ".styleseed/palettes/apps-omiya.json",
-      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "sha256": "sha256:410e870998ae3dc4a3e82881b66f763248e1e25c3bed0f2280d9af900d98afcf",
       "bytes": 7734
     },
     {

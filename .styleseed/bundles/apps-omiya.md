@@ -11,7 +11,7 @@
 - Page type: landing
 - Brand recipe: expressive-brand
 - Palette recipe: quiet-mineral
-- Imported token canon: design/brand/tokens.json · dtcg · sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9
+- Imported token canon: design/brand/tokens.json · dtcg · sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439
 - Aesthetic profile: none
 
 Read this bundle before implementation. The agent execution contract is operational; method authority then runs core → grammar → adapter → domain/page → brand recipe → palette recipe → profile → lock → compact craft baseline, with the earlier method layer winning conflicts. Run the code gate and rendered visual gate.
@@ -303,8 +303,8 @@ Recipe hex values are withheld: the imported token canon below owns every colour
 
 ## Imported token canon
 
-- Source: `design/brand/tokens.json` · dtcg · sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9
-- Layering: partial — 0 primitive · 0 semantic · 8 type · 0 component · 33 outside the layers
+- Source: `design/brand/tokens.json` · dtcg · sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439
+- Layering: partial — 0 primitive · 0 semantic · 8 type · 0 component · 34 outside the layers
 - Roles → tokens: background=color.kinari (#F6F3E9) · surface=color.surface (#FFFDF8) · chrome=color.forest (#2F5D50) · foreground=color.sumi (#24221E) · mutedForeground=color.ink-muted (#65675C) · chromeForeground=color.on-forest (#FFFFFF) · border=color.line (#C7CBBD) · primary=color.akari (#E0913A) · primaryForeground=color.sumi (#24221E) · accent=color.forest (#2F5D50) · accentForeground=color.on-forest (#FFFFFF) · focus=color.forest (#2F5D50) · success=color.success (#2F5D50) · successForeground=color.on-forest (#FFFFFF) · warning=color.warning (#8A5700) · warningForeground=color.on-forest (#FFFFFF) · danger=color.danger (#A6372D) · dangerForeground=color.on-forest (#FFFFFF)
 - Contrast gates: foreground/background=14.3:1 · mutedForeground/background=5.19:1 · foreground/surface=15.62:1 · chromeForeground/chrome=7.49:1 · primaryForeground/primary=6.26:1 · accentForeground/accent=7.49:1 · successForeground/success=7.49:1 · warningForeground/warning=6.1:1 · dangerForeground/danger=6.55:1 · focus/background=6.75:1 · focus/surface=7.37:1
 - Type roles: display Zen Kaku Gothic Antique/56px/700/1.1428571428571428 · h1 Zen Kaku Gothic Antique/40px/700/1.5 · h2 Zen Kaku Gothic Antique/28px/700/1.5 · h3 Zen Kaku Gothic Antique/20px/700/1.6 · body Zen Kaku Gothic Antique/16px/400/1.75 · small Zen Kaku Gothic Antique/14px/400/1.7142857142857142 · caption Zen Kaku Gothic Antique/12px/500/1.6666666666666667 · button Zen Kaku Gothic Antique/15px/700/1

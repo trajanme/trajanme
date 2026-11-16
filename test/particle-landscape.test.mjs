@@ -59,3 +59,16 @@ test('logo-hold-preserves-source-artwork', async () => {
   assert.ok(first.some(p=>p.accent===1),'Original star color is present');
   assert.ok(first.some(p=>p.accent===0),'Original hill color is present');
 });
+
+test('river-flows-downstream-faster-than-mountains', () => {
+  const cloud=createParticleCloud(3000);
+  const first=sampleParticleField(cloud,1000,720,600);
+  const next=sampleParticleField(cloud,1250,720,600);
+  const displacement=water=>{
+    const visible=first.flatMap((p,i)=>p.water===water && p.opacity>.3 && next[i].opacity>.3 ? [Math.hypot(p.x-next[i].x,p.y-next[i].y)] : []);
+    return visible.reduce((a,b)=>a+b,0)/visible.length;
+  };
+  assert.ok(displacement(1)>displacement(0)*5,'River visibly flows while mountains remain calm');
+  assert.ok(first.some(p=>p.water===1));
+  assert.ok(sampleParticleField(cloud,22000,720,600).every(p=>p.water===0),'Water color does not reach the logo hold');
+});

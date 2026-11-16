@@ -80,7 +80,8 @@
         "background-animation-pause-policy",
         "particle-field-fits-responsive-viewports",
         "particle-shapes-morph-continuously",
-        "logo-hold-preserves-source-artwork"
+        "logo-hold-preserves-source-artwork",
+        "river-flows-downstream-faster-than-mountains"
       ]
     }
   }

@@ -21,7 +21,7 @@
     "tokenCanon": {
       "source": "design/brand/tokens.json",
       "format": "dtcg",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
       "mode": "light",
       "modeName": null
     },
@@ -31,8 +31,8 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:4bb09091984fdb09df38a954444a21722cb4389c7df79b2caaff40ea7311a1bc",
-      "bytes": 9327
+      "sha256": "sha256:575d4b24cd56b2e2c0d00099c635037e1260ed3c95eabaf976af6fcf7a2cc170",
+      "bytes": 9899
     },
     {
       "id": "artifact",
@@ -43,8 +43,8 @@
     {
       "id": "tokens",
       "path": "design/brand/tokens.json",
-      "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9",
-      "bytes": 9873
+      "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439",
+      "bytes": 10103
     }
   ],
   "sources": [
@@ -93,7 +93,7 @@
     {
       "id": "palette",
       "path": "catalog:palettes/quiet-mineral",
-      "sha256": "sha256:e6ec15afa3d373a75ee711f45686fecd65aecc4a1d4b40993b8095ada4ee01aa",
+      "sha256": "sha256:77eff5b16791cdedcee81955ab47626b4fbc13d00280b4b235964db6ec7bdf77",
       "bytes": 2947
     },
     {
@@ -115,7 +115,7 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:cb87dc835c99cfcc1a5e58a4732ff555dc6a9d059f952d7b7c6b9d286ef55c8c",
+  "methodHash": "sha256:af0f83ddc1991d90310cb18250d84b2a54b94877d7c82adb0073ff5f138c9c44",
   "validationHash": "sha256:5ad978b8e367305d7c32837185b25c86e5e1718b36c159495ad94e069394a1ea",
   "validationSlices": {
     "target": "sha256:b31a496c243c97392849ea8ee2cce462be69899a0a6cc595bba3272b8a48b95c",
@@ -128,20 +128,20 @@
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/blog-article.md",
-    "sha256": "sha256:19f6783c14270051ac6ad3962217c4c7f70d99537edfd568cb5dea6b760f56b0",
+    "sha256": "sha256:58d3727e0394b38ea3ffa7deb38d07f0eb6cc736218d8c3dfc2d3a0501d09e4b",
     "bytes": 36072
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/blog-article.md",
-      "sha256": "sha256:19f6783c14270051ac6ad3962217c4c7f70d99537edfd568cb5dea6b760f56b0",
+      "sha256": "sha256:58d3727e0394b38ea3ffa7deb38d07f0eb6cc736218d8c3dfc2d3a0501d09e4b",
       "bytes": 36072
     },
     {
       "kind": "palette-json",
       "path": ".styleseed/palettes/blog-article.json",
-      "sha256": "sha256:721965ce70c35169d38e2dc4da6b349243fb084e7ffaef54f0214d20d729ebda",
+      "sha256": "sha256:410e870998ae3dc4a3e82881b66f763248e1e25c3bed0f2280d9af900d98afcf",
       "bytes": 7734
     },
     {

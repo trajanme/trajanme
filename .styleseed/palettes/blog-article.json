@@ -10,12 +10,12 @@
     "format": "dtcg",
     "mode": "light",
     "modeName": null,
-    "sha256": "sha256:b8712078dd65a162d4815e7e6c9a49dfdc3bb8c53b8575da9b9ede760aea12a9"
+    "sha256": "sha256:cad8c86fde0bc22767c22e16250fc813c819452cf5f934f21e844ed666931439"
   },
   "tokens": {
-    "total": 41,
+    "total": 42,
     "byType": {
-      "color": 15,
+      "color": 16,
       "dimension": 13,
       "typography": 8,
       "fontFamily": 1,
@@ -28,8 +28,8 @@
         "semantic": 0,
         "type": 8,
         "component": 0,
-        "outside": 33,
-        "total": 41
+        "outside": 34,
+        "total": 42
       }
     }
   },
@@ -293,7 +293,7 @@
   ],
   "problems": [],
   "warnings": [
-    "33 token(s) sit outside the four layers and are imported as-is"
+    "34 token(s) sit outside the four layers and are imported as-is"
   ],
   "notes": [],
   "reasoning": [
