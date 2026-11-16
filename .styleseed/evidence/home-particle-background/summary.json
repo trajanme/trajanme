@@ -11,7 +11,7 @@
   "geometryPreview": "Inspected 3 model phases at 0, 11000, 22000 ms for desktop 720x600 and mobile 390x330; PNGs are not browser screenshots",
   "builtFallback": "rendered built SVG with compiler-only boolean scope attributes removed for XML compatibility; inspected",
   "browserTemporalVerification": "unobserved: native pipe startup failed; browser host unavailable",
-  "modelSha256": "31512fd17d016b31b23a3518b048d2ebc2ea4614072428d2975bfd332c614a20",
-  "latestRefinement": "Separated shaded grape berries; narrower blue meandering river with downstream particle transport (about 3.5s per pass). See design/hero-refinement.md",
+  "modelSha256": "6d05c4e0cd9773eed3fa8c09609412b252cae88a52e7dd71e1b614e7906e2ecd",
+  "latestRefinement": "Wider spacing between fruits. River continues to the mountain left edge with visible downstream meanders. Desktop/mobile model images inspected; browser still unavailable.",
   "photo": "Nicholas Graves / NickAura, CC BY 3.0; public attribution in home"
 }

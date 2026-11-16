@@ -16,6 +16,15 @@ function riverChannel(z) {
     halfWidth:.024+.042*downstream**2,
   };
 }
+// Continue downstream around the mountain foothills toward the left edge.
+function riverPoint(position,lane) {
+  const {center,halfWidth}=riverChannel(position);
+  const bend=smooth(clamp(((position+.96)/1.92-.48)/.52,0,1));
+  return {
+    x:center-1.22*bend+lane*halfWidth,
+    z:position-1.25*bend+.6*Math.sin(bend*TAU),
+  };
+}
 function random(seed) {
   let value = seed | 0;
   return () => { value ^= value << 13; value ^= value >>> 17; value ^= value << 5; return (value >>> 0)/4294967296; };
@@ -29,8 +38,8 @@ export function createParticleCloud(count=3000) {
     const z=(v*2-1)*.96;
     const {center:channel,halfWidth}=riverChannel(z);
     let landscape;
-    if (id/count < .22) {
-      landscape={x:channel+(u*2-1)*halfWidth,y:-.35+.012*Math.sin(z*25+u*8),z,water:1,lane:u*2-1};
+    if (id/count < .26) {
+      landscape={...riverPoint(z,u*2-1),y:-.35+.012*Math.sin(z*25+u*8),water:1,lane:u*2-1,flowPosition:z};
     } else {
       const side=id%2===0 ? -1 : 1;
       const inner=channel+side*(halfWidth+.035);
@@ -47,13 +56,13 @@ export function createParticleCloud(count=3000) {
       const r=.34*(1+.1*Math.cos(latitude));
       const sx=Math.sin(latitude)*Math.cos(angle)*r, sz=Math.sin(latitude)*Math.sin(angle)*r;
       fruit=local<.94 ? {
-        x:-.79+sx,
+        x:-1.0+sx,
         y:.08+Math.cos(latitude)*r*1.06-(Math.cos(latitude)>0 ? .065*Math.exp(-(sx*sx+sz*sz)/.012) : 0),
         z:sz*.85,
       } : local<.975 ? {
-        x:-.79+(u-.5)*.025,y:.39+v*.14,z:(w-.5)*.022,
+        x:-1.0+(u-.5)*.025,y:.39+v*.14,z:(w-.5)*.022,
       } : {
-        x:-.77+u*.2,y:.44+Math.sin(u*Math.PI)*.075,z:(v-.5)*Math.sin(u*Math.PI)*.12,
+        x:-.98+u*.2,y:.44+Math.sin(u*Math.PI)*.075,z:(v-.5)*Math.sin(u*Math.PI)*.12,
       };
     } else if (kind===1) {
       // Discrete berries form a tapered bunch; gaps keep it readable as grapes.
@@ -70,11 +79,11 @@ export function createParticleCloud(count=3000) {
     } else {
       const r=.34+.009*Math.cos(angle*10)*Math.sin(latitude)**2;
       fruit=local<.95 ? {
-        x:.79+Math.sin(latitude)*Math.cos(angle)*r,
+        x:1.0+Math.sin(latitude)*Math.cos(angle)*r,
         y:-.05+Math.cos(latitude)*r*.8,
         z:Math.sin(latitude)*Math.sin(angle)*r,
       } : {
-        x:.8+u*.22,y:.24+Math.sin(u*Math.PI)*.08,z:(v-.5)*Math.sin(u*Math.PI)*.12,
+        x:1.01+u*.22,y:.24+Math.sin(u*Math.PI)*.08,z:(v-.5)*Math.sin(u*Math.PI)*.12,
       };
     }
     const [lx,ly,accent]=logo.points[id % logo.points.length];
@@ -97,11 +106,10 @@ export function sampleParticleField(cloud,time,width,height) {
   return cloud.map(p => {
     const water=mix(p.forms[scene].water || 0,p.forms[(scene+1)%3].water || 0,blend);
     // Water travels downstream in about 3.5 seconds; fade at both ends hides recycling.
-    const flowZ=((p.forms[0].z+.96+time*.00055)%1.92)-.96;
+    const flowZ=(((p.forms[0].flowPosition ?? p.forms[0].z)+.96+time*.00055)%1.92)-.96;
     const flowing = form => form.water ? {
       ...form,
-      z:flowZ,
-      x:riverChannel(flowZ).center+form.lane*riverChannel(flowZ).halfWidth,
+      ...riverPoint(flowZ,form.lane),
       y:-.35+.012*Math.sin(flowZ*25+p.phase),
     } : form;
     const from=flowing(p.forms[scene]), to=flowing(p.forms[(scene+1)%3]);
@@ -120,7 +128,7 @@ export function sampleParticleField(cloud,time,width,height) {
       x:width*.5+rx*scale*perspective,
       y:height*.53-ry*scale*perspective,
       radius:p.radius*(.8+near*.6)*perspective,
-      opacity:(.24+near*.48+water*(.14+.055*ripple))
+      opacity:(.24+near*.48+water*(.21+.045*ripple))
         *mix(1,clamp((.96-Math.abs(flowZ))/.13,0,1),water)
         *mix(1,.48+mix(from.light || 0,to.light || 0,blend)*.7,grape),
       water,
