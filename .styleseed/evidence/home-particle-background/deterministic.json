@@ -1,6 +1,6 @@
 {
   "detectorRevision": "styleseed-check-v3",
-  "inventoryHash": "sha256:3230cdfd7a0c98d9584cbcb5cabb21e5a40541e36a301be3c9a5875d8bd93b77",
+  "inventoryHash": "sha256:a50b1b209cbc886a4cfcce2ff6dd6ce2713e282c177bcb6404ed0566f095a62c",
   "findings": [
     {
       "id": "SS001",

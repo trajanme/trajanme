@@ -81,7 +81,8 @@
         "particle-field-fits-responsive-viewports",
         "particle-shapes-morph-continuously",
         "logo-hold-preserves-source-artwork",
-        "river-flows-downstream-faster-than-mountains"
+        "river-flows-downstream-faster-than-mountains",
+        "each-scene-scatters-outward-before-regrouping"
       ]
     }
   }

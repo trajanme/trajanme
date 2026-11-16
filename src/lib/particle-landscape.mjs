@@ -16,13 +16,25 @@ function riverChannel(z) {
     halfWidth:.024+.042*downstream**2,
   };
 }
-// Continue downstream around the mountain foothills toward the left edge.
+function mountainHeight(x,z) {
+  const left=.9*Math.exp(-((x+.61)**2/.15+(z+.24)**2/.4));
+  const right=.75*Math.exp(-((x-.65)**2/.18+(z-.12)**2/.32));
+  return -.32+left+right+.018*Math.sin(x*9+z*6);
+}
+// Source on the high mountainside, then a long, winding descent around the foothills.
+const riverKnots=[[-.55,-.25],[-.44,-.04],[-.06,.18],[.1,.47],[-.27,.83],[-.8,.15],[-1.06,.53],[-1.38,-.2]];
+const spline=(a,b,c,d,t)=>.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t);
 function riverPoint(position,lane) {
-  const {center,halfWidth}=riverChannel(position);
-  const bend=smooth(clamp(((position+.96)/1.92-.48)/.52,0,1));
+  const progress=clamp((position+.96)/1.92,0,1);
+  const segment=progress*(riverKnots.length-1), i=Math.min(riverKnots.length-2,Math.floor(segment));
+  const t=segment-i;
+  const a=riverKnots[Math.max(0,i-1)],b=riverKnots[i],c=riverKnots[i+1],d=riverKnots[Math.min(riverKnots.length-1,i+2)];
+  const x=spline(a[0],b[0],c[0],d[0],t), z=spline(a[1],b[1],c[1],d[1],t);
+  const width=riverChannel(position).halfWidth;
   return {
-    x:center-1.22*bend+lane*halfWidth,
-    z:position-1.25*bend+.6*Math.sin(bend*TAU),
+    x:x+lane*width,
+    y:mix(mountainHeight(x,z)+.015,-.39,smooth(clamp((progress-.25)/.3,0,1)))-progress*.025,
+    z,
   };
 }
 function random(seed) {
@@ -39,14 +51,12 @@ export function createParticleCloud(count=3000) {
     const {center:channel,halfWidth}=riverChannel(z);
     let landscape;
     if (id/count < .26) {
-      landscape={...riverPoint(z,u*2-1),y:-.35+.012*Math.sin(z*25+u*8),water:1,lane:u*2-1,flowPosition:z};
+      landscape={...riverPoint(z,u*2-1),water:1,lane:u*2-1,flowPosition:z};
     } else {
       const side=id%2===0 ? -1 : 1;
       const inner=channel+side*(halfWidth+.035);
       const x=mix(inner,side*1.19,u);
-      const left=.9*Math.exp(-((x+.61)**2/.15+(z+.24)**2/.4));
-      const right=.75*Math.exp(-((x-.65)**2/.18+(z-.12)**2/.32));
-      landscape={x,y:-.32+left+right+.018*Math.sin(x*9+z*6),z,water:0};
+      landscape={x,y:mountainHeight(x,z),z,water:0};
     }
     // All three fruits share one scene: apple, grape bunch, and mandarin.
     const kind=id%3, local=Math.floor(id/3)/Math.ceil(count/3);
@@ -97,6 +107,7 @@ export function sampleParticleField(cloud,time,width,height) {
   const scene=Math.floor(time/sceneLength)%3;
   const progress=clamp((time%sceneLength-6000)/5000,0,1);
   const blend=smooth(progress);
+  const scatter=Math.sin(progress*Math.PI)**2;
   const logoWeight=scene===2 ? 1-blend : scene===1 ? blend : 0;
   const motion=1-logoWeight;
   const yaw=(.32+Math.sin(time*.00011)*.17)*motion;
@@ -110,7 +121,6 @@ export function sampleParticleField(cloud,time,width,height) {
     const flowing = form => form.water ? {
       ...form,
       ...riverPoint(flowZ,form.lane),
-      y:-.35+.012*Math.sin(flowZ*25+p.phase),
     } : form;
     const from=flowing(p.forms[scene]), to=flowing(p.forms[(scene+1)%3]);
     const grape=mix(from.grape || 0,to.grape || 0,blend);
@@ -124,9 +134,12 @@ export function sampleParticleField(cloud,time,width,height) {
     const perspective=3.8/(3.8+depth*.28);
     const near=clamp((1.1-depth)/2.2,0,1);
     const ripple=Math.sin(time*.0063-mix(from.z,to.z,blend)*12+p.seed*.4);
+    const outer=.52+p.seed*.48;
+    const outerX=width*.5+Math.cos(p.phase)*width*.465*outer;
+    const outerY=height*.5+Math.sin(p.phase)*height*.465*outer;
     return {
-      x:width*.5+rx*scale*perspective,
-      y:height*.53-ry*scale*perspective,
+      x:mix(width*.5+rx*scale*perspective,outerX,scatter),
+      y:mix(height*.53-ry*scale*perspective,outerY,scatter),
       radius:p.radius*(.8+near*.6)*perspective,
       opacity:(.24+near*.48+water*(.21+.045*ripple))
         *mix(1,clamp((.96-Math.abs(flowZ))/.13,0,1),water)

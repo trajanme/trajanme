@@ -380,6 +380,7 @@ Recorded in `.styleseed/project.json`. A decision outranks a default; it never o
 - **D-015** (decision · approved by User home background request, 2026-11-15): Home: fine dots morph through a mountain valley with a flowing river, an apple/grapes/mandarin trio, and the supplied logo. Use brand tokens, readable copy, accessible icon-only pause, reduced-motion/static fallbacks, and offscreen/hidden-tab suspension.
 - **D-016** (decision · approved by User photo fade and logo motion requests, 2026-11-16): Home-only exception to D-008: regional photo fades into opaque kinari behind the copy; particles stay on plain kinari. Fade vertically on mobile. Preserve contrast and credit. Sample the original logo SVG, retaining geometry and brand colors in its front-facing hold.
 - **D-017** (decision · approved by User grape clarity and faster, narrower Japanese river requests, 2026-11-16): Home: a narrow blue river winds faster downstream to the mountain left edge. Space apple, grapes and mandarin apart. Grape berries retain visible gaps, individual shading and reduced wobble. Logo colors remain unchanged.
+- **D-018** (decision · approved by User source-to-mouth flow and outward-scatter transition requests, 2026-11-16): Home river starts on the high mountainside, descends naturally through a longer winding course, and reaches the left foothills. Every scene transition first scatters dots toward the visual field edges, then gathers them into the next shape. Respect pause and reduced motion.
 
 ## Invariants
 

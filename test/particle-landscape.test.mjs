@@ -70,5 +70,23 @@ test('river-flows-downstream-faster-than-mountains', () => {
   };
   assert.ok(displacement(1)>displacement(0)*5,'River visibly flows while mountains remain calm');
   assert.ok(first.some(p=>p.water===1));
+  const reaches=cloud.map(p=>p.forms[0]).filter(p=>p.water);
+  const meanY=points=>points.reduce((sum,p)=>sum+p.y,0)/points.length;
+  assert.ok(meanY(reaches.filter(p=>p.flowPosition<-.8))>meanY(reaches.filter(p=>p.flowPosition>.8))+.6,'River descends from the mountainside to the mouth');
   assert.ok(sampleParticleField(cloud,22000,720,600).every(p=>p.water===0),'Water color does not reach the logo hold');
+});
+
+test('each-scene-scatters-outward-before-regrouping', () => {
+  const cloud=createParticleCloud(1400);
+  const medianRadius=points=>{
+    const radii=points.map(p=>Math.hypot((p.x-195)/195,(p.y-165)/165)).sort((a,b)=>a-b);
+    return radii[Math.floor(radii.length/2)];
+  };
+  for (const start of [0,11000,22000]) {
+    const held=sampleParticleField(cloud,start+5000,390,330);
+    const scattered=sampleParticleField(cloud,start+8500,390,330);
+    const regrouped=sampleParticleField(cloud,start+11000,390,330);
+    assert.ok(medianRadius(scattered)>medianRadius(held)*1.2);
+    assert.ok(medianRadius(scattered)>medianRadius(regrouped)*1.2);
+  }
 });

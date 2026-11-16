@@ -31,14 +31,14 @@
     {
       "id": "project",
       "path": ".styleseed/project.json",
-      "sha256": "sha256:709c2b9cb41056be23cd07471912016bb008f473a39a860b57c229dc77d512ba",
-      "bytes": 9891
+      "sha256": "sha256:7345b5153333543995a5556b53b5c1fc344e5b2c7194411e5edab0a44cdfb671",
+      "bytes": 10510
     },
     {
       "id": "artifact",
       "path": ".styleseed/artifacts/home.json",
-      "sha256": "sha256:e0d1d3a8a65c0225e3cf7af67e7da1982ad6ba293d259eaf28e192fa5daef7c6",
-      "bytes": 2216
+      "sha256": "sha256:18934a7a4bf80971d3d9ec7c090ce839e617f17ebf63097afb49d0bccd2ffcfb",
+      "bytes": 2273
     },
     {
       "id": "tokens",
@@ -105,8 +105,8 @@
     {
       "id": "rules",
       "path": "catalog:rules",
-      "sha256": "sha256:bcd60d4c3d717271beb05efaca37d88462406dac5b153776bcfe9b475c1a314a",
-      "bytes": 11185
+      "sha256": "sha256:4ffd0a45c67813bce86c989a4d6e02b806603a661027b768bfc8afe90465690d",
+      "bytes": 11577
     },
     {
       "id": "craft",
@@ -115,8 +115,8 @@
       "bytes": 4870
     }
   ],
-  "methodHash": "sha256:4fae7b287d3ac8ab721fc2346ddb6389ad19cf8e70c091723de898e1b96c006d",
-  "validationHash": "sha256:a4352cdcecd89856838de4e6881a85d7f6acf3461fc31d6846dea8d31d0da472",
+  "methodHash": "sha256:10092d94e585945735d227d40afaa2533be9da410c53b0d6ef6d6c43c0acfa05",
+  "validationHash": "sha256:b98c3235e32eb76d635eeda5a4ef2850dee5b12afaf2ab89d31dbdd2763e1068",
   "validationSlices": {
     "target": "sha256:fd89b3b7c61fa08e9a1055ecd5c5678651b23752e9a5d07d80a2fb7f5ac1ae14",
     "implementation": "sha256:52f7d1aa5eee4d556a6fe6dab788e16ae6605f45145c3c0a9bea456b74bcedab",
@@ -124,20 +124,20 @@
     "requiredRenders": "sha256:e2cbc22ce7be59d23cd2e88d6fdbc576aa98f69928e4ff1e61fda02e15ccca2f",
     "temporal": "sha256:3ed3b6fd5761eadf3e7c1fc17d5551f4e3e6871028cd6f42664b8b89e6a52ecc",
     "humanAcceptance": "sha256:b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
-    "functional": "sha256:70bb0c15da7fe1e4aabe6251392bedcec97ed915f72641ed7d1accca37c47889"
+    "functional": "sha256:ddfb008f58589e11b062ecb0950c3ee498ddda90cf92b9ebbfa26a22975493a9"
   },
   "bundle": {
     "kind": "bundle",
     "path": ".styleseed/bundles/home.md",
-    "sha256": "sha256:136da28cbfc05233279fe25d2d62251806273e2c575cd35c213c349109fe98ea",
-    "bytes": 38128
+    "sha256": "sha256:caa0d3bc2d3a0f1d8eaf672751d22e6b5c61ab2a66e6de6746ffc1e01a157a68",
+    "bytes": 38520
   },
   "outputs": [
     {
       "kind": "bundle",
       "path": ".styleseed/bundles/home.md",
-      "sha256": "sha256:136da28cbfc05233279fe25d2d62251806273e2c575cd35c213c349109fe98ea",
-      "bytes": 38128
+      "sha256": "sha256:caa0d3bc2d3a0f1d8eaf672751d22e6b5c61ab2a66e6de6746ffc1e01a157a68",
+      "bytes": 38520
     },
     {
       "kind": "palette-json",

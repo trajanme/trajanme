@@ -2,7 +2,7 @@
   "scope": "Home hero dot collective",
   "blockingSourceFindings": 0,
   "tests": {
-    "passed": 10,
+    "passed": 11,
     "failed": 0,
     "report": ".styleseed/evidence/home-particle-background/functional.tap"
   },
@@ -11,7 +11,7 @@
   "geometryPreview": "Inspected 3 model phases at 0, 11000, 22000 ms for desktop 720x600 and mobile 390x330; PNGs are not browser screenshots",
   "builtFallback": "rendered built SVG with compiler-only boolean scope attributes removed for XML compatibility; inspected",
   "browserTemporalVerification": "unobserved: native pipe startup failed; browser host unavailable",
-  "modelSha256": "6d05c4e0cd9773eed3fa8c09609412b252cae88a52e7dd71e1b614e7906e2ecd",
-  "latestRefinement": "Wider spacing between fruits. River continues to the mountain left edge with visible downstream meanders. Desktop/mobile model images inspected; browser still unavailable.",
+  "modelSha256": "1fc424757405df9c0dca5df5a03d45397c1dbe230a6cac3104907e40ff06a3d0",
+  "latestRefinement": "River descends from a high mountainside along a longer winding course. Every transition spreads toward field edges and regroups; 5 transition model frames inspected, live browser unavailable.",
   "photo": "Nicholas Graves / NickAura, CC BY 3.0; public attribution in home"
 }
